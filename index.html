@@ -154,7 +154,7 @@
         height: 100%;
         width: 85%;
         max-width: 360px;
-        background-color: rgb(248, 250, 252);
+        background-color: rgb(var(--pk-bg-rgb));
         box-shadow: 0 0 24px rgba(0, 0, 0, 0.15);
         transform: translateX(-100%);
         transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
@@ -235,7 +235,7 @@
         width: 85%;
         max-width: 480px;
         height: min(800px, 90vh);
-        background-color: rgb(248, 250, 252);
+        background-color: rgb(var(--pk-bg-rgb));
         border-radius: 24px;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         padding: 0;
@@ -260,7 +260,7 @@
         flex-direction: column;
         padding: 1.25rem;
         box-sizing: border-box;
-        background-color: rgb(248, 250, 252);
+        background-color: rgb(var(--pk-bg-rgb));
         transform: translateX(100%);
         transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
       }
@@ -473,7 +473,7 @@
         align-items: center;
         justify-content: center;
         border-radius: 999px;
-        background: rgb(248, 250, 252);
+        background: rgb(var(--pk-bg-rgb));
         border: 1px solid rgba(0, 0, 0, 0.1);
         color: rgb(75, 85, 99);
         cursor: pointer;
@@ -493,6 +493,11 @@
         border-radius: 10px;
         background: rgba(0, 0, 0, 0.02);
         color: rgb(55, 65, 81);
+      }
+      .settings-list-select {
+        width: auto;
+        flex-shrink: 0;
+        margin: -0.25rem 0;
       }
       .settings-field-label {
         display: block;
@@ -616,11 +621,11 @@
       }
 
       /* Dark mode */
-      html.dark-mode body,
-      html.dark-mode [style*="background-color: rgb(248, 250, 252)"],
-      html.dark-mode .settings-page,
-      html.dark-mode .about-panel {
-        background-color: rgb(24, 24, 27) !important;
+      :root {
+        --pk-bg-rgb: 248, 250, 252;
+      }
+      html.dark-mode {
+        --pk-bg-rgb: 11, 21, 41;
       }
       html.dark-mode [style*="background-color: rgba(248, 250, 252, 0.3)"] {
         background-color: rgba(255, 255, 255, 0.06) !important;
@@ -673,7 +678,6 @@
         background: rgba(0, 0, 0, 0.6);
       }
       html.dark-mode .settings-avatar-edit-btn {
-        background: rgb(24, 24, 27) !important;
         border-color: rgba(255, 255, 255, 0.15) !important;
         color: rgb(226, 232, 240) !important;
       }
@@ -712,8 +716,68 @@
       html.dark-mode .settings-autocomplete-item.is-active {
         background: rgba(255, 255, 255, 0.08) !important;
       }
-      html.dark-mode [style*="radial-gradient(90% 65%, rgba(248, 250, 252"] {
-        background: radial-gradient(90% 65%, rgba(24, 24, 27, 0) 0%, rgba(24, 24, 27, 0) 5%, rgba(24, 24, 27, 0.9) 55%, rgb(24, 24, 27) 80%) !important;
+      /* Plugins */
+      .plugin-buttons-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+      }
+      .plugin-buttons-container:empty {
+        display: none;
+      }
+      .plugin-button-row {
+        display: flex;
+        gap: 0.5rem;
+        width: 100%;
+      }
+      .plugin-quick-btn-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.5rem;
+        height: 1.5rem;
+        flex-shrink: 0;
+      }
+      .plugin-quick-btn-icon svg {
+        width: 100%;
+        height: 100%;
+      }
+      .plugin-quick-btn-label {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .settings-remove-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        flex-shrink: 0;
+        border-radius: 999px;
+        border: none;
+        background: none;
+        color: rgb(156, 163, 175);
+        cursor: pointer;
+        padding: 0;
+        transition: background-color 0.2s ease, color 0.2s ease;
+      }
+      .settings-remove-btn:hover {
+        background: rgba(220, 38, 38, 0.1);
+        color: rgb(220, 38, 38);
+      }
+      .plugin-list-empty {
+        padding: 0.85rem 1rem;
+        font-size: 0.85rem;
+        color: rgb(156, 163, 175);
+      }
+      html.dark-mode .plugin-list-empty {
+        color: rgb(148, 163, 184) !important;
+      }
+      html.dark-mode .settings-remove-btn:hover {
+        background: rgba(248, 113, 113, 0.15) !important;
+        color: rgb(248, 113, 113) !important;
       }
       html.dark-mode .settings-text-input option,
       html.dark-mode select.settings-text-input {
@@ -755,7 +819,7 @@
         visibility: visible;
       }
       .search-bar-box {
-        background: rgb(248, 250, 252);
+        background: rgb(var(--pk-bg-rgb));
         border-radius: 16px;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         padding: 0.4rem;
@@ -798,9 +862,6 @@
       }
       html.dark-mode .search-bar-overlay {
         background: rgba(0, 0, 0, 0.6);
-      }
-      html.dark-mode .search-bar-box {
-        background: rgb(24, 24, 27) !important;
       }
       html.dark-mode .search-bar-input {
         background: rgba(255, 255, 255, 0.05);
@@ -855,7 +916,7 @@
       }
       function closeSettingsPage() {
         const main = document.getElementById("settings-page-main");
-        document.querySelectorAll(".settings-page.is-active").forEach(function (page) {
+        document.querySelectorAll("#settings-modal .settings-page.is-active").forEach(function (page) {
           if (page !== main) {
             page.classList.remove("is-active");
           }
@@ -876,6 +937,31 @@
         localStorage.setItem("poke-sound-effects", soundEffectsEnabled ? "1" : "0");
         playPopSound();
       }
+
+      // Home screen default buttons (Ask AI / Mail / Search) visibility
+      const HOME_BUTTON_KEYS = {
+        "ai-button-wrap": "poke-show-ai-button",
+        "mail-button-wrap": "poke-show-mail-button",
+        "search-button-wrap": "poke-show-search-button",
+      };
+      function isHomeButtonVisible(elId) {
+        const stored = localStorage.getItem(HOME_BUTTON_KEYS[elId]);
+        return stored === null ? true : stored === "1";
+      }
+      function applyHomeButtonVisibility() {
+        Object.keys(HOME_BUTTON_KEYS).forEach(function (elId) {
+          const el = document.getElementById(elId);
+          const visible = isHomeButtonVisible(elId);
+          if (el) el.style.display = visible ? "" : "none";
+          const toggle = document.getElementById(elId + "-toggle");
+          if (toggle) toggle.setAttribute("aria-checked", visible ? "true" : "false");
+        });
+      }
+      function toggleHomeButton(elId) {
+        localStorage.setItem(HOME_BUTTON_KEYS[elId], isHomeButtonVisible(elId) ? "0" : "1");
+        applyHomeButtonVisibility();
+        playPopSound();
+      }
       function playPopSound() {
         if (!soundEffectsEnabled) return;
         const audio = document.getElementById("pop-sound");
@@ -884,16 +970,46 @@
         audio.play().catch(function () {});
       }
 
-      // Dark mode
-      function applyDarkMode(enabled) {
-        document.documentElement.classList.toggle("dark-mode", enabled);
-        const toggle = document.getElementById("dark-mode-toggle");
-        if (toggle) toggle.setAttribute("aria-checked", enabled ? "true" : "false");
+      // Theme (Dynamic / Light / Dark)
+      const THEME_DYNAMIC_NIGHT_RGB = "10, 18, 36"; // #0a1224
+      const THEME_DYNAMIC_LIGHT_RGB = "245, 247, 250"; // white, lightly tinted from the bg gradient
+
+      function getThemeMode() {
+        const stored = localStorage.getItem("poke-theme-mode");
+        if (stored === "dynamic" || stored === "light" || stored === "dark") return stored;
+        // Migrate from the old boolean dark-mode setting
+        return localStorage.getItem("poke-dark-mode") === "1" ? "dark" : "light";
       }
-      function toggleDarkMode() {
-        const enabled = !document.documentElement.classList.contains("dark-mode");
-        applyDarkMode(enabled);
-        localStorage.setItem("poke-dark-mode", enabled ? "1" : "0");
+      function resolveEffectiveTheme(mode) {
+        if (mode === "dynamic") {
+          return getTimeOfDay() === "night" ? "dark" : "light";
+        }
+        return mode;
+      }
+      function updateThemeColorMeta() {
+        const meta = document.querySelector('meta[name="theme-color"]');
+        if (!meta) return;
+        const rgb = getComputedStyle(document.documentElement).getPropertyValue("--pk-bg-rgb").trim();
+        meta.setAttribute("content", "rgb(" + rgb + ")");
+      }
+      function applyTheme(mode) {
+        const root = document.documentElement;
+        const effective = resolveEffectiveTheme(mode);
+        root.classList.toggle("dark-mode", effective === "dark");
+        if (mode === "dynamic") {
+          root.style.setProperty("--pk-bg-rgb", effective === "dark" ? THEME_DYNAMIC_NIGHT_RGB : THEME_DYNAMIC_LIGHT_RGB);
+        } else {
+          root.style.removeProperty("--pk-bg-rgb");
+        }
+        const select = document.getElementById("theme-mode-select");
+        if (select) select.value = mode;
+        updateThemeColorMeta();
+      }
+      function onThemeModeChange() {
+        const select = document.getElementById("theme-mode-select");
+        const mode = select.value;
+        localStorage.setItem("poke-theme-mode", mode);
+        applyTheme(mode);
         playPopSound();
       }
 
@@ -1197,7 +1313,8 @@
       let searchDebounceTimer = null;
       function isAnyModalOpen() {
         return document.getElementById("settings-modal").classList.contains("is-open")
-          || document.getElementById("about-panel").classList.contains("is-open");
+          || document.getElementById("about-panel").classList.contains("is-open")
+          || document.getElementById("plugin-popout-modal").classList.contains("is-open");
       }
       function isSearchBarOpen() {
         const container = document.getElementById("search-bar-container");
@@ -1353,6 +1470,332 @@
         }
       }
 
+      // Plugin system
+      const PLUGIN_LIST_KEY = "poke-plugins";
+      const pluginRegistry = {};
+      const pluginUrlToId = {};
+      const pluginIdToUrl = {};
+      const DEFAULT_PLUGINS = [
+      ];
+
+      function seedDefaultPlugins() {
+        const installed = getInstalledPlugins();
+        const existing = installed.map(function (entry) { return entry && entry.url; });
+        let changed = false;
+        DEFAULT_PLUGINS.forEach(function (url) {
+          if (existing.indexOf(url) === -1) {
+            installed.push({ url: url, enabled: false });
+            changed = true;
+          }
+        });
+        if (changed) saveInstalledPlugins(installed);
+      }
+
+      function getInstalledPlugins() {
+        try {
+          const raw = localStorage.getItem(PLUGIN_LIST_KEY);
+          const list = raw ? JSON.parse(raw) : [];
+          return Array.isArray(list) ? list : [];
+        } catch (e) {
+          return [];
+        }
+      }
+      function saveInstalledPlugins(list) {
+        localStorage.setItem(PLUGIN_LIST_KEY, JSON.stringify(list));
+      }
+      function pluginStorageGet(id, key, defaultValue) {
+        try {
+          const raw = localStorage.getItem("poke-plugin-data-" + id + "-" + key);
+          return raw === null ? defaultValue : JSON.parse(raw);
+        } catch (e) {
+          return defaultValue;
+        }
+      }
+      function pluginStorageSet(id, key, value) {
+        localStorage.setItem("poke-plugin-data-" + id + "-" + key, JSON.stringify(value));
+      }
+      function makePluginContext(id) {
+        return {
+          storage: {
+            get: function (key, defaultValue) {
+              return pluginStorageGet(id, key, defaultValue);
+            },
+            set: function (key, value) {
+              pluginStorageSet(id, key, value);
+            },
+          },
+          navigate: function (url) {
+            window.location.href = url;
+          },
+          playSound: playPopSound,
+          closeSettings: closeSettingsModal,
+          closePopout: closePluginPopout,
+        };
+      }
+      function registerPokePlugin(definition) {
+        if (!definition || !definition.id || !definition.name) return;
+        pluginRegistry[definition.id] = definition;
+        if (document.currentScript && document.currentScript.src) {
+          pluginUrlToId[document.currentScript.src] = definition.id;
+          pluginIdToUrl[definition.id] = document.currentScript.src;
+        }
+        renderPluginButtons();
+        renderPluginSettingsList();
+      }
+      window.registerPokePlugin = registerPokePlugin;
+      window.PokeHome = {
+        registerPlugin: registerPokePlugin,
+        storage: {
+          get: pluginStorageGet,
+          set: pluginStorageSet,
+        },
+      };
+
+      function loadPlugins() {
+        getInstalledPlugins().forEach(function (entry) {
+          if (!entry || !entry.url) return;
+          const script = document.createElement("script");
+          script.src = entry.url;
+          script.async = true;
+          script.onerror = function () {
+            console.warn("Failed to load plugin:", entry.url);
+          };
+          document.body.appendChild(script);
+        });
+      }
+
+      function renderPluginButtons() {
+        const container = document.getElementById("plugin-buttons-container");
+        if (!container) return;
+        const defaultRow = document.getElementById("default-buttons-row");
+        if (defaultRow) {
+          defaultRow.querySelectorAll(".plugin-injected-btn").forEach(function (el) { el.remove(); });
+        }
+        const installed = getInstalledPlugins();
+        const rows = {};
+        installed.forEach(function (entry) {
+          if (!entry || !entry.url || entry.enabled === false) return;
+          const id = pluginUrlToId[entry.url];
+          const plugin = id && pluginRegistry[id];
+          if (!plugin) return;
+          const btnDef = plugin.button || { label: plugin.name, icon: plugin.icon, row: 0 };
+          const defaultRow = Number.isFinite(btnDef.row) ? btnDef.row : 0;
+          const storedRow = pluginStorageGet(plugin.id, "row", null);
+          const rowIndex = Number.isFinite(storedRow) ? storedRow : defaultRow;
+          (rows[rowIndex] = rows[rowIndex] || []).push({ plugin: plugin, button: btnDef });
+        });
+
+        container.innerHTML = "";
+        Object.keys(rows)
+          .map(Number)
+          .sort(function (a, b) { return a - b; })
+          .forEach(function (rowIndex) {
+            if (rowIndex === 0 && defaultRow) {
+              rows[0].forEach(function (entry) {
+                const btn = buildPluginButton(entry.plugin, entry.button);
+                btn.classList.add("plugin-injected-btn");
+                defaultRow.appendChild(btn);
+              });
+              return;
+            }
+            const rowEl = document.createElement("div");
+            rowEl.className = "plugin-button-row";
+            rows[rowIndex].forEach(function (entry) {
+              rowEl.appendChild(buildPluginButton(entry.plugin, entry.button));
+            });
+            container.appendChild(rowEl);
+          });
+      }
+
+      function buildPluginButton(plugin, btnDef) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "flex min-w-0 flex-1 flex-col items-center justify-center gap-2 rounded-3xl border p-3 shadow-alyn backdrop-blur-xs transition-transform active:scale-[0.98] md:hover:backdrop-blur-lg";
+        btn.style.backgroundColor = "rgba(248, 250, 252, 0.3)";
+        btn.style.borderColor = "rgba(248, 250, 252, 0.3)";
+        if (btnDef.size) btn.style.flexGrow = String(btnDef.size);
+        btn.setAttribute("aria-label", btnDef.label || plugin.name);
+        if (typeof btnDef.render === "function") {
+          btnDef.render(btn, makePluginContext(plugin.id));
+        } else {
+          btn.innerHTML =
+            '<div class="plugin-quick-btn-icon text-gray-600">' + (btnDef.icon || plugin.icon || "") + '</div>' +
+            '<div class="plugin-quick-btn-label text-sm font-medium text-gray-400">' + escapeHtml(btnDef.label || plugin.name) + "</div>";
+        }
+        btn.addEventListener("click", function () {
+          playPopSound();
+          if (typeof btnDef.onClick === "function") {
+            btnDef.onClick(makePluginContext(plugin.id));
+          } else if (plugin.popout && typeof plugin.popout.render === "function") {
+            openPluginPopout(plugin.id);
+          } else if (typeof plugin.onClick === "function") {
+            plugin.onClick(makePluginContext(plugin.id));
+          } else if (plugin.url) {
+            window.location.href = plugin.url;
+          }
+        });
+        return btn;
+      }
+
+      function openPluginPopout(id) {
+        const plugin = pluginRegistry[id];
+        if (!plugin || !plugin.popout || typeof plugin.popout.render !== "function") return;
+        const title = document.getElementById("plugin-popout-title");
+        const container = document.getElementById("plugin-popout-container");
+        if (title) title.textContent = plugin.popout.title || plugin.name;
+        if (container) {
+          container.innerHTML = "";
+          plugin.popout.render(container, makePluginContext(plugin.id));
+        }
+        document.getElementById("plugin-popout-modal").classList.add("is-open");
+        document.getElementById("plugin-popout-overlay").classList.add("is-open");
+        document.getElementById("plugin-popout-modal").setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+      function closePluginPopout() {
+        document.getElementById("plugin-popout-modal").classList.remove("is-open");
+        document.getElementById("plugin-popout-overlay").classList.remove("is-open");
+        document.getElementById("plugin-popout-modal").setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      function escapeHtml(str) {
+        return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+      }
+
+      const ICON_GEAR = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
+      const ICON_TRASH = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
+
+      function renderPluginSettingsList() {
+        const list = document.getElementById("plugin-list");
+        if (!list) return;
+        const installed = getInstalledPlugins();
+        if (!installed.length) {
+          list.innerHTML = '<div class="plugin-list-empty">No plugins installed yet.</div>';
+          return;
+        }
+        list.innerHTML = "";
+        installed.forEach(function (entry, index) {
+          const id = pluginUrlToId[entry.url];
+          const plugin = id && pluginRegistry[id];
+          const enabled = entry.enabled !== false;
+
+          const item = document.createElement("div");
+          item.className = "settings-list-item settings-list-item-toggle";
+
+          const icon = document.createElement("span");
+          icon.className = "settings-list-icon";
+          icon.innerHTML = (plugin && plugin.icon) || ICON_GEAR;
+          item.appendChild(icon);
+
+          const label = document.createElement("span");
+          label.className = "settings-list-label";
+          label.textContent = (plugin && plugin.name) || entry.url;
+          item.appendChild(label);
+
+          if (plugin && plugin.settings && typeof plugin.settings.render === "function") {
+            const settingsBtn = document.createElement("button");
+            settingsBtn.type = "button";
+            settingsBtn.className = "settings-remove-btn";
+            settingsBtn.setAttribute("aria-label", "Plugin settings");
+            settingsBtn.innerHTML = ICON_GEAR;
+            settingsBtn.addEventListener("click", function () {
+              openPluginSettings(plugin.id);
+            });
+            item.appendChild(settingsBtn);
+          }
+
+          if (plugin) {
+            const btnDef = plugin.button || { row: 0 };
+            const defaultRow = Number.isFinite(btnDef.row) ? btnDef.row : 0;
+            const storedRow = pluginStorageGet(plugin.id, "row", null);
+            const rowSelect = document.createElement("select");
+            rowSelect.className = "settings-text-input settings-list-select";
+            rowSelect.setAttribute("aria-label", "Button row");
+            for (let r = 0; r <= 4; r++) {
+              const opt = document.createElement("option");
+              opt.value = String(r);
+              opt.textContent = "Row " + r;
+              rowSelect.appendChild(opt);
+            }
+            rowSelect.value = String(Number.isFinite(storedRow) ? storedRow : defaultRow);
+            rowSelect.addEventListener("change", function () {
+              pluginStorageSet(plugin.id, "row", Number(rowSelect.value));
+              renderPluginButtons();
+            });
+            item.appendChild(rowSelect);
+          }
+
+          const toggle = document.createElement("button");
+          toggle.type = "button";
+          toggle.setAttribute("role", "switch");
+          toggle.className = "settings-switch";
+          toggle.setAttribute("aria-checked", enabled ? "true" : "false");
+          toggle.setAttribute("aria-label", "Enable plugin");
+          toggle.innerHTML = '<span class="settings-switch-thumb"></span>';
+          toggle.addEventListener("click", function () {
+            togglePlugin(index);
+          });
+          item.appendChild(toggle);
+
+          const removeBtn = document.createElement("button");
+          removeBtn.type = "button";
+          removeBtn.className = "settings-remove-btn";
+          removeBtn.setAttribute("aria-label", "Remove plugin");
+          removeBtn.innerHTML = ICON_TRASH;
+          removeBtn.addEventListener("click", function () {
+            removePlugin(index);
+          });
+          item.appendChild(removeBtn);
+
+          list.appendChild(item);
+        });
+      }
+
+      function addPlugin() {
+        const input = document.getElementById("plugin-url-input");
+        if (!input) return;
+        const url = input.value.trim();
+        if (!url) return;
+        const installed = getInstalledPlugins();
+        if (installed.some(function (entry) { return entry.url === url; })) return;
+        installed.push({ url: url, enabled: true });
+        saveInstalledPlugins(installed);
+        input.value = "";
+        playPopSound();
+        location.reload();
+      }
+      function togglePlugin(index) {
+        const installed = getInstalledPlugins();
+        if (!installed[index]) return;
+        installed[index].enabled = installed[index].enabled === false ? true : false;
+        saveInstalledPlugins(installed);
+        playPopSound();
+        location.reload();
+      }
+      function removePlugin(index) {
+        const installed = getInstalledPlugins();
+        if (!installed[index]) return;
+        installed.splice(index, 1);
+        saveInstalledPlugins(installed);
+        playPopSound();
+        location.reload();
+      }
+
+      function openPluginSettings(id) {
+        const plugin = pluginRegistry[id];
+        if (!plugin || !plugin.settings || typeof plugin.settings.render !== "function") return;
+        const title = document.getElementById("plugin-settings-title");
+        const container = document.getElementById("plugin-settings-container");
+        if (title) title.textContent = plugin.settings.title || plugin.name;
+        if (container) {
+          container.innerHTML = "";
+          plugin.settings.render(container, makePluginContext(plugin.id));
+        }
+        openSettingsModal();
+        openSettingsPage("plugin");
+      }
+
       // Date display
       function applyDate() {
         const el = document.getElementById("date-display");
@@ -1401,16 +1844,32 @@
         };
         return map[code] || "clear sky";
       }
+      function getTempUnit() {
+        return localStorage.getItem("poke-temp-unit") || "fahrenheit";
+      }
+      function applyTempUnitSetting() {
+        const select = document.getElementById("temp-unit-select");
+        if (select) select.value = getTempUnit();
+      }
+      function onTempUnitChange() {
+        const select = document.getElementById("temp-unit-select");
+        if (!select) return;
+        localStorage.setItem("poke-temp-unit", select.value);
+        const location = localStorage.getItem("poke-location");
+        if (location) updateWeatherForLocation(location);
+      }
       async function updateWeatherForCoords(latitude, longitude) {
         try {
-          const weatherRes = await fetch("https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longitude + "&current=temperature_2m,weather_code&temperature_unit=fahrenheit");
+          const unit = getTempUnit();
+          const weatherRes = await fetch("https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longitude + "&current=temperature_2m,weather_code&temperature_unit=" + unit);
           const weatherData = await weatherRes.json();
           const current = weatherData.current;
           if (!current) return;
           const temp = Math.round(current.temperature_2m);
           const desc = weatherDescriptionFromCode(current.weather_code);
+          const unitSymbol = unit === "celsius" ? "°C" : "°F";
           const el = document.getElementById("weather-text");
-          if (el) el.textContent = temp + "°F and " + desc;
+          if (el) el.textContent = temp + unitSymbol + " and " + desc;
         } catch (e) {}
       }
       async function updateWeatherForLocation(location) {
@@ -1529,6 +1988,7 @@
         if (e.key === "Escape") {
           closeAboutPanel();
           closeSettingsModal();
+          closePluginPopout();
           closeSearchBar();
         }
       });
@@ -1570,9 +2030,11 @@
         if (e.target.closest("a, button")) playPopSound();
       });
       document.addEventListener("DOMContentLoaded", function () {
-        applyDarkMode(localStorage.getItem("poke-dark-mode") === "1");
+        applyTheme(getThemeMode());
         const soundSetting = localStorage.getItem("poke-sound-effects");
         applySoundSetting(soundSetting === null ? true : soundSetting === "1");
+        applyHomeButtonVisibility();
+        applyTempUnitSetting();
         const savedName = localStorage.getItem("poke-display-name");
         applyDisplayName(savedName || "Aureal");
         if (savedName) {
@@ -1590,6 +2052,10 @@
           }
         }
         initLinkSettings();
+        seedDefaultPlugins();
+        renderPluginButtons();
+        renderPluginSettingsList();
+        loadPlugins();
         applyGreeting();
         applyDate();
         applyTimeBackgrounds();
@@ -1600,11 +2066,12 @@
           updateWeatherForLocation(savedLocation);
         }
 
-        // Keep the greeting, date, backgrounds, and weather fresh over time
+        // Keep the greeting, date, backgrounds, weather, and dynamic theme fresh over time
         setInterval(function () {
           applyGreeting();
           applyDate();
           applyTimeBackgrounds();
+          if (getThemeMode() === "dynamic") applyTheme("dynamic");
         }, 60 * 1000);
         setInterval(function () {
           const location = localStorage.getItem("poke-location");
@@ -1614,7 +2081,7 @@
     </script>
   </head>
 
-  <body style="background-color: rgb(248, 250, 252);">
+  <body style="background-color: rgb(var(--pk-bg-rgb));">
     <audio id="pop-sound" src="pop.mp3" preload="auto"></audio>
     <div id="settings-overlay" class="modal-overlay" onclick="closeSettingsModal()"></div>
     <div id="settings-modal" class="settings-modal" role="dialog" aria-label="Settings" aria-hidden="true">
@@ -1674,6 +2141,16 @@
               </span>
             </button>
             <div class="settings-list-divider"></div>
+            <button type="button" class="settings-list-item" onclick="openSettingsPage('plugins')">
+              <span class="settings-list-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"></rect><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"></rect><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"></rect><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"></rect></svg>
+              </span>
+              <span class="settings-list-label">Plugins</span>
+              <span class="settings-list-chevron">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+              </span>
+            </button>
+            <div class="settings-list-divider"></div>
             <div class="settings-list-item settings-list-item-toggle">
               <span class="settings-list-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M15.54 8.46C16.4774 9.39764 17.0039 10.6692 17.0039 12C17.0039 13.3308 16.4774 14.6024 15.54 15.54M19.07 4.93C20.9447 6.80528 21.9979 9.34836 21.9979 12C21.9979 14.6516 20.9447 17.1947 19.07 19.07" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
@@ -1700,10 +2177,23 @@
               <span class="settings-list-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.7945C19.6539 13.4878 18.0741 13.7227 16.5476 13.4153C14.755 13.0535 13.1568 12.0301 12.0935 10.5547C11.0301 9.07922 10.5816 7.27007 10.8186 5.5C9.06376 5.91574 7.5108 6.93829 6.45418 8.38347C5.39756 9.82864 4.90605 11.6021 5.07127 13.3868C5.23648 15.1714 6.04699 16.825 7.35498 18.0512C8.66296 19.2773 10.3784 19.9919 12.1671 20.0466C13.9558 20.1013 15.7065 19.4926 17.0833 18.348C18.4601 17.2034 19.3699 15.5982 19.6442 13.8345" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               </span>
-              <span class="settings-list-label">Dark Mode</span>
-              <button type="button" role="switch" id="dark-mode-toggle" class="settings-switch" aria-checked="false" aria-label="Dark Mode" onclick="toggleDarkMode()">
-                <span class="settings-switch-thumb"></span>
-              </button>
+              <span class="settings-list-label">Theme</span>
+              <select id="theme-mode-select" class="settings-text-input settings-list-select" aria-label="Theme" onchange="onThemeModeChange()">
+                <option value="dynamic">Dynamic</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+              </select>
+            </div>
+            <div class="settings-list-divider"></div>
+            <div class="settings-list-item settings-list-item-toggle">
+              <span class="settings-list-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </span>
+              <span class="settings-list-label">Temperature</span>
+              <select id="temp-unit-select" class="settings-text-input settings-list-select" aria-label="Temperature unit" onchange="onTempUnitChange()">
+                <option value="fahrenheit">Fahrenheit (°F)</option>
+                <option value="celsius">Celsius (°C)</option>
+              </select>
             </div>
           </div>
           <div class="settings-connection-form">
@@ -1756,6 +2246,38 @@
           <span class="settings-header-spacer"></span>
         </div>
         <div class="settings-modal-body">
+          <div class="settings-list">
+            <div class="settings-list-item settings-list-item-toggle">
+              <span class="settings-list-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3L10.0876 8.81221C9.84029 9.55814 9.71663 9.93111 9.50992 10.2429C9.32668 10.5163 9.09718 10.7551 8.83333 10.9474C8.53552 11.1645 8.17555 11.2972 7.45561 11.5627L2 13.5L7.45561 15.4373C8.17555 15.7028 8.53552 15.8355 8.83333 16.0526C9.09718 16.2449 9.32668 16.4837 9.50992 16.7571C9.71663 17.0689 9.84029 17.4419 10.0876 18.1878L12 24L13.9124 18.1878C14.1597 17.4419 14.2834 17.0689 14.4901 16.7571C14.6733 16.4837 14.9028 16.2449 15.1667 16.0526C15.4645 15.8355 15.8245 15.7028 16.5444 15.4373L22 13.5L16.5444 11.5627C15.8245 11.2972 15.4645 11.1645 15.1667 10.9474C14.9028 10.7551 14.6733 10.5163 14.4901 10.2429C14.2834 9.93111 14.1597 9.55814 13.9124 8.81221L12 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </span>
+              <span class="settings-list-label">Show Ask AI button</span>
+              <button type="button" role="switch" id="ai-button-wrap-toggle" class="settings-switch" aria-checked="true" aria-label="Show Ask AI button" onclick="toggleHomeButton('ai-button-wrap')">
+                <span class="settings-switch-thumb"></span>
+              </button>
+            </div>
+            <div class="settings-list-divider"></div>
+            <div class="settings-list-item settings-list-item-toggle">
+              <span class="settings-list-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21.001 9C18.4937 10.8837 15.377 12 11.9995 12C8.62204 12 5.50528 10.8837 2.99805 9M4.99951 5H18.9995C20.1041 5 20.9995 5.89543 20.9995 7V17C20.9995 18.1046 20.1041 19 18.9995 19H4.99951C3.89494 19 2.99951 18.1046 2.99951 17V7C2.99951 5.89543 3.89494 5 4.99951 5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </span>
+              <span class="settings-list-label">Show Mail button</span>
+              <button type="button" role="switch" id="mail-button-wrap-toggle" class="settings-switch" aria-checked="true" aria-label="Show Mail button" onclick="toggleHomeButton('mail-button-wrap')">
+                <span class="settings-switch-thumb"></span>
+              </button>
+            </div>
+            <div class="settings-list-divider"></div>
+            <div class="settings-list-item settings-list-item-toggle">
+              <span class="settings-list-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"></circle><path d="M20 20L16.5 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+              </span>
+              <span class="settings-list-label">Show Search button</span>
+              <button type="button" role="switch" id="search-button-wrap-toggle" class="settings-switch" aria-checked="true" aria-label="Show Search button" onclick="toggleHomeButton('search-button-wrap')">
+                <span class="settings-switch-thumb"></span>
+              </button>
+            </div>
+            <p class="settings-help-text">Hide buttons you don't use. Plugin buttons with row 0 will fill the freed space.</p>
+          </div>
           <div class="settings-connection-form">
             <div>
               <label for="search-engine-select" class="settings-field-label">Search engine</label>
@@ -1808,6 +2330,40 @@
           </div>
         </div>
       </div>
+      <div id="settings-page-plugins" class="settings-page settings-page-inner">
+        <div class="settings-modal-header">
+          <button type="button" class="settings-back-btn" aria-label="Back" onclick="closeSettingsPage()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+          </button>
+          <h2 class="font-exposure">Plugins</h2>
+          <span class="settings-header-spacer"></span>
+        </div>
+        <div class="settings-modal-body">
+          <div id="plugin-list" class="settings-list"></div>
+          <div class="settings-connection-form">
+            <div>
+              <label for="plugin-url-input" class="settings-field-label">Add plugin</label>
+              <input type="url" id="plugin-url-input" class="settings-text-input" placeholder="https://example.com/my-plugin.js" autocomplete="off">
+            </div>
+            <div class="settings-connection-actions">
+              <button type="button" class="settings-action-btn" onclick="addPlugin()">Add</button>
+            </div>
+            <p class="settings-help-text">Plugins are JavaScript files loaded from a URL (e.g. a GitHub raw link). They run with full access to this page, so only add plugins from sources you trust. See README.md for the plugin API.</p>
+          </div>
+        </div>
+      </div>
+      <div id="settings-page-plugin" class="settings-page settings-page-inner">
+        <div class="settings-modal-header">
+          <button type="button" class="settings-back-btn" aria-label="Back" onclick="closeSettingsPage()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+          </button>
+          <h2 id="plugin-settings-title" class="font-exposure">Plugin</h2>
+          <span class="settings-header-spacer"></span>
+        </div>
+        <div class="settings-modal-body">
+          <div id="plugin-settings-container"></div>
+        </div>
+      </div>
     </div>
     <div id="about-overlay" class="about-overlay" onclick="closeAboutPanel()"></div>
     <div id="about-panel" class="about-panel" role="dialog" aria-label="About" aria-hidden="true">
@@ -1824,6 +2380,20 @@
         <p>A simple personal start page with a greeting, the local weather, and quick links to your favorite tools.</p>
       </div>
     </div>
+    <div id="plugin-popout-overlay" class="modal-overlay" onclick="closePluginPopout()"></div>
+    <div id="plugin-popout-modal" class="settings-modal" role="dialog" aria-label="Plugin" aria-hidden="true">
+      <div class="settings-page is-active">
+        <div class="settings-modal-header">
+          <h2 id="plugin-popout-title" class="font-exposure">Plugin</h2>
+          <button type="button" class="about-panel-close" aria-label="Close" onclick="closePluginPopout()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </button>
+        </div>
+        <div class="settings-modal-body">
+          <div id="plugin-popout-container"></div>
+        </div>
+      </div>
+    </div>
     <div id="search-bar-overlay" class="search-bar-overlay" onclick="closeSearchBar()"></div>
     <div id="search-bar-container" class="search-bar-container" role="search">
       <div class="search-bar-box" onclick="event.stopPropagation()">
@@ -1831,6 +2401,6 @@
         <div id="search-bar-suggestions" class="search-bar-suggestions"></div>
       </div>
     </div>
-    <div id="root"><ion-app class="md ion-page"><ion-router-outlet><ion-router-outlet animated="false"><div class="h-full ion-page" style="z-index: 101;"><div class="relative flex h-full w-full items-center justify-center px-0 max-md:bg-transparent" style="background: linear-gradient(rgb(206, 214, 235) 0%, rgb(233, 226, 232) 50%, rgb(206, 214, 235) 100%);"><img id="weather-bg-image" src="app-assets/weather/morning-sky-background.jpg" alt="Weather background" class="pointer-events-none absolute left-0 top-0 z-0 h-full w-full object-fill" style="opacity: 0.9; min-width: 2000px; min-height: 1200px;"><div data-silk-sheet-wrapper="" class="relative h-full w-full max-w-md text-center md:h-[750px]"><div class="flex h-full flex-col justify-between"><div class="relative flex h-full flex-col bg-sky-100 py-4 shadow-alyn md:rounded-3xl" style="background-color: rgb(248, 250, 252);"><div class="absolute inset-0 z-0 md:rounded-3xl" style="background-image: url(&quot;app-assets/noise.png&quot;); background-repeat: repeat; background-size: 100px auto; background-position: 0px 0px; background-blend-mode: overlay; mask-image: linear-gradient(transparent 0%, black 30px); opacity: 0.6;"></div><div class="relative z-10 flex h-full w-full flex-col"><div class="safe-area-pt w-full px-4 pb-1"><div class="flex items-center justify-between"><a class="flex h-11 w-11 items-center justify-center rounded-xl p-1 transition-transform active:scale-[0.98]" aria-label="About" href="#about" onclick="openAboutPanel(event)"><div style="opacity: 1;"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5"></path><path d="M12 8h.01"></path></svg></div></a><div class="flex items-center gap-2" style="opacity: 1; transform: none;"><span class="text-sm font-medium text-gray-400" id="date-display">Sun, Jun 14</span></div><a class="rounded-full p-1 transition-transform active:scale-[0.98]" aria-label="Settings" href="#settings" onclick="openSettingsModal(event)"><div class="pointer-events-none" style="opacity: 1;"><div class="relative flex items-center justify-center overflow-hidden rounded-full" style="width: 36px; height: 36px;"><div class="absolute inset-0"><img id="header-avatar" src="app-assets/avatar.jpg" alt="Avatar" class="h-full w-full select-none object-cover opacity-100" style="visibility: visible;" draggable="false" width="36" height="36"></div></div></div></a></div></div><div class="relative flex h-full overflow-hidden"><div class="relative h-full max-h-96 w-full overflow-hidden"><img id="interaction-bg-image" src="app-assets/interaction_beach/interaction_beach_morning.jpeg" alt="Background" width="1000" height="1000" draggable="false" class="h-full w-full select-none object-cover" style="transform: scale(1.4); transform-origin: center center 0px;"><div class="z-5 absolute inset-0 h-full w-full" style="background: radial-gradient(90% 65%, rgba(248, 250, 252, 0) 0%, rgba(248, 250, 252, 0) 5%, rgba(248, 250, 252, 0.9) 55%, rgb(248, 250, 252) 80%);"></div><div class="absolute inset-0 z-10" style="background-image: url(&quot;app-assets/noise.png&quot;); background-repeat: repeat; background-size: 100px auto; background-position: 0px 0px; background-blend-mode: overlay; opacity: 0.6;"></div></div></div><div class="grow"></div><div class="flex w-full flex-col items-center justify-start gap-1 p-6" style="opacity: 1; transform: none;"><div class="font-exposure text-2xl text-gray-600" style="font-variation-settings: &quot;EXPO&quot; -5;"><span id="greeting-prefix">Good morning</span>, <span id="greeting-name">Aureal</span></div><div class="w-full truncate text-base font-medium text-gray-400" id="weather-text" style="opacity: 1;">75°F and overcast clouds</div></div><div class="grow"></div><div class="safe-area-pb flex w-full flex-col gap-2 px-4"><div class="flex w-full gap-2"><div class="min-w-0 flex-1"><button type="button" class="flex items-center justify-center gap-2 rounded-3xl border p-3 shadow-alyn backdrop-blur-xs flex-col transition-transform active:scale-[0.98] md:hover:backdrop-blur-lg w-full" style="background-color: rgba(248, 250, 252, 0.3); border-color: rgba(248, 250, 252, 0.3);" aria-label="Ask AI" onclick="goToAi(event)"><div class="text-gray-600"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"><path d="M12 3L10.0876 8.81221C9.84029 9.55814 9.71663 9.93111 9.50992 10.2429C9.32668 10.5163 9.09718 10.7551 8.83333 10.9474C8.53552 11.1645 8.17555 11.2972 7.45561 11.5627L2 13.5L7.45561 15.4373C8.17555 15.7028 8.53552 15.8355 8.83333 16.0526C9.09718 16.2449 9.32668 16.4837 9.50992 16.7571C9.71663 17.0689 9.84029 17.4419 10.0876 18.1878L12 24L13.9124 18.1878C14.1597 17.4419 14.2834 17.0689 14.4901 16.7571C14.6733 16.4837 14.9028 16.2449 15.1667 16.0526C15.4645 15.8355 15.8245 15.7028 16.5444 15.4373L22 13.5L16.5444 11.5627C15.8245 11.2972 15.4645 11.1645 15.1667 10.9474C14.9028 10.7551 14.6733 10.5163 14.4901 10.2429C14.2834 9.93111 14.1597 9.55814 13.9124 8.81221L12 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="truncate text-sm font-medium text-gray-400">Ask AI</div></button></div><div class="min-w-0 flex-1"><a class="flex items-center justify-center gap-2 rounded-3xl border p-3 shadow-alyn backdrop-blur-xs flex-col transition-transform active:scale-[0.98] md:hover:backdrop-blur-lg w-full" style="background-color: rgba(248, 250, 252, 0.3); border-color: rgba(248, 250, 252, 0.3);" aria-label="Mail" href="#mail" onclick="goToMail(event)"><div class="text-gray-600"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"><path d="M21.001 9C18.4937 10.8837 15.377 12 11.9995 12C8.62204 12 5.50528 10.8837 2.99805 9M4.99951 5H18.9995C20.1041 5 20.9995 5.89543 20.9995 7V17C20.9995 18.1046 20.1041 19 18.9995 19H4.99951C3.89494 19 2.99951 18.1046 2.99951 17V7C2.99951 5.89543 3.89494 5 4.99951 5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="truncate text-sm font-medium text-gray-400">Mail</div></a></div><div class="min-w-0 flex-1"><button type="button" class="flex items-center justify-center gap-2 rounded-3xl border p-3 shadow-alyn backdrop-blur-xs flex-col transition-transform active:scale-[0.98] md:hover:backdrop-blur-lg w-full" style="background-color: rgba(248, 250, 252, 0.3); border-color: rgba(248, 250, 252, 0.3);" aria-label="Search" onclick="toggleSearchBar(event)"><div class="text-gray-600"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" class="h-6 w-6"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"></circle><path d="M20 20L16.5 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></div><div class="truncate text-sm font-medium text-gray-400">Search</div></button></div></div></div></div></div></div></div></div><div data-silk="a0 "></div><div data-silk="a0 "></div></div></ion-router-outlet></ion-router-outlet><section aria-label="Notifications alt+T" tabindex="-1" aria-live="polite" aria-relevant="additions text" aria-atomic="false"></section></ion-app></div>
+    <div id="root"><ion-app class="md ion-page"><ion-router-outlet><ion-router-outlet animated="false"><div class="h-full ion-page" style="z-index: 101;"><div class="relative flex h-full w-full items-center justify-center px-0 max-md:bg-transparent" style="background: linear-gradient(rgb(206, 214, 235) 0%, rgb(233, 226, 232) 50%, rgb(206, 214, 235) 100%);"><img id="weather-bg-image" src="app-assets/weather/morning-sky-background.jpg" alt="Weather background" class="pointer-events-none absolute left-0 top-0 z-0 h-full w-full object-fill" style="opacity: 0.9; min-width: 2000px; min-height: 1200px;"><div data-silk-sheet-wrapper="" class="relative h-full w-full max-w-md text-center md:h-[750px]"><div class="flex h-full flex-col justify-between"><div class="relative flex h-full flex-col bg-sky-100 py-4 shadow-alyn md:rounded-3xl" style="background-color: rgb(var(--pk-bg-rgb));"><div class="absolute inset-0 z-0 md:rounded-3xl" style="background-image: url(&quot;app-assets/noise.png&quot;); background-repeat: repeat; background-size: 100px auto; background-position: 0px 0px; background-blend-mode: overlay; mask-image: linear-gradient(transparent 0%, black 30px); opacity: 0.6;"></div><div class="relative z-10 flex h-full w-full flex-col"><div class="safe-area-pt w-full px-4 pb-1"><div class="flex items-center justify-between"><a class="flex h-11 w-11 items-center justify-center rounded-xl p-1 transition-transform active:scale-[0.98]" aria-label="About" href="#about" onclick="openAboutPanel(event)"><div style="opacity: 1;"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5"></path><path d="M12 8h.01"></path></svg></div></a><div class="flex items-center gap-2" style="opacity: 1; transform: none;"><span class="text-sm font-medium text-gray-400" id="date-display">Sun, Jun 14</span></div><a class="rounded-full p-1 transition-transform active:scale-[0.98]" aria-label="Settings" href="#settings" onclick="openSettingsModal(event)"><div class="pointer-events-none" style="opacity: 1;"><div class="relative flex items-center justify-center overflow-hidden rounded-full" style="width: 36px; height: 36px;"><div class="absolute inset-0"><img id="header-avatar" src="app-assets/avatar.jpg" alt="Avatar" class="h-full w-full select-none object-cover opacity-100" style="visibility: visible;" draggable="false" width="36" height="36"></div></div></div></a></div></div><div class="relative flex h-full overflow-hidden"><div class="relative h-full max-h-96 w-full overflow-hidden"><img id="interaction-bg-image" src="app-assets/interaction_beach/interaction_beach_morning.jpeg" alt="Background" width="1000" height="1000" draggable="false" class="h-full w-full select-none object-cover" style="transform: scale(1.4); transform-origin: center center 0px;"><div class="z-5 absolute inset-0 h-full w-full" style="background: radial-gradient(90% 65%, rgba(var(--pk-bg-rgb), 0) 0%, rgba(var(--pk-bg-rgb), 0) 5%, rgba(var(--pk-bg-rgb), 0.9) 55%, rgb(var(--pk-bg-rgb)) 80%);"></div><div class="absolute inset-0 z-10" style="background-image: url(&quot;app-assets/noise.png&quot;); background-repeat: repeat; background-size: 100px auto; background-position: 0px 0px; background-blend-mode: overlay; opacity: 0.6;"></div></div></div><div class="grow"></div><div class="flex w-full flex-col items-center justify-start gap-1 p-6" style="opacity: 1; transform: none;"><div class="font-exposure text-2xl text-gray-600" style="font-variation-settings: &quot;EXPO&quot; -5;"><span id="greeting-prefix">Good morning</span>, <span id="greeting-name">Aureal</span></div><div class="w-full truncate text-base font-medium text-gray-400" id="weather-text" style="opacity: 1;">75°F and overcast clouds</div></div><div class="grow"></div><div class="safe-area-pb flex w-full flex-col gap-2 px-4"><div id="default-buttons-row" class="flex w-full gap-2"><div id="ai-button-wrap" class="min-w-0 flex-1"><button type="button" class="flex items-center justify-center gap-2 rounded-3xl border p-3 shadow-alyn backdrop-blur-xs flex-col transition-transform active:scale-[0.98] md:hover:backdrop-blur-lg w-full" style="background-color: rgba(248, 250, 252, 0.3); border-color: rgba(248, 250, 252, 0.3);" aria-label="Ask AI" onclick="goToAi(event)"><div class="text-gray-600"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"><path d="M12 3L10.0876 8.81221C9.84029 9.55814 9.71663 9.93111 9.50992 10.2429C9.32668 10.5163 9.09718 10.7551 8.83333 10.9474C8.53552 11.1645 8.17555 11.2972 7.45561 11.5627L2 13.5L7.45561 15.4373C8.17555 15.7028 8.53552 15.8355 8.83333 16.0526C9.09718 16.2449 9.32668 16.4837 9.50992 16.7571C9.71663 17.0689 9.84029 17.4419 10.0876 18.1878L12 24L13.9124 18.1878C14.1597 17.4419 14.2834 17.0689 14.4901 16.7571C14.6733 16.4837 14.9028 16.2449 15.1667 16.0526C15.4645 15.8355 15.8245 15.7028 16.5444 15.4373L22 13.5L16.5444 11.5627C15.8245 11.2972 15.4645 11.1645 15.1667 10.9474C14.9028 10.7551 14.6733 10.5163 14.4901 10.2429C14.2834 9.93111 14.1597 9.55814 13.9124 8.81221L12 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="truncate text-sm font-medium text-gray-400">Ask AI</div></button></div><div id="mail-button-wrap" class="min-w-0 flex-1"><a class="flex items-center justify-center gap-2 rounded-3xl border p-3 shadow-alyn backdrop-blur-xs flex-col transition-transform active:scale-[0.98] md:hover:backdrop-blur-lg w-full" style="background-color: rgba(248, 250, 252, 0.3); border-color: rgba(248, 250, 252, 0.3);" aria-label="Mail" href="#mail" onclick="goToMail(event)"><div class="text-gray-600"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"><path d="M21.001 9C18.4937 10.8837 15.377 12 11.9995 12C8.62204 12 5.50528 10.8837 2.99805 9M4.99951 5H18.9995C20.1041 5 20.9995 5.89543 20.9995 7V17C20.9995 18.1046 20.1041 19 18.9995 19H4.99951C3.89494 19 2.99951 18.1046 2.99951 17V7C2.99951 5.89543 3.89494 5 4.99951 5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="truncate text-sm font-medium text-gray-400">Mail</div></a></div><div id="search-button-wrap" class="min-w-0 flex-1"><button type="button" class="flex items-center justify-center gap-2 rounded-3xl border p-3 shadow-alyn backdrop-blur-xs flex-col transition-transform active:scale-[0.98] md:hover:backdrop-blur-lg w-full" style="background-color: rgba(248, 250, 252, 0.3); border-color: rgba(248, 250, 252, 0.3);" aria-label="Search" onclick="toggleSearchBar(event)"><div class="text-gray-600"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" class="h-6 w-6"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"></circle><path d="M20 20L16.5 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></div><div class="truncate text-sm font-medium text-gray-400">Search</div></button></div></div><div id="plugin-buttons-container" class="plugin-buttons-container"></div></div></div></div></div></div></div><div data-silk="a0 "></div><div data-silk="a0 "></div></div></ion-router-outlet></ion-router-outlet><section aria-label="Notifications alt+T" tabindex="-1" aria-live="polite" aria-relevant="additions text" aria-atomic="false"></section></ion-app></div>
   </body>
 </html>
