@@ -1,0 +1,1836 @@
+<html lang="en" class="ion-ce plt-desktop md" mode="md"><head>
+    <meta charset="utf-8">
+    <title>Start Page</title>
+
+    <base href="./">
+
+    <meta name="color-scheme" content="light">
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="description" content="A simple personal start page with greetings, weather, and quick links.">
+
+    <style>html.plt-mobile ion-app{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}html.plt-mobile ion-app [contenteditable]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}ion-app.force-statusbar-padding{--ion-safe-area-top:20px}</style><link rel="manifest" href="manifest.json">
+
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="app-assets/interaction_apple_icon_180.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="app-assets/interaction_apple_icon_180.png">
+
+    <!-- add to homescreen for ios -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Start Page">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="theme-color" content="rgb(248, 250, 252)">
+
+    <style>
+      html,
+      body,
+      #root {
+        background-color: #000;
+      }
+    </style>
+
+    <!-- Preload images -->
+    <link rel="preload" href="app-assets/custom_automations_background.webp" as="image">
+    <link rel="preload" href="app-assets/custom_integrations_background.webp" as="image">
+    <link rel="preload" href="app-assets/companies/iMessage.png" as="image">
+    <link rel="preload" href="app-assets/empty_state_coming_soon.webp" as="image">
+    <link rel="preload" href="app-assets/empty_state_orders.webp" as="image">
+    <link rel="preload" href="app-assets/empty_state_email_automations.webp" as="image">
+    <link rel="preload" href="app-assets/empty_state_scheduled_automations.webp" as="image">
+    <link rel="preload" href="app-assets/companies/google.png" as="image">
+    <link rel="preload" href="app-assets/companies/microsoft.svg" as="image">
+    <link rel="stylesheet" href="vc-ap-d2a57d/main-B4_j8tli.css">
+    <style type="text/css">[data-sonner-toaster][dir=ltr],html[dir=ltr]{--toast-icon-margin-start:-3px;--toast-icon-margin-end:4px;--toast-svg-margin-start:-1px;--toast-svg-margin-end:0px;--toast-button-margin-start:auto;--toast-button-margin-end:0;--toast-close-button-start:0;--toast-close-button-end:unset;--toast-close-button-transform:translate(-35%, -35%)}[data-sonner-toaster][dir=rtl],html[dir=rtl]{--toast-icon-margin-start:4px;--toast-icon-margin-end:-3px;--toast-svg-margin-start:0px;--toast-svg-margin-end:-1px;--toast-button-margin-start:0;--toast-button-margin-end:auto;--toast-close-button-start:unset;--toast-close-button-end:0;--toast-close-button-transform:translate(35%, -35%)}[data-sonner-toaster]{position:fixed;width:var(--width);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;--gray1:hsl(0, 0%, 99%);--gray2:hsl(0, 0%, 97.3%);--gray3:hsl(0, 0%, 95.1%);--gray4:hsl(0, 0%, 93%);--gray5:hsl(0, 0%, 90.9%);--gray6:hsl(0, 0%, 88.7%);--gray7:hsl(0, 0%, 85.8%);--gray8:hsl(0, 0%, 78%);--gray9:hsl(0, 0%, 56.1%);--gray10:hsl(0, 0%, 52.3%);--gray11:hsl(0, 0%, 43.5%);--gray12:hsl(0, 0%, 9%);--border-radius:8px;box-sizing:border-box;padding:0;margin:0;list-style:none;outline:0;z-index:999999999;transition:transform .4s ease}[data-sonner-toaster][data-lifted=true]{transform:translateY(-8px)}@media (hover:none) and (pointer:coarse){[data-sonner-toaster][data-lifted=true]{transform:none}}[data-sonner-toaster][data-x-position=right]{right:var(--offset-right)}[data-sonner-toaster][data-x-position=left]{left:var(--offset-left)}[data-sonner-toaster][data-x-position=center]{left:50%;transform:translateX(-50%)}[data-sonner-toaster][data-y-position=top]{top:var(--offset-top)}[data-sonner-toaster][data-y-position=bottom]{bottom:var(--offset-bottom)}[data-sonner-toast]{--y:translateY(100%);--lift-amount:calc(var(--lift) * var(--gap));z-index:var(--z-index);position:absolute;opacity:0;transform:var(--y);touch-action:none;transition:transform .4s,opacity .4s,height .4s,box-shadow .2s;box-sizing:border-box;outline:0;overflow-wrap:anywhere}[data-sonner-toast][data-styled=true]{padding:16px;background:var(--normal-bg);border:1px solid var(--normal-border);color:var(--normal-text);border-radius:var(--border-radius);box-shadow:0 4px 12px rgba(0,0,0,.1);width:var(--width);font-size:13px;display:flex;align-items:center;gap:6px}[data-sonner-toast]:focus-visible{box-shadow:0 4px 12px rgba(0,0,0,.1),0 0 0 2px rgba(0,0,0,.2)}[data-sonner-toast][data-y-position=top]{top:0;--y:translateY(-100%);--lift:1;--lift-amount:calc(1 * var(--gap))}[data-sonner-toast][data-y-position=bottom]{bottom:0;--y:translateY(100%);--lift:-1;--lift-amount:calc(var(--lift) * var(--gap))}[data-sonner-toast][data-styled=true] [data-description]{font-weight:400;line-height:1.4;color:#3f3f3f}[data-rich-colors=true][data-sonner-toast][data-styled=true] [data-description]{color:inherit}[data-sonner-toaster][data-sonner-theme=dark] [data-description]{color:#e8e8e8}[data-sonner-toast][data-styled=true] [data-title]{font-weight:500;line-height:1.5;color:inherit}[data-sonner-toast][data-styled=true] [data-icon]{display:flex;height:16px;width:16px;position:relative;justify-content:flex-start;align-items:center;flex-shrink:0;margin-left:var(--toast-icon-margin-start);margin-right:var(--toast-icon-margin-end)}[data-sonner-toast][data-promise=true] [data-icon]>svg{opacity:0;transform:scale(.8);transform-origin:center;animation:sonner-fade-in .3s ease forwards}[data-sonner-toast][data-styled=true] [data-icon]>*{flex-shrink:0}[data-sonner-toast][data-styled=true] [data-icon] svg{margin-left:var(--toast-svg-margin-start);margin-right:var(--toast-svg-margin-end)}[data-sonner-toast][data-styled=true] [data-content]{display:flex;flex-direction:column;gap:2px}[data-sonner-toast][data-styled=true] [data-button]{border-radius:4px;padding-left:8px;padding-right:8px;height:24px;font-size:12px;color:var(--normal-bg);background:var(--normal-text);margin-left:var(--toast-button-margin-start);margin-right:var(--toast-button-margin-end);border:none;font-weight:500;cursor:pointer;outline:0;display:flex;align-items:center;flex-shrink:0;transition:opacity .4s,box-shadow .2s}[data-sonner-toast][data-styled=true] [data-button]:focus-visible{box-shadow:0 0 0 2px rgba(0,0,0,.4)}[data-sonner-toast][data-styled=true] [data-button]:first-of-type{margin-left:var(--toast-button-margin-start);margin-right:var(--toast-button-margin-end)}[data-sonner-toast][data-styled=true] [data-cancel]{color:var(--normal-text);background:rgba(0,0,0,.08)}[data-sonner-toaster][data-sonner-theme=dark] [data-sonner-toast][data-styled=true] [data-cancel]{background:rgba(255,255,255,.3)}[data-sonner-toast][data-styled=true] [data-close-button]{position:absolute;left:var(--toast-close-button-start);right:var(--toast-close-button-end);top:0;height:20px;width:20px;display:flex;justify-content:center;align-items:center;padding:0;color:var(--gray12);background:var(--normal-bg);border:1px solid var(--gray4);transform:var(--toast-close-button-transform);border-radius:50%;cursor:pointer;z-index:1;transition:opacity .1s,background .2s,border-color .2s}[data-sonner-toast][data-styled=true] [data-close-button]:focus-visible{box-shadow:0 4px 12px rgba(0,0,0,.1),0 0 0 2px rgba(0,0,0,.2)}[data-sonner-toast][data-styled=true] [data-disabled=true]{cursor:not-allowed}[data-sonner-toast][data-styled=true]:hover [data-close-button]:hover{background:var(--gray2);border-color:var(--gray5)}[data-sonner-toast][data-swiping=true]::before{content:'';position:absolute;left:-100%;right:-100%;height:100%;z-index:-1}[data-sonner-toast][data-y-position=top][data-swiping=true]::before{bottom:50%;transform:scaleY(3) translateY(50%)}[data-sonner-toast][data-y-position=bottom][data-swiping=true]::before{top:50%;transform:scaleY(3) translateY(-50%)}[data-sonner-toast][data-swiping=false][data-removed=true]::before{content:'';position:absolute;inset:0;transform:scaleY(2)}[data-sonner-toast][data-expanded=true]::after{content:'';position:absolute;left:0;height:calc(var(--gap) + 1px);bottom:100%;width:100%}[data-sonner-toast][data-mounted=true]{--y:translateY(0);opacity:1}[data-sonner-toast][data-expanded=false][data-front=false]{--scale:var(--toasts-before) * 0.05 + 1;--y:translateY(calc(var(--lift-amount) * var(--toasts-before))) scale(calc(-1 * var(--scale)));height:var(--front-toast-height)}[data-sonner-toast]>*{transition:opacity .4s}[data-sonner-toast][data-x-position=right]{right:0}[data-sonner-toast][data-x-position=left]{left:0}[data-sonner-toast][data-expanded=false][data-front=false][data-styled=true]>*{opacity:0}[data-sonner-toast][data-visible=false]{opacity:0;pointer-events:none}[data-sonner-toast][data-mounted=true][data-expanded=true]{--y:translateY(calc(var(--lift) * var(--offset)));height:var(--initial-height)}[data-sonner-toast][data-removed=true][data-front=true][data-swipe-out=false]{--y:translateY(calc(var(--lift) * -100%));opacity:0}[data-sonner-toast][data-removed=true][data-front=false][data-swipe-out=false][data-expanded=true]{--y:translateY(calc(var(--lift) * var(--offset) + var(--lift) * -100%));opacity:0}[data-sonner-toast][data-removed=true][data-front=false][data-swipe-out=false][data-expanded=false]{--y:translateY(40%);opacity:0;transition:transform .5s,opacity .2s}[data-sonner-toast][data-removed=true][data-front=false]::before{height:calc(var(--initial-height) + 20%)}[data-sonner-toast][data-swiping=true]{transform:var(--y) translateY(var(--swipe-amount-y,0)) translateX(var(--swipe-amount-x,0));transition:none}[data-sonner-toast][data-swiped=true]{user-select:none}[data-sonner-toast][data-swipe-out=true][data-y-position=bottom],[data-sonner-toast][data-swipe-out=true][data-y-position=top]{animation-duration:.2s;animation-timing-function:ease-out;animation-fill-mode:forwards}[data-sonner-toast][data-swipe-out=true][data-swipe-direction=left]{animation-name:swipe-out-left}[data-sonner-toast][data-swipe-out=true][data-swipe-direction=right]{animation-name:swipe-out-right}[data-sonner-toast][data-swipe-out=true][data-swipe-direction=up]{animation-name:swipe-out-up}[data-sonner-toast][data-swipe-out=true][data-swipe-direction=down]{animation-name:swipe-out-down}@keyframes swipe-out-left{from{transform:var(--y) translateX(var(--swipe-amount-x));opacity:1}to{transform:var(--y) translateX(calc(var(--swipe-amount-x) - 100%));opacity:0}}@keyframes swipe-out-right{from{transform:var(--y) translateX(var(--swipe-amount-x));opacity:1}to{transform:var(--y) translateX(calc(var(--swipe-amount-x) + 100%));opacity:0}}@keyframes swipe-out-up{from{transform:var(--y) translateY(var(--swipe-amount-y));opacity:1}to{transform:var(--y) translateY(calc(var(--swipe-amount-y) - 100%));opacity:0}}@keyframes swipe-out-down{from{transform:var(--y) translateY(var(--swipe-amount-y));opacity:1}to{transform:var(--y) translateY(calc(var(--swipe-amount-y) + 100%));opacity:0}}@media (max-width:600px){[data-sonner-toaster]{position:fixed;right:var(--mobile-offset-right);left:var(--mobile-offset-left);width:100%}[data-sonner-toaster][dir=rtl]{left:calc(var(--mobile-offset-left) * -1)}[data-sonner-toaster] [data-sonner-toast]{left:0;right:0;width:calc(100% - var(--mobile-offset-left) * 2)}[data-sonner-toaster][data-x-position=left]{left:var(--mobile-offset-left)}[data-sonner-toaster][data-y-position=bottom]{bottom:var(--mobile-offset-bottom)}[data-sonner-toaster][data-y-position=top]{top:var(--mobile-offset-top)}[data-sonner-toaster][data-x-position=center]{left:var(--mobile-offset-left);right:var(--mobile-offset-right);transform:none}}[data-sonner-toaster][data-sonner-theme=light]{--normal-bg:#fff;--normal-border:var(--gray4);--normal-text:var(--gray12);--success-bg:hsl(143, 85%, 96%);--success-border:hsl(145, 92%, 87%);--success-text:hsl(140, 100%, 27%);--info-bg:hsl(208, 100%, 97%);--info-border:hsl(221, 91%, 93%);--info-text:hsl(210, 92%, 45%);--warning-bg:hsl(49, 100%, 97%);--warning-border:hsl(49, 91%, 84%);--warning-text:hsl(31, 92%, 45%);--error-bg:hsl(359, 100%, 97%);--error-border:hsl(359, 100%, 94%);--error-text:hsl(360, 100%, 45%)}[data-sonner-toaster][data-sonner-theme=light] [data-sonner-toast][data-invert=true]{--normal-bg:#000;--normal-border:hsl(0, 0%, 20%);--normal-text:var(--gray1)}[data-sonner-toaster][data-sonner-theme=dark] [data-sonner-toast][data-invert=true]{--normal-bg:#fff;--normal-border:var(--gray3);--normal-text:var(--gray12)}[data-sonner-toaster][data-sonner-theme=dark]{--normal-bg:#000;--normal-bg-hover:hsl(0, 0%, 12%);--normal-border:hsl(0, 0%, 20%);--normal-border-hover:hsl(0, 0%, 25%);--normal-text:var(--gray1);--success-bg:hsl(150, 100%, 6%);--success-border:hsl(147, 100%, 12%);--success-text:hsl(150, 86%, 65%);--info-bg:hsl(215, 100%, 6%);--info-border:hsl(223, 43%, 17%);--info-text:hsl(216, 87%, 65%);--warning-bg:hsl(64, 100%, 6%);--warning-border:hsl(60, 100%, 9%);--warning-text:hsl(46, 87%, 65%);--error-bg:hsl(358, 76%, 10%);--error-border:hsl(357, 89%, 16%);--error-text:hsl(358, 100%, 81%)}[data-sonner-toaster][data-sonner-theme=dark] [data-sonner-toast] [data-close-button]{background:var(--normal-bg);border-color:var(--normal-border);color:var(--normal-text)}[data-sonner-toaster][data-sonner-theme=dark] [data-sonner-toast] [data-close-button]:hover{background:var(--normal-bg-hover);border-color:var(--normal-border-hover)}[data-rich-colors=true][data-sonner-toast][data-type=success]{background:var(--success-bg);border-color:var(--success-border);color:var(--success-text)}[data-rich-colors=true][data-sonner-toast][data-type=success] [data-close-button]{background:var(--success-bg);border-color:var(--success-border);color:var(--success-text)}[data-rich-colors=true][data-sonner-toast][data-type=info]{background:var(--info-bg);border-color:var(--info-border);color:var(--info-text)}[data-rich-colors=true][data-sonner-toast][data-type=info] [data-close-button]{background:var(--info-bg);border-color:var(--info-border);color:var(--info-text)}[data-rich-colors=true][data-sonner-toast][data-type=warning]{background:var(--warning-bg);border-color:var(--warning-border);color:var(--warning-text)}[data-rich-colors=true][data-sonner-toast][data-type=warning] [data-close-button]{background:var(--warning-bg);border-color:var(--warning-border);color:var(--warning-text)}[data-rich-colors=true][data-sonner-toast][data-type=error]{background:var(--error-bg);border-color:var(--error-border);color:var(--error-text)}[data-rich-colors=true][data-sonner-toast][data-type=error] [data-close-button]{background:var(--error-bg);border-color:var(--error-border);color:var(--error-text)}.sonner-loading-wrapper{--size:16px;height:var(--size);width:var(--size);position:absolute;inset:0;z-index:10}.sonner-loading-wrapper[data-visible=false]{transform-origin:center;animation:sonner-fade-out .2s ease forwards}.sonner-spinner{position:relative;top:50%;left:50%;height:var(--size);width:var(--size)}.sonner-loading-bar{animation:sonner-spin 1.2s linear infinite;background:var(--gray11);border-radius:6px;height:8%;left:-10%;position:absolute;top:-3.9%;width:24%}.sonner-loading-bar:first-child{animation-delay:-1.2s;transform:rotate(.0001deg) translate(146%)}.sonner-loading-bar:nth-child(2){animation-delay:-1.1s;transform:rotate(30deg) translate(146%)}.sonner-loading-bar:nth-child(3){animation-delay:-1s;transform:rotate(60deg) translate(146%)}.sonner-loading-bar:nth-child(4){animation-delay:-.9s;transform:rotate(90deg) translate(146%)}.sonner-loading-bar:nth-child(5){animation-delay:-.8s;transform:rotate(120deg) translate(146%)}.sonner-loading-bar:nth-child(6){animation-delay:-.7s;transform:rotate(150deg) translate(146%)}.sonner-loading-bar:nth-child(7){animation-delay:-.6s;transform:rotate(180deg) translate(146%)}.sonner-loading-bar:nth-child(8){animation-delay:-.5s;transform:rotate(210deg) translate(146%)}.sonner-loading-bar:nth-child(9){animation-delay:-.4s;transform:rotate(240deg) translate(146%)}.sonner-loading-bar:nth-child(10){animation-delay:-.3s;transform:rotate(270deg) translate(146%)}.sonner-loading-bar:nth-child(11){animation-delay:-.2s;transform:rotate(300deg) translate(146%)}.sonner-loading-bar:nth-child(12){animation-delay:-.1s;transform:rotate(330deg) translate(146%)}@keyframes sonner-fade-in{0%{opacity:0;transform:scale(.8)}100%{opacity:1;transform:scale(1)}}@keyframes sonner-fade-out{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.8)}}@keyframes sonner-spin{0%{opacity:1}100%{opacity:.15}}@media (prefers-reduced-motion){.sonner-loading-bar,[data-sonner-toast],[data-sonner-toast]>*{transition:none!important;animation:none!important}}.sonner-loader{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);transform-origin:center;transition:opacity .2s,transform .2s}.sonner-loader[data-visible=false]{opacity:0;transform:scale(.8) translate(-50%,-50%)}</style><style>
+      :root {
+        --safe-area-inset-top: env(safe-area-inset-top, 0px);
+        --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+        --safe-area-inset-left: env(safe-area-inset-left, 0px);
+        --safe-area-inset-right: env(safe-area-inset-right, 0px);
+      }
+    </style><style>
+      :root {
+        --safe-area-inset-top: env(safe-area-inset-top, 0px);
+        --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+        --safe-area-inset-left: env(safe-area-inset-left, 0px);
+        --safe-area-inset-right: env(safe-area-inset-right, 0px);
+      }
+    </style><style>
+      :root {
+        --safe-area-inset-top: env(safe-area-inset-top, 0px);
+        --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+        --safe-area-inset-left: env(safe-area-inset-left, 0px);
+        --safe-area-inset-right: env(safe-area-inset-right, 0px);
+      }
+    </style><style>
+      :root {
+        --safe-area-inset-top: env(safe-area-inset-top, 0px);
+        --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+        --safe-area-inset-left: env(safe-area-inset-left, 0px);
+        --safe-area-inset-right: env(safe-area-inset-right, 0px);
+      }
+    </style><style>
+      :root {
+        --safe-area-inset-top: env(safe-area-inset-top, 0px);
+        --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+        --safe-area-inset-left: env(safe-area-inset-left, 0px);
+        --safe-area-inset-right: env(safe-area-inset-right, 0px);
+      }
+    </style><style>
+      :root {
+        --safe-area-inset-top: env(safe-area-inset-top, 0px);
+        --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+        --safe-area-inset-left: env(safe-area-inset-left, 0px);
+        --safe-area-inset-right: env(safe-area-inset-right, 0px);
+      }
+    </style><style>
+      :root {
+        --safe-area-inset-top: env(safe-area-inset-top, 0px);
+        --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+        --safe-area-inset-left: env(safe-area-inset-left, 0px);
+        --safe-area-inset-right: env(safe-area-inset-right, 0px);
+      }
+    </style><style>
+      :root {
+        --safe-area-inset-top: env(safe-area-inset-top, 0px);
+        --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+        --safe-area-inset-left: env(safe-area-inset-left, 0px);
+        --safe-area-inset-right: env(safe-area-inset-right, 0px);
+      }
+    </style><style>
+      :root {
+        --safe-area-inset-top: env(safe-area-inset-top, 0px);
+        --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+        --safe-area-inset-left: env(safe-area-inset-left, 0px);
+        --safe-area-inset-right: env(safe-area-inset-right, 0px);
+      }
+    </style><style>
+      :root {
+        --safe-area-inset-top: env(safe-area-inset-top, 0px);
+        --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+        --safe-area-inset-left: env(safe-area-inset-left, 0px);
+        --safe-area-inset-right: env(safe-area-inset-right, 0px);
+      }
+    </style><style>
+      :root {
+        --safe-area-inset-top: env(safe-area-inset-top, 0px);
+        --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+        --safe-area-inset-left: env(safe-area-inset-left, 0px);
+        --safe-area-inset-right: env(safe-area-inset-right, 0px);
+      }
+    </style><style>
+      :root {
+        --safe-area-inset-top: env(safe-area-inset-top, 0px);
+        --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+        --safe-area-inset-left: env(safe-area-inset-left, 0px);
+        --safe-area-inset-right: env(safe-area-inset-right, 0px);
+      }
+    </style><style>
+      :root {
+        --safe-area-inset-top: env(safe-area-inset-top, 0px);
+        --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+        --safe-area-inset-left: env(safe-area-inset-left, 0px);
+        --safe-area-inset-right: env(safe-area-inset-right, 0px);
+      }
+    </style>
+    <style>
+      .about-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease;
+        z-index: 200;
+      }
+      .about-overlay.is-open {
+        opacity: 1;
+        visibility: visible;
+      }
+      .about-panel {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 85%;
+        max-width: 360px;
+        background-color: rgb(248, 250, 252);
+        box-shadow: 0 0 24px rgba(0, 0, 0, 0.15);
+        transform: translateX(-100%);
+        transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+        z-index: 201;
+        display: flex;
+        flex-direction: column;
+        padding: calc(1rem + var(--safe-area-inset-top, 0px)) 1.25rem 1.25rem;
+        box-sizing: border-box;
+      }
+      .about-panel.is-open {
+        transform: translateX(0);
+      }
+      .about-panel-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .about-panel-icon img {
+        border-radius: 12px;
+        display: block;
+      }
+      .about-panel-close {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        border: none;
+        background: rgba(0, 0, 0, 0.05);
+        color: rgb(75, 85, 99);
+        cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+      }
+      .about-panel-close:hover {
+        background: rgba(0, 0, 0, 0.1);
+      }
+      .about-panel-close:active {
+        transform: scale(0.96);
+      }
+      .about-panel-body {
+        margin-top: 1.5rem;
+        text-align: left;
+      }
+      .about-panel-body h2 {
+        font-size: 1.5rem;
+        color: rgb(75, 85, 99);
+        margin: 0 0 0.75rem;
+        font-variation-settings: "EXPO" -5;
+      }
+      .about-panel-body p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        color: rgb(107, 114, 128);
+        margin: 0 0 0.75rem;
+      }
+      .about-panel-meta {
+        font-size: 0.8rem;
+        color: rgb(156, 163, 175);
+      }
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease;
+        z-index: 200;
+      }
+      .modal-overlay.is-open {
+        opacity: 1;
+        visibility: visible;
+      }
+      .settings-modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 85%;
+        max-width: 480px;
+        height: min(800px, 90vh);
+        background-color: rgb(248, 250, 252);
+        border-radius: 24px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        padding: 0;
+        box-sizing: border-box;
+        overflow: hidden;
+        transform: translate(-50%, -50%) scale(0.92);
+        opacity: 0;
+        visibility: hidden;
+        transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.3s ease, visibility 0.3s;
+        z-index: 201;
+        text-align: left;
+      }
+      .settings-modal.is-open {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        visibility: visible;
+      }
+      .settings-page {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        padding: 1.25rem;
+        box-sizing: border-box;
+        background-color: rgb(248, 250, 252);
+        transform: translateX(100%);
+        transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+      }
+      .settings-page.is-active {
+        transform: translateX(0);
+      }
+      .settings-page.is-left {
+        transform: translateX(-100%);
+      }
+      .settings-modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-shrink: 0;
+      }
+      .settings-modal-header h2 {
+        font-size: 1.25rem;
+        color: rgb(75, 85, 99);
+        margin: 0;
+        font-variation-settings: "EXPO" -5;
+      }
+      .settings-page-inner .settings-modal-header h2 {
+        flex: 1;
+        text-align: center;
+      }
+      .settings-back-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        flex-shrink: 0;
+        border-radius: 999px;
+        border: none;
+        background: rgba(0, 0, 0, 0.05);
+        color: rgb(75, 85, 99);
+        cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+      }
+      .settings-back-btn:hover {
+        background: rgba(0, 0, 0, 0.1);
+      }
+      .settings-back-btn:active {
+        transform: scale(0.96);
+      }
+      .settings-header-spacer {
+        width: 36px;
+        height: 36px;
+        flex-shrink: 0;
+      }
+      .settings-modal-body {
+        margin-top: 1.25rem;
+        overflow-y: auto;
+        flex: 1;
+        min-height: 0;
+      }
+      .settings-modal-body > * + * {
+        margin-top: 1rem;
+      }
+      .settings-profile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+        padding-bottom: 1.25rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      }
+      .settings-profile img {
+        border-radius: 999px;
+        display: block;
+      }
+      .settings-name-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+      .settings-name-row-inner {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+      }
+      .settings-profile-name {
+        font-size: 1.15rem;
+        font-weight: 500;
+        color: rgb(75, 85, 99);
+        font-variation-settings: "EXPO" -5;
+      }
+      .settings-name-input {
+        font-size: 1.15rem;
+        font-weight: 500;
+        font-family: inherit;
+        text-align: center;
+        color: rgb(75, 85, 99);
+        background: rgba(0, 0, 0, 0.03);
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
+        padding: 0.05rem 0.5rem;
+        width: 140px;
+      }
+      .settings-edit-btn {
+        position: absolute;
+        left: 100%;
+        margin-left: 0.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+        border-radius: 999px;
+        border: none;
+        background: none;
+        color: rgb(156, 163, 175);
+        cursor: pointer;
+        padding: 0;
+        opacity: 0;
+        transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+      }
+      .settings-name-row:hover .settings-edit-btn,
+      .settings-name-row:focus-within .settings-edit-btn {
+        opacity: 1;
+      }
+      .settings-name-row-inner:has(input) .settings-edit-btn {
+        display: none;
+      }
+      .settings-edit-btn:hover {
+        background: rgba(0, 0, 0, 0.05);
+        color: rgb(75, 85, 99);
+      }
+      .settings-username {
+        font-size: 0.85rem;
+        color: rgb(156, 163, 175);
+      }
+      .settings-list {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 16px;
+        background: rgba(0, 0, 0, 0.02);
+        overflow: hidden;
+      }
+      .settings-list-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        width: 100%;
+        padding: 0.85rem 1rem;
+        background: none;
+        border: none;
+        font: inherit;
+        font-size: 0.9rem;
+        color: rgb(55, 65, 81);
+        text-align: left;
+        cursor: pointer;
+        transition: background-color 0.15s ease;
+      }
+      a.settings-list-item, button.settings-list-item {
+        cursor: pointer;
+      }
+      .settings-list-item-toggle {
+        cursor: default;
+      }
+      .settings-list-item:hover {
+        background: rgba(0, 0, 0, 0.035);
+      }
+      .settings-list-item-toggle:hover {
+        background: none;
+      }
+      .settings-list-icon {
+        display: flex;
+        align-items: center;
+        color: rgb(156, 163, 175);
+        flex-shrink: 0;
+      }
+      .settings-list-label {
+        flex: 1;
+        min-width: 0;
+      }
+      .settings-list-chevron {
+        display: flex;
+        align-items: center;
+        color: rgb(156, 163, 175);
+        flex-shrink: 0;
+      }
+      .settings-list-divider {
+        height: 1px;
+        background: rgba(0, 0, 0, 0.08);
+      }
+      .settings-avatar-wrap {
+        position: relative;
+        width: 64px;
+        height: 64px;
+      }
+      .settings-avatar-wrap img {
+        width: 64px;
+        height: 64px;
+        border-radius: 999px;
+        object-fit: cover;
+        display: block;
+      }
+      .settings-avatar-edit-btn {
+        position: absolute;
+        bottom: -2px;
+        right: -2px;
+        width: 22px;
+        height: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        background: rgb(248, 250, 252);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        color: rgb(75, 85, 99);
+        cursor: pointer;
+        padding: 0;
+        transition: background-color 0.2s ease;
+      }
+      .settings-avatar-edit-btn:hover {
+        background: rgba(0, 0, 0, 0.08);
+      }
+      .settings-text-input {
+        width: 100%;
+        box-sizing: border-box;
+        font-family: inherit;
+        font-size: 0.85rem;
+        padding: 0.55rem 0.75rem;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        background: rgba(0, 0, 0, 0.02);
+        color: rgb(55, 65, 81);
+      }
+      .settings-field-label {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: rgb(107, 114, 128);
+        margin-bottom: 0.4rem;
+      }
+      .settings-autocomplete-wrap {
+        position: relative;
+      }
+      .settings-autocomplete-list {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        margin-top: 0.25rem;
+        background: rgb(248, 250, 252);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        z-index: 5;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+      .settings-autocomplete-list.is-open {
+        display: block;
+      }
+      .settings-autocomplete-item {
+        display: block;
+        width: 100%;
+        padding: 0.5rem 0.75rem;
+        font: inherit;
+        font-size: 0.85rem;
+        text-align: left;
+        background: none;
+        border: none;
+        color: rgb(55, 65, 81);
+        cursor: pointer;
+      }
+      .settings-autocomplete-item:hover,
+      .settings-autocomplete-item.is-active {
+        background: rgba(0, 0, 0, 0.05);
+      }
+      .settings-connection-form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        margin-top: 1rem;
+      }
+      .settings-connection-actions {
+        display: flex;
+        gap: 0.5rem;
+      }
+      .settings-action-btn {
+        flex: 1;
+        padding: 0.55rem 0.75rem;
+        border-radius: 10px;
+        border: none;
+        font: inherit;
+        font-size: 0.85rem;
+        font-weight: 500;
+        cursor: pointer;
+        background: rgb(37, 99, 235);
+        color: #fff;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+      .settings-action-btn:active {
+        transform: scale(0.98);
+      }
+      .settings-action-btn-secondary {
+        background: rgba(0, 0, 0, 0.05);
+        color: rgb(75, 85, 99);
+      }
+      .settings-help-text {
+        font-size: 0.75rem;
+        color: rgb(156, 163, 175);
+        margin: 0;
+        line-height: 1.4;
+      }
+      .settings-status-badge {
+        font-size: 0.75rem;
+        font-weight: 500;
+        padding: 0.2rem 0.55rem;
+        border-radius: 999px;
+        background: rgba(0, 0, 0, 0.06);
+        color: rgb(107, 114, 128);
+        flex-shrink: 0;
+      }
+      .settings-status-badge.is-connected {
+        background: rgba(34, 197, 94, 0.15);
+        color: rgb(22, 163, 74);
+      }
+      .settings-switch {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        width: 36px;
+        height: 20px;
+        flex-shrink: 0;
+        border-radius: 999px;
+        border: none;
+        background-color: rgb(209, 213, 219);
+        cursor: pointer;
+        padding: 2px;
+        transition: background-color 0.2s ease;
+      }
+      .settings-switch[aria-checked="true"] {
+        background-color: rgb(37, 99, 235);
+      }
+      .settings-switch-thumb {
+        display: block;
+        width: 16px;
+        height: 16px;
+        border-radius: 999px;
+        background: #fff;
+        transition: transform 0.2s ease;
+      }
+      .settings-switch[aria-checked="true"] .settings-switch-thumb {
+        transform: translateX(16px);
+      }
+
+      /* Dark mode */
+      html.dark-mode body,
+      html.dark-mode [style*="background-color: rgb(248, 250, 252)"],
+      html.dark-mode .settings-page,
+      html.dark-mode .about-panel {
+        background-color: rgb(24, 24, 27) !important;
+      }
+      html.dark-mode [style*="background-color: rgba(248, 250, 252, 0.3)"] {
+        background-color: rgba(255, 255, 255, 0.06) !important;
+        border-color: rgba(255, 255, 255, 0.08) !important;
+      }
+      html.dark-mode .text-gray-600,
+      html.dark-mode .settings-profile-name,
+      html.dark-mode .settings-modal-header h2,
+      html.dark-mode .about-panel-body h2,
+      html.dark-mode .settings-list-item,
+      html.dark-mode .settings-list-label {
+        color: rgb(226, 232, 240) !important;
+      }
+      html.dark-mode .text-gray-400,
+      html.dark-mode .settings-username,
+      html.dark-mode .about-panel-body p,
+      html.dark-mode .about-panel-meta,
+      html.dark-mode .settings-list-icon,
+      html.dark-mode .settings-list-chevron {
+        color: rgb(148, 163, 184) !important;
+      }
+      html.dark-mode .settings-list {
+        background-color: rgba(255, 255, 255, 0.04) !important;
+        border-color: rgba(255, 255, 255, 0.08) !important;
+      }
+      html.dark-mode .settings-list-divider,
+      html.dark-mode .h-px.bg-gray-200 {
+        background-color: rgba(255, 255, 255, 0.08) !important;
+      }
+      html.dark-mode .settings-list-item:hover {
+        background-color: rgba(255, 255, 255, 0.05) !important;
+      }
+      html.dark-mode .about-panel-close,
+      html.dark-mode .settings-back-btn,
+      html.dark-mode .settings-edit-btn:hover {
+        background: rgba(255, 255, 255, 0.08) !important;
+        color: rgb(226, 232, 240) !important;
+      }
+      html.dark-mode .about-panel-close:hover,
+      html.dark-mode .settings-back-btn:hover {
+        background: rgba(255, 255, 255, 0.15) !important;
+      }
+      html.dark-mode .settings-name-input {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border-color: rgba(255, 255, 255, 0.2) !important;
+        color: rgb(226, 232, 240) !important;
+      }
+      html.dark-mode .modal-overlay,
+      html.dark-mode .about-overlay {
+        background: rgba(0, 0, 0, 0.6);
+      }
+      html.dark-mode .settings-avatar-edit-btn {
+        background: rgb(24, 24, 27) !important;
+        border-color: rgba(255, 255, 255, 0.15) !important;
+        color: rgb(226, 232, 240) !important;
+      }
+      html.dark-mode .settings-text-input {
+        background: rgba(255, 255, 255, 0.04) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        color: rgb(226, 232, 240) !important;
+      }
+      html.dark-mode .settings-field-label,
+      html.dark-mode .settings-help-text {
+        color: rgb(148, 163, 184) !important;
+      }
+      html.dark-mode .settings-action-btn-secondary {
+        background: rgba(255, 255, 255, 0.08) !important;
+        color: rgb(226, 232, 240) !important;
+      }
+      html.dark-mode .settings-status-badge {
+        background: rgba(255, 255, 255, 0.08) !important;
+        color: rgb(203, 213, 225) !important;
+      }
+      html.dark-mode .settings-status-badge.is-connected {
+        background: rgba(34, 197, 94, 0.2) !important;
+        color: rgb(74, 222, 128) !important;
+      }
+      html.dark-mode img:not(#header-avatar):not(#settings-avatar) {
+        filter: brightness(0.65) saturate(0.85);
+      }
+      html.dark-mode .settings-autocomplete-list {
+        background: rgb(36, 36, 40) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+      }
+      html.dark-mode .settings-autocomplete-item {
+        color: rgb(226, 232, 240) !important;
+      }
+      html.dark-mode .settings-autocomplete-item:hover,
+      html.dark-mode .settings-autocomplete-item.is-active {
+        background: rgba(255, 255, 255, 0.08) !important;
+      }
+      html.dark-mode [style*="radial-gradient(90% 65%, rgba(248, 250, 252"] {
+        background: radial-gradient(90% 65%, rgba(24, 24, 27, 0) 0%, rgba(24, 24, 27, 0) 5%, rgba(24, 24, 27, 0.9) 55%, rgb(24, 24, 27) 80%) !important;
+      }
+      html.dark-mode .settings-text-input option,
+      html.dark-mode select.settings-text-input {
+        background: rgb(36, 36, 40) !important;
+        color: rgb(226, 232, 240) !important;
+      }
+
+      /* Search bar overlay */
+      .search-bar-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.2s ease;
+        z-index: 300;
+      }
+      .search-bar-overlay.is-open {
+        opacity: 1;
+        visibility: visible;
+      }
+      .search-bar-container {
+        position: fixed;
+        top: 14%;
+        left: 50%;
+        width: 85%;
+        max-width: 420px;
+        transform: translate(-50%, -12px) scale(0.97);
+        opacity: 0;
+        visibility: hidden;
+        transition: transform 0.25s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.2s ease, visibility 0.2s, width 0.25s cubic-bezier(0.32, 0.72, 0, 1), max-width 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+        z-index: 301;
+      }
+      .search-bar-container.is-open {
+        width: 95%;
+        max-width: 840px;
+        transform: translate(-50%, 0) scale(1);
+        opacity: 1;
+        visibility: visible;
+      }
+      .search-bar-box {
+        background: rgb(248, 250, 252);
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        padding: 0.4rem;
+        box-sizing: border-box;
+      }
+      .search-bar-input {
+        width: 100%;
+        box-sizing: border-box;
+        font-family: inherit;
+        font-size: 1rem;
+        padding: 0.7rem 0.9rem;
+        border: none;
+        border-radius: 12px;
+        background: rgba(0, 0, 0, 0.03);
+        color: rgb(55, 65, 81);
+        outline: none;
+      }
+      .search-bar-suggestions {
+        margin-top: 0.25rem;
+      }
+      .search-bar-suggestions:empty {
+        margin-top: 0;
+      }
+      .search-bar-suggestion-item {
+        display: block;
+        width: 100%;
+        padding: 0.6rem 0.9rem;
+        font: inherit;
+        font-size: 0.9rem;
+        text-align: left;
+        background: none;
+        border: none;
+        border-radius: 10px;
+        color: rgb(55, 65, 81);
+        cursor: pointer;
+      }
+      .search-bar-suggestion-item:hover,
+      .search-bar-suggestion-item.is-active {
+        background: rgba(0, 0, 0, 0.05);
+      }
+      html.dark-mode .search-bar-overlay {
+        background: rgba(0, 0, 0, 0.6);
+      }
+      html.dark-mode .search-bar-box {
+        background: rgb(24, 24, 27) !important;
+      }
+      html.dark-mode .search-bar-input {
+        background: rgba(255, 255, 255, 0.05);
+        color: rgb(226, 232, 240);
+      }
+      html.dark-mode .search-bar-suggestion-item {
+        color: rgb(226, 232, 240);
+      }
+      html.dark-mode .search-bar-suggestion-item:hover,
+      html.dark-mode .search-bar-suggestion-item.is-active {
+        background: rgba(255, 255, 255, 0.08);
+      }
+    </style>
+    <script>
+      function openAboutPanel(event) {
+        if (event) event.preventDefault();
+        document.getElementById("about-panel").classList.add("is-open");
+        document.getElementById("about-overlay").classList.add("is-open");
+        document.getElementById("about-panel").setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+      function closeAboutPanel() {
+        document.getElementById("about-panel").classList.remove("is-open");
+        document.getElementById("about-overlay").classList.remove("is-open");
+        document.getElementById("about-panel").setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+      function openSettingsModal(event) {
+        if (event) event.preventDefault();
+        document.getElementById("settings-modal").classList.add("is-open");
+        document.getElementById("settings-overlay").classList.add("is-open");
+        document.getElementById("settings-modal").setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+      function closeSettingsModal() {
+        document.getElementById("settings-modal").classList.remove("is-open");
+        document.getElementById("settings-overlay").classList.remove("is-open");
+        document.getElementById("settings-modal").setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+        closeSettingsPage();
+      }
+      function openSettingsPage(name) {
+        const target = document.getElementById("settings-page-" + name);
+        if (!target) return;
+        const current = document.querySelector(".settings-page.is-active");
+        if (current && current !== target) {
+          current.classList.remove("is-active");
+          current.classList.add("is-left");
+        }
+        target.classList.remove("is-left");
+        target.classList.add("is-active");
+      }
+      function closeSettingsPage() {
+        const main = document.getElementById("settings-page-main");
+        document.querySelectorAll(".settings-page.is-active").forEach(function (page) {
+          if (page !== main) {
+            page.classList.remove("is-active");
+          }
+        });
+        main.classList.remove("is-left");
+        main.classList.add("is-active");
+      }
+
+      // Sound effects
+      let soundEffectsEnabled = true;
+      function applySoundSetting(enabled) {
+        soundEffectsEnabled = enabled;
+        const toggle = document.getElementById("sound-toggle");
+        if (toggle) toggle.setAttribute("aria-checked", enabled ? "true" : "false");
+      }
+      function toggleSoundEffects() {
+        applySoundSetting(!soundEffectsEnabled);
+        localStorage.setItem("poke-sound-effects", soundEffectsEnabled ? "1" : "0");
+        playPopSound();
+      }
+      function playPopSound() {
+        if (!soundEffectsEnabled) return;
+        const audio = document.getElementById("pop-sound");
+        if (!audio) return;
+        audio.currentTime = 0;
+        audio.play().catch(function () {});
+      }
+
+      // Dark mode
+      function applyDarkMode(enabled) {
+        document.documentElement.classList.toggle("dark-mode", enabled);
+        const toggle = document.getElementById("dark-mode-toggle");
+        if (toggle) toggle.setAttribute("aria-checked", enabled ? "true" : "false");
+      }
+      function toggleDarkMode() {
+        const enabled = !document.documentElement.classList.contains("dark-mode");
+        applyDarkMode(enabled);
+        localStorage.setItem("poke-dark-mode", enabled ? "1" : "0");
+        playPopSound();
+      }
+
+      // Display name editing
+      function applyDisplayName(name) {
+        const greeting = document.getElementById("greeting-name");
+        if (greeting) greeting.textContent = name;
+        const username = document.getElementById("settings-username");
+        if (username) username.textContent = "@" + name.toLowerCase().replace(/\s+/g, "");
+      }
+      function startEditName(event) {
+        if (event) event.preventDefault();
+        const nameEl = document.getElementById("settings-display-name");
+        if (!nameEl) return;
+        const current = nameEl.textContent.trim();
+        const input = document.createElement("input");
+        input.type = "text";
+        input.id = "settings-display-name";
+        input.className = "settings-name-input";
+        input.maxLength = 24;
+        input.value = current;
+        nameEl.replaceWith(input);
+        input.focus();
+        input.select();
+        function commit() {
+          const newName = input.value.trim() || "Aureal";
+          const span = document.createElement("span");
+          span.id = "settings-display-name";
+          span.className = "settings-profile-name";
+          span.textContent = newName;
+          input.replaceWith(span);
+          applyDisplayName(newName);
+          localStorage.setItem("poke-display-name", newName);
+          localStorage.setItem("poke-display-name-manual", "1");
+        }
+        input.addEventListener("blur", commit);
+        input.addEventListener("keydown", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            input.blur();
+          } else if (e.key === "Escape") {
+            input.value = current;
+            input.blur();
+          }
+        });
+      }
+
+      // Avatar editing
+      function applyAvatarUrl(url, manual) {
+        const finalUrl = url || "app-assets/avatar.jpg";
+        ["header-avatar", "settings-avatar"].forEach(function (id) {
+          const el = document.getElementById(id);
+          if (el) el.src = finalUrl;
+        });
+        if (manual) {
+          if (url) {
+            localStorage.setItem("poke-avatar-url", url);
+            localStorage.setItem("poke-avatar-manual", "1");
+          } else {
+            localStorage.removeItem("poke-avatar-url");
+            localStorage.removeItem("poke-avatar-manual");
+          }
+        }
+      }
+      function startEditAvatar(event) {
+        if (event) event.preventDefault();
+        if (document.getElementById("avatar-url-input")) {
+          document.getElementById("avatar-url-input").focus();
+          return;
+        }
+        const profile = document.querySelector(".settings-profile");
+        const nameRow = profile.querySelector(".settings-name-row");
+        const input = document.createElement("input");
+        input.type = "url";
+        input.id = "avatar-url-input";
+        input.className = "settings-text-input";
+        input.placeholder = "Image URL";
+        input.value = localStorage.getItem("poke-avatar-url") || "";
+        profile.insertBefore(input, nameRow);
+        input.focus();
+        input.select();
+        function commit() {
+          const url = input.value.trim();
+          applyAvatarUrl(url, true);
+          input.remove();
+        }
+        input.addEventListener("blur", commit);
+        input.addEventListener("keydown", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            input.blur();
+          } else if (e.key === "Escape") {
+            input.value = localStorage.getItem("poke-avatar-url") || "";
+            input.blur();
+          }
+        });
+      }
+
+      // Lanyard (Discord presence) connection
+      let lanyardSocket = null;
+      let lanyardHeartbeatTimer = null;
+      function setLanyardStatus(text, connected) {
+        const badge = document.getElementById("lanyard-status-badge");
+        if (!badge) return;
+        badge.textContent = text;
+        badge.classList.toggle("is-connected", !!connected);
+      }
+      function applyLanyardPresence(presence) {
+        const user = presence && presence.discord_user;
+        if (!user) return;
+        const name = user.global_name || user.username;
+        setLanyardStatus("Connected as " + name, true);
+        if (user.avatar && localStorage.getItem("poke-avatar-manual") !== "1") {
+          const ext = user.avatar.indexOf("a_") === 0 ? "gif" : "png";
+          applyAvatarUrl("https://cdn.discordapp.com/avatars/" + user.id + "/" + user.avatar + "." + ext, false);
+        }
+        if (localStorage.getItem("poke-display-name-manual") !== "1") {
+          applyDisplayName(name);
+          const nameEl = document.getElementById("settings-display-name");
+          if (nameEl && nameEl.tagName === "SPAN") nameEl.textContent = name;
+          localStorage.setItem("poke-display-name", name);
+        }
+      }
+      function disconnectLanyard() {
+        if (lanyardHeartbeatTimer) {
+          clearInterval(lanyardHeartbeatTimer);
+          lanyardHeartbeatTimer = null;
+        }
+        if (lanyardSocket) {
+          lanyardSocket.onclose = null;
+          lanyardSocket.close();
+          lanyardSocket = null;
+        }
+      }
+      function connectLanyard(userId) {
+        disconnectLanyard();
+        setLanyardStatus("Connecting...", false);
+        const socket = new WebSocket("wss://api.lanyard.rest/socket");
+        lanyardSocket = socket;
+        socket.addEventListener("message", function (event) {
+          const json = JSON.parse(event.data);
+          if (json.op === 1) {
+            lanyardHeartbeatTimer = setInterval(function () {
+              if (socket.readyState === WebSocket.OPEN) {
+                socket.send(JSON.stringify({ op: 3 }));
+              }
+            }, json.d.heartbeat_interval);
+            socket.send(JSON.stringify({ op: 2, d: { subscribe_to_id: userId } }));
+          } else if (json.op === 0) {
+            if (json.t === "INIT_STATE" || json.t === "PRESENCE_UPDATE") {
+              applyLanyardPresence(json.d);
+            }
+          }
+        });
+        socket.addEventListener("close", function () {
+          if (lanyardSocket === socket) {
+            setLanyardStatus("Disconnected", false);
+            if (lanyardHeartbeatTimer) {
+              clearInterval(lanyardHeartbeatTimer);
+              lanyardHeartbeatTimer = null;
+            }
+          }
+        });
+        socket.addEventListener("error", function () {
+          setLanyardStatus("Connection error", false);
+        });
+      }
+      function startLanyardConnection() {
+        const input = document.getElementById("lanyard-user-id");
+        const id = input.value.trim();
+        if (!id) return;
+        localStorage.setItem("poke-lanyard-id", id);
+        localStorage.setItem("poke-lanyard-enabled", "1");
+        connectLanyard(id);
+        playPopSound();
+      }
+      function stopLanyardConnection() {
+        localStorage.setItem("poke-lanyard-enabled", "0");
+        disconnectLanyard();
+        setLanyardStatus("Not connected", false);
+        playPopSound();
+      }
+
+      // Search engine / mail / AI site destinations
+      const SEARCH_ENGINES = {
+        google: "https://www.google.com/search?q=%s",
+        duckduckgo: "https://duckduckgo.com/?q=%s",
+        bing: "https://www.bing.com/search?q=%s",
+        searxng: "https://searxng.nyxie.xyz/search?q=%s",
+      };
+      const MAIL_SITES = {
+        gmail: "https://mail.google.com/mail/",
+        outlook: "https://outlook.live.com/mail/",
+        yahoo: "https://mail.yahoo.com/",
+        proton: "https://mail.proton.me/",
+      };
+      const AI_SITES = {
+        claude: "https://claude.ai/new",
+        chatgpt: "https://chatgpt.com/",
+        perplexity: "https://www.perplexity.ai/",
+      };
+      function getSearchUrlTemplate() {
+        const engine = localStorage.getItem("poke-search-engine") || "google";
+        if (engine === "custom") {
+          return localStorage.getItem("poke-search-custom-url") || SEARCH_ENGINES.google;
+        }
+        return SEARCH_ENGINES[engine] || SEARCH_ENGINES.google;
+      }
+      function getMailUrl() {
+        const engine = localStorage.getItem("poke-mail-engine") || "gmail";
+        if (engine === "custom") {
+          return localStorage.getItem("poke-mail-custom-url") || MAIL_SITES.gmail;
+        }
+        return MAIL_SITES[engine] || MAIL_SITES.gmail;
+      }
+      function getAiUrl() {
+        const engine = localStorage.getItem("poke-ai-engine") || "claude";
+        if (engine === "custom") {
+          return localStorage.getItem("poke-ai-custom-url") || AI_SITES.claude;
+        }
+        return AI_SITES[engine] || AI_SITES.claude;
+      }
+      function goToMail(event) {
+        if (event) event.preventDefault();
+        const url = getMailUrl();
+        if (url) window.location.href = url;
+      }
+      function goToAi(event) {
+        if (event) event.preventDefault();
+        const url = getAiUrl();
+        if (url) window.location.href = url;
+      }
+      function performSearch(query) {
+        const q = (query || "").trim();
+        if (!q) return;
+        const template = getSearchUrlTemplate();
+        const url = template.indexOf("%s") !== -1 ? template.replace("%s", encodeURIComponent(q)) : template + encodeURIComponent(q);
+        window.location.href = url;
+      }
+
+      // Search & Links settings page
+      function toggleCustomWrap(id, show) {
+        const el = document.getElementById(id);
+        if (el) el.style.display = show ? "" : "none";
+      }
+      function initLinkSettings() {
+        const searchEngine = localStorage.getItem("poke-search-engine") || "google";
+        const mailEngine = localStorage.getItem("poke-mail-engine") || "gmail";
+        const aiEngine = localStorage.getItem("poke-ai-engine") || "claude";
+
+        const searchSelect = document.getElementById("search-engine-select");
+        const mailSelect = document.getElementById("mail-engine-select");
+        const aiSelect = document.getElementById("ai-engine-select");
+        if (searchSelect) searchSelect.value = searchEngine;
+        if (mailSelect) mailSelect.value = mailEngine;
+        if (aiSelect) aiSelect.value = aiEngine;
+
+        const searchCustomInput = document.getElementById("search-engine-custom-input");
+        const mailCustomInput = document.getElementById("mail-engine-custom-input");
+        const aiCustomInput = document.getElementById("ai-engine-custom-input");
+        if (searchCustomInput) searchCustomInput.value = localStorage.getItem("poke-search-custom-url") || "";
+        if (mailCustomInput) mailCustomInput.value = localStorage.getItem("poke-mail-custom-url") || "";
+        if (aiCustomInput) aiCustomInput.value = localStorage.getItem("poke-ai-custom-url") || "";
+
+        toggleCustomWrap("search-engine-custom-wrap", searchEngine === "custom");
+        toggleCustomWrap("mail-engine-custom-wrap", mailEngine === "custom");
+        toggleCustomWrap("ai-engine-custom-wrap", aiEngine === "custom");
+      }
+      function onSearchEngineChange() {
+        const select = document.getElementById("search-engine-select");
+        localStorage.setItem("poke-search-engine", select.value);
+        toggleCustomWrap("search-engine-custom-wrap", select.value === "custom");
+        playPopSound();
+      }
+      function onSearchCustomInput() {
+        localStorage.setItem("poke-search-custom-url", document.getElementById("search-engine-custom-input").value.trim());
+      }
+      function onMailEngineChange() {
+        const select = document.getElementById("mail-engine-select");
+        localStorage.setItem("poke-mail-engine", select.value);
+        toggleCustomWrap("mail-engine-custom-wrap", select.value === "custom");
+        playPopSound();
+      }
+      function onMailCustomInput() {
+        localStorage.setItem("poke-mail-custom-url", document.getElementById("mail-engine-custom-input").value.trim());
+      }
+      function onAiEngineChange() {
+        const select = document.getElementById("ai-engine-select");
+        localStorage.setItem("poke-ai-engine", select.value);
+        toggleCustomWrap("ai-engine-custom-wrap", select.value === "custom");
+        playPopSound();
+      }
+      function onAiCustomInput() {
+        localStorage.setItem("poke-ai-custom-url", document.getElementById("ai-engine-custom-input").value.trim());
+      }
+
+      // Search bar overlay (opens when typing anywhere on the page)
+      let searchSuggestions = [];
+      let searchActiveIndex = -1;
+      let searchTypedQuery = "";
+      let searchDebounceTimer = null;
+      function isAnyModalOpen() {
+        return document.getElementById("settings-modal").classList.contains("is-open")
+          || document.getElementById("about-panel").classList.contains("is-open");
+      }
+      function isSearchBarOpen() {
+        const container = document.getElementById("search-bar-container");
+        return !!container && container.classList.contains("is-open");
+      }
+      function hideSearchSuggestions() {
+        const list = document.getElementById("search-bar-suggestions");
+        if (list) list.innerHTML = "";
+        searchSuggestions = [];
+        searchActiveIndex = -1;
+      }
+      function openSearchBar(initialChar) {
+        if (isAnyModalOpen()) return;
+        const overlay = document.getElementById("search-bar-overlay");
+        const container = document.getElementById("search-bar-container");
+        const input = document.getElementById("search-bar-input");
+        if (!overlay || !container || !input) return;
+        overlay.classList.add("is-open");
+        container.classList.add("is-open");
+        input.value = initialChar || "";
+        input.focus();
+        if (initialChar) {
+          onSearchBarInput();
+        } else {
+          hideSearchSuggestions();
+        }
+      }
+      function closeSearchBar() {
+        const overlay = document.getElementById("search-bar-overlay");
+        const container = document.getElementById("search-bar-container");
+        const input = document.getElementById("search-bar-input");
+        if (overlay) overlay.classList.remove("is-open");
+        if (container) container.classList.remove("is-open");
+        if (input) {
+          input.value = "";
+          input.blur();
+        }
+        hideSearchSuggestions();
+      }
+      function toggleSearchBar(event) {
+        if (event) event.preventDefault();
+        if (isSearchBarOpen()) {
+          closeSearchBar();
+        } else {
+          openSearchBar("");
+        }
+      }
+      function renderSearchSuggestions() {
+        const list = document.getElementById("search-bar-suggestions");
+        if (!list) return;
+        searchActiveIndex = -1;
+        if (!searchSuggestions.length) {
+          list.innerHTML = "";
+          return;
+        }
+        list.innerHTML = searchSuggestions
+          .map(function (s, index) {
+            const safe = String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            return '<button type="button" class="search-bar-suggestion-item" onmousedown="event.preventDefault()" onclick="selectSearchSuggestion(' + index + ')">' + safe + "</button>";
+          })
+          .join("");
+      }
+      function updateActiveSearchSuggestion() {
+        const list = document.getElementById("search-bar-suggestions");
+        const input = document.getElementById("search-bar-input");
+        if (!list || !input) return;
+        Array.from(list.children).forEach(function (item, index) {
+          item.classList.toggle("is-active", index === searchActiveIndex);
+        });
+        if (searchActiveIndex >= 0) {
+          input.value = searchSuggestions[searchActiveIndex];
+        } else {
+          input.value = searchTypedQuery;
+        }
+      }
+      async function fetchDuckDuckGoSuggestions(query) {
+        const res = await fetch("/api/suggest?engine=duckduckgo&q=" + encodeURIComponent(query));
+        const data = await res.json();
+        return (data && data[1]) || [];
+      }
+      async function fetchEngineSuggestions(engine, query) {
+        if (engine === "google" || engine === "bing" || engine === "duckduckgo") {
+          const res = await fetch("/api/suggest?engine=" + engine + "&q=" + encodeURIComponent(query));
+          const data = await res.json();
+          return (data && data[1]) || [];
+        }
+        // searxng / custom: try the search engine's own autocompleter endpoint
+        const template = getSearchUrlTemplate();
+        const origin = new URL(template).origin;
+        const res = await fetch("/api/suggest?engine=" + engine + "&q=" + encodeURIComponent(query) + "&origin=" + encodeURIComponent(origin));
+        const data = await res.json();
+        return (data && data[1]) || [];
+      }
+      async function fetchSearchSuggestions(query) {
+        const engine = localStorage.getItem("poke-search-engine") || "google";
+        try {
+          const suggestions = await fetchEngineSuggestions(engine, query);
+          if (suggestions && suggestions.length) {
+            searchSuggestions = suggestions;
+            renderSearchSuggestions();
+            return;
+          }
+        } catch (e) {}
+        // Fall back to DuckDuckGo's autocomplete if the chosen engine has no usable suggestions
+        if (engine !== "duckduckgo") {
+          try {
+            searchSuggestions = await fetchDuckDuckGoSuggestions(query);
+            renderSearchSuggestions();
+            return;
+          } catch (e) {}
+        }
+        searchSuggestions = [];
+        renderSearchSuggestions();
+      }
+      function onSearchBarInput() {
+        clearTimeout(searchDebounceTimer);
+        const input = document.getElementById("search-bar-input");
+        const query = input.value;
+        searchTypedQuery = query;
+        if (!query.trim()) {
+          hideSearchSuggestions();
+          return;
+        }
+        searchDebounceTimer = setTimeout(function () {
+          fetchSearchSuggestions(query.trim());
+        }, 200);
+      }
+      function selectSearchSuggestion(index) {
+        const value = searchSuggestions[index];
+        if (value === undefined) return;
+        performSearch(value);
+      }
+      function onSearchBarKeydown(event) {
+        const hasSuggestions = searchSuggestions.length > 0;
+        if (event.key === "ArrowDown" || (event.key === "Tab" && !event.shiftKey)) {
+          if (hasSuggestions) {
+            event.preventDefault();
+            searchActiveIndex = Math.min(searchActiveIndex + 1, searchSuggestions.length - 1);
+            updateActiveSearchSuggestion();
+          }
+        } else if (event.key === "ArrowUp" || (event.key === "Tab" && event.shiftKey)) {
+          if (hasSuggestions) {
+            event.preventDefault();
+            searchActiveIndex = Math.max(searchActiveIndex - 1, -1);
+            updateActiveSearchSuggestion();
+          }
+        } else if (event.key === "Enter") {
+          event.preventDefault();
+          const input = document.getElementById("search-bar-input");
+          performSearch(input ? input.value : "");
+        } else if (event.key === "Escape") {
+          closeSearchBar();
+        }
+      }
+
+      // Date display
+      function applyDate() {
+        const el = document.getElementById("date-display");
+        if (!el) return;
+        el.textContent = new Date().toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" });
+      }
+
+      // Time-based greeting
+      function getTimeOfDay() {
+        const hour = new Date().getHours();
+        if (hour < 5) return "night";
+        if (hour < 12) return "morning";
+        if (hour < 17) return "afternoon";
+        if (hour < 21) return "evening";
+        return "night";
+      }
+      function applyGreeting() {
+        const timeOfDay = getTimeOfDay();
+        const greetings = {
+          night: "Good night",
+          morning: "Good morning",
+          afternoon: "Good afternoon",
+          evening: "Good evening",
+        };
+        const el = document.getElementById("greeting-prefix");
+        if (el) el.textContent = greetings[timeOfDay];
+      }
+
+      // Time-of-day backgrounds
+      function applyTimeBackgrounds() {
+        const timeOfDay = getTimeOfDay();
+        const weatherBg = document.getElementById("weather-bg-image");
+        if (weatherBg) weatherBg.src = "app-assets/weather/" + timeOfDay + "-sky-background.jpg";
+        const interactionBg = document.getElementById("interaction-bg-image");
+        if (interactionBg) interactionBg.src = "app-assets/interaction_beach/interaction_beach_" + timeOfDay + ".jpeg";
+      }
+
+      // Weather based on saved location
+      function weatherDescriptionFromCode(code) {
+        const map = {
+          0: "clear sky", 1: "mainly clear", 2: "partly cloudy", 3: "overcast clouds",
+          45: "fog", 48: "fog", 51: "light drizzle", 53: "drizzle", 55: "dense drizzle",
+          61: "light rain", 63: "rain", 65: "heavy rain", 71: "light snow", 73: "snow",
+          75: "heavy snow", 80: "rain showers", 81: "rain showers", 82: "violent rain showers",
+          95: "thunderstorm", 96: "thunderstorm with hail", 99: "thunderstorm with hail",
+        };
+        return map[code] || "clear sky";
+      }
+      async function updateWeatherForCoords(latitude, longitude) {
+        try {
+          const weatherRes = await fetch("https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longitude + "&current=temperature_2m,weather_code&temperature_unit=fahrenheit");
+          const weatherData = await weatherRes.json();
+          const current = weatherData.current;
+          if (!current) return;
+          const temp = Math.round(current.temperature_2m);
+          const desc = weatherDescriptionFromCode(current.weather_code);
+          const el = document.getElementById("weather-text");
+          if (el) el.textContent = temp + "°F and " + desc;
+        } catch (e) {}
+      }
+      async function updateWeatherForLocation(location) {
+        if (!location) return;
+        try {
+          const geoRes = await fetch("https://geocoding-api.open-meteo.com/v1/search?count=1&name=" + encodeURIComponent(location));
+          const geoData = await geoRes.json();
+          const result = geoData.results && geoData.results[0];
+          if (!result) return;
+          await updateWeatherForCoords(result.latitude, result.longitude);
+        } catch (e) {}
+      }
+
+      // Location autocomplete
+      let locationSuggestions = [];
+      let locationActiveIndex = -1;
+      let locationDebounceTimer = null;
+      function formatLocationLabel(result) {
+        const parts = [result.name];
+        if (result.admin1 && result.admin1 !== result.name) parts.push(result.admin1);
+        if (result.country) parts.push(result.country);
+        return parts.join(", ");
+      }
+      function hideLocationSuggestions() {
+        const list = document.getElementById("location-suggestions");
+        if (list) {
+          list.classList.remove("is-open");
+          list.innerHTML = "";
+        }
+        locationSuggestions = [];
+        locationActiveIndex = -1;
+      }
+      function renderLocationSuggestions() {
+        const list = document.getElementById("location-suggestions");
+        if (!list) return;
+        locationActiveIndex = -1;
+        if (!locationSuggestions.length) {
+          hideLocationSuggestions();
+          return;
+        }
+        list.innerHTML = locationSuggestions
+          .map(function (result, index) {
+            return '<button type="button" class="settings-autocomplete-item" onmousedown="event.preventDefault()" onclick="selectLocationSuggestion(' + index + ')">' + formatLocationLabel(result) + "</button>";
+          })
+          .join("");
+        list.classList.add("is-open");
+      }
+      function updateActiveSuggestion() {
+        const list = document.getElementById("location-suggestions");
+        if (!list) return;
+        Array.from(list.children).forEach(function (item, index) {
+          item.classList.toggle("is-active", index === locationActiveIndex);
+        });
+      }
+      async function fetchLocationSuggestions(query) {
+        try {
+          const res = await fetch("https://geocoding-api.open-meteo.com/v1/search?count=5&name=" + encodeURIComponent(query));
+          const data = await res.json();
+          locationSuggestions = data.results || [];
+          renderLocationSuggestions();
+        } catch (e) {}
+      }
+      function onLocationInput() {
+        clearTimeout(locationDebounceTimer);
+        const input = document.getElementById("location-input");
+        const query = input.value.trim();
+        if (query.length < 2) {
+          hideLocationSuggestions();
+          return;
+        }
+        locationDebounceTimer = setTimeout(function () {
+          fetchLocationSuggestions(query);
+        }, 300);
+      }
+      function selectLocationSuggestion(index) {
+        const result = locationSuggestions[index];
+        if (!result) return;
+        const input = document.getElementById("location-input");
+        const label = formatLocationLabel(result);
+        input.value = label;
+        localStorage.setItem("poke-location", label);
+        updateWeatherForCoords(result.latitude, result.longitude);
+        hideLocationSuggestions();
+      }
+      function onLocationKeydown(event) {
+        const list = document.getElementById("location-suggestions");
+        const isOpen = list && list.classList.contains("is-open");
+        if (event.key === "ArrowDown") {
+          if (isOpen) {
+            event.preventDefault();
+            locationActiveIndex = Math.min(locationActiveIndex + 1, locationSuggestions.length - 1);
+            updateActiveSuggestion();
+          }
+        } else if (event.key === "ArrowUp") {
+          if (isOpen) {
+            event.preventDefault();
+            locationActiveIndex = Math.max(locationActiveIndex - 1, 0);
+            updateActiveSuggestion();
+          }
+        } else if (event.key === "Enter") {
+          event.preventDefault();
+          if (isOpen && locationSuggestions.length) {
+            selectLocationSuggestion(locationActiveIndex >= 0 ? locationActiveIndex : 0);
+          } else {
+            event.target.blur();
+          }
+        } else if (event.key === "Escape") {
+          hideLocationSuggestions();
+        }
+      }
+      function onLocationBlur() {
+        setTimeout(hideLocationSuggestions, 150);
+      }
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeAboutPanel();
+          closeSettingsModal();
+          closeSearchBar();
+        }
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.ctrlKey || e.metaKey || e.altKey) return;
+        const active = document.activeElement;
+        const input = document.getElementById("search-bar-input");
+        if (active === input) return;
+        if (isAnyModalOpen()) return;
+        if (active && (active.tagName === "INPUT" || active.tagName === "TEXTAREA" || active.isContentEditable)) return;
+
+        if (isSearchBarOpen()) {
+          if (!input) return;
+          if (e.key.length === 1) {
+            e.preventDefault();
+            input.value += e.key;
+            input.focus();
+            onSearchBarInput();
+          } else if (e.key === "Backspace") {
+            e.preventDefault();
+            input.value = input.value.slice(0, -1);
+            input.focus();
+            onSearchBarInput();
+          } else {
+            onSearchBarKeydown(e);
+          }
+          return;
+        }
+
+        if (e.key.length === 1) {
+          openSearchBar(e.key);
+        }
+      });
+      document.addEventListener("click", function (e) {
+        const link = e.target.closest('a[href^="/"]');
+        if (link) e.preventDefault();
+      });
+      document.addEventListener("click", function (e) {
+        if (e.target.closest("a, button")) playPopSound();
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        applyDarkMode(localStorage.getItem("poke-dark-mode") === "1");
+        const soundSetting = localStorage.getItem("poke-sound-effects");
+        applySoundSetting(soundSetting === null ? true : soundSetting === "1");
+        const savedName = localStorage.getItem("poke-display-name");
+        applyDisplayName(savedName || "Aureal");
+        if (savedName) {
+          const nameEl = document.getElementById("settings-display-name");
+          if (nameEl) nameEl.textContent = savedName;
+        }
+        const savedAvatar = localStorage.getItem("poke-avatar-url");
+        if (savedAvatar) applyAvatarUrl(savedAvatar, false);
+        const lanyardId = localStorage.getItem("poke-lanyard-id");
+        if (lanyardId) {
+          const idInput = document.getElementById("lanyard-user-id");
+          if (idInput) idInput.value = lanyardId;
+          if (localStorage.getItem("poke-lanyard-enabled") === "1") {
+            connectLanyard(lanyardId);
+          }
+        }
+        initLinkSettings();
+        applyGreeting();
+        applyDate();
+        applyTimeBackgrounds();
+        const savedLocation = localStorage.getItem("poke-location");
+        if (savedLocation) {
+          const locationInput = document.getElementById("location-input");
+          if (locationInput) locationInput.value = savedLocation;
+          updateWeatherForLocation(savedLocation);
+        }
+
+        // Keep the greeting, date, backgrounds, and weather fresh over time
+        setInterval(function () {
+          applyGreeting();
+          applyDate();
+          applyTimeBackgrounds();
+        }, 60 * 1000);
+        setInterval(function () {
+          const location = localStorage.getItem("poke-location");
+          if (location) updateWeatherForLocation(location);
+        }, 10 * 60 * 1000);
+      });
+    </script>
+  </head>
+
+  <body style="background-color: rgb(248, 250, 252);">
+    <audio id="pop-sound" src="pop.mp3" preload="auto"></audio>
+    <div id="settings-overlay" class="modal-overlay" onclick="closeSettingsModal()"></div>
+    <div id="settings-modal" class="settings-modal" role="dialog" aria-label="Settings" aria-hidden="true">
+      <div id="settings-page-main" class="settings-page is-active">
+        <div class="settings-modal-header">
+          <h2 class="font-exposure">Settings</h2>
+          <button type="button" class="about-panel-close" aria-label="Close" onclick="closeSettingsModal()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </button>
+        </div>
+        <div class="settings-modal-body">
+          <div class="settings-profile">
+            <div class="settings-avatar-wrap">
+              <img id="settings-avatar" src="app-assets/avatar.jpg" alt="Avatar" width="64" height="64">
+              <button type="button" class="settings-avatar-edit-btn" aria-label="Change avatar" onclick="startEditAvatar(event)">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 4H6C4.89543 4 4 4.89543 4 6V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M18.5 2.5C19.3284 1.67157 20.6716 1.67157 21.5 2.5C22.3284 3.32843 22.3284 4.67157 21.5 5.5L12 15L8 16L9 12L18.5 2.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </button>
+            </div>
+            <div class="settings-name-row">
+              <div class="settings-name-row-inner">
+                <span id="settings-display-name" class="settings-profile-name">Aureal</span>
+                <button type="button" class="settings-edit-btn" aria-label="Edit name" onclick="startEditName(event)">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 4H6C4.89543 4 4 4.89543 4 6V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M18.5 2.5C19.3284 1.67157 20.6716 1.67157 21.5 2.5C22.3284 3.32843 22.3284 4.67157 21.5 5.5L12 15L8 16L9 12L18.5 2.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </button>
+              </div>
+            </div>
+            <span id="settings-username" class="settings-username">@aureal</span>
+          </div>
+          <div class="settings-list">
+            <button type="button" class="settings-list-item" onclick="openSettingsPage('appearance')">
+              <span class="settings-list-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.7945C19.6539 13.4878 18.0741 13.7227 16.5476 13.4153C14.755 13.0535 13.1568 12.0301 12.0935 10.5547C11.0301 9.07922 10.5816 7.27007 10.8186 5.5C9.06376 5.91574 7.5108 6.93829 6.45418 8.38347C5.39756 9.82864 4.90605 11.6021 5.07127 13.3868C5.23648 15.1714 6.04699 16.825 7.35498 18.0512C8.66296 19.2773 10.3784 19.9919 12.1671 20.0466C13.9558 20.1013 15.7065 19.4926 17.0833 18.348C18.4601 17.2034 19.3699 15.5982 19.6442 13.8345" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </span>
+              <span class="settings-list-label">Appearance</span>
+              <span class="settings-list-chevron">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+              </span>
+            </button>
+            <div class="settings-list-divider"></div>
+            <button type="button" class="settings-list-item" onclick="openSettingsPage('connections')">
+              <span class="settings-list-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-discord" viewBox="0 0 16 16"><path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8 8 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019m-8.198 7.307c-.789 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612m5.316 0c-.788 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612"/></svg>
+              </span>
+              <span class="settings-list-label">Connections</span>
+              <span class="settings-list-chevron">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+              </span>
+            </button>
+            <div class="settings-list-divider"></div>
+            <button type="button" class="settings-list-item" onclick="openSettingsPage('links')">
+              <span class="settings-list-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"></circle><path d="M20 20L16.5 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+              </span>
+              <span class="settings-list-label">Search &amp; Links</span>
+              <span class="settings-list-chevron">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+              </span>
+            </button>
+            <div class="settings-list-divider"></div>
+            <div class="settings-list-item settings-list-item-toggle">
+              <span class="settings-list-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M15.54 8.46C16.4774 9.39764 17.0039 10.6692 17.0039 12C17.0039 13.3308 16.4774 14.6024 15.54 15.54M19.07 4.93C20.9447 6.80528 21.9979 9.34836 21.9979 12C21.9979 14.6516 20.9447 17.1947 19.07 19.07" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </span>
+              <span class="settings-list-label">Sound Effects</span>
+              <button type="button" role="switch" id="sound-toggle" class="settings-switch" aria-checked="true" aria-label="Sound Effects" onclick="toggleSoundEffects()">
+                <span class="settings-switch-thumb"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="settings-page-appearance" class="settings-page settings-page-inner">
+        <div class="settings-modal-header">
+          <button type="button" class="settings-back-btn" aria-label="Back" onclick="closeSettingsPage()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+          </button>
+          <h2 class="font-exposure">Appearance</h2>
+          <span class="settings-header-spacer"></span>
+        </div>
+        <div class="settings-modal-body">
+          <div class="settings-list">
+            <div class="settings-list-item settings-list-item-toggle">
+              <span class="settings-list-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.7945C19.6539 13.4878 18.0741 13.7227 16.5476 13.4153C14.755 13.0535 13.1568 12.0301 12.0935 10.5547C11.0301 9.07922 10.5816 7.27007 10.8186 5.5C9.06376 5.91574 7.5108 6.93829 6.45418 8.38347C5.39756 9.82864 4.90605 11.6021 5.07127 13.3868C5.23648 15.1714 6.04699 16.825 7.35498 18.0512C8.66296 19.2773 10.3784 19.9919 12.1671 20.0466C13.9558 20.1013 15.7065 19.4926 17.0833 18.348C18.4601 17.2034 19.3699 15.5982 19.6442 13.8345" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </span>
+              <span class="settings-list-label">Dark Mode</span>
+              <button type="button" role="switch" id="dark-mode-toggle" class="settings-switch" aria-checked="false" aria-label="Dark Mode" onclick="toggleDarkMode()">
+                <span class="settings-switch-thumb"></span>
+              </button>
+            </div>
+          </div>
+          <div class="settings-connection-form">
+            <div class="settings-autocomplete-wrap">
+              <label for="location-input" class="settings-field-label">Location</label>
+              <input type="text" id="location-input" class="settings-text-input" placeholder="City, Country" autocomplete="off" oninput="onLocationInput()" onkeydown="onLocationKeydown(event)" onblur="onLocationBlur()">
+              <div id="location-suggestions" class="settings-autocomplete-list"></div>
+            </div>
+            <p class="settings-help-text">Used to show the local weather on the home screen.</p>
+          </div>
+        </div>
+      </div>
+      <div id="settings-page-connections" class="settings-page settings-page-inner">
+        <div class="settings-modal-header">
+          <button type="button" class="settings-back-btn" aria-label="Back" onclick="closeSettingsPage()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+          </button>
+          <h2 class="font-exposure">Connections</h2>
+          <span class="settings-header-spacer"></span>
+        </div>
+        <div class="settings-modal-body">
+          <div class="settings-list">
+            <div class="settings-list-item settings-list-item-toggle">
+              <span class="settings-list-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-discord" viewBox="0 0 16 16"><path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8 8 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019m-8.198 7.307c-.789 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612m5.316 0c-.788 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612"/></svg>
+              </span>
+              <span class="settings-list-label">Discord (Lanyard)</span>
+              <span id="lanyard-status-badge" class="settings-status-badge">Not connected</span>
+            </div>
+          </div>
+          <div class="settings-connection-form">
+            <div>
+              <label for="lanyard-user-id" class="settings-field-label">Discord User ID</label>
+              <input type="text" id="lanyard-user-id" class="settings-text-input" placeholder="e.g. 156114103033790464" inputmode="numeric">
+            </div>
+            <div class="settings-connection-actions">
+              <button type="button" class="settings-action-btn" onclick="startLanyardConnection()">Connect</button>
+              <button type="button" class="settings-action-btn settings-action-btn-secondary" onclick="stopLanyardConnection()">Disconnect</button>
+            </div>
+            <p class="settings-help-text">Pulls your live Discord avatar and display name via the Lanyard API. If you set a custom name or avatar above, it won't be overridden.</p>
+          </div>
+        </div>
+      </div>
+      <div id="settings-page-links" class="settings-page settings-page-inner">
+        <div class="settings-modal-header">
+          <button type="button" class="settings-back-btn" aria-label="Back" onclick="closeSettingsPage()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+          </button>
+          <h2 class="font-exposure">Search &amp; Links</h2>
+          <span class="settings-header-spacer"></span>
+        </div>
+        <div class="settings-modal-body">
+          <div class="settings-connection-form">
+            <div>
+              <label for="search-engine-select" class="settings-field-label">Search engine</label>
+              <select id="search-engine-select" class="settings-text-input" onchange="onSearchEngineChange()">
+                <option value="google">Google</option>
+                <option value="duckduckgo">DuckDuckGo</option>
+                <option value="bing">Bing</option>
+                <option value="searxng">SearXNG (searxng.nyxie.xyz)</option>
+                <option value="custom">Custom</option>
+              </select>
+            </div>
+            <div id="search-engine-custom-wrap">
+              <label for="search-engine-custom-input" class="settings-field-label">Custom search URL</label>
+              <input type="text" id="search-engine-custom-input" class="settings-text-input" placeholder="https://example.com/search?q=%s" autocomplete="off" oninput="onSearchCustomInput()">
+            </div>
+            <p class="settings-help-text">Used by the search bar (start typing on the page) and the Search button. Use %s where the search term should go.</p>
+          </div>
+          <div class="settings-connection-form">
+            <div>
+              <label for="mail-engine-select" class="settings-field-label">Mail</label>
+              <select id="mail-engine-select" class="settings-text-input" onchange="onMailEngineChange()">
+                <option value="gmail">Gmail</option>
+                <option value="outlook">Outlook</option>
+                <option value="yahoo">Yahoo Mail</option>
+                <option value="proton">Proton Mail</option>
+                <option value="custom">Custom</option>
+              </select>
+            </div>
+            <div id="mail-engine-custom-wrap">
+              <label for="mail-engine-custom-input" class="settings-field-label">Custom mail URL</label>
+              <input type="text" id="mail-engine-custom-input" class="settings-text-input" placeholder="https://example.com/mail" autocomplete="off" oninput="onMailCustomInput()">
+            </div>
+            <p class="settings-help-text">Where the Mail button takes you.</p>
+          </div>
+          <div class="settings-connection-form">
+            <div>
+              <label for="ai-engine-select" class="settings-field-label">Ask AI (AI site)</label>
+              <select id="ai-engine-select" class="settings-text-input" onchange="onAiEngineChange()">
+                <option value="claude">Claude</option>
+                <option value="chatgpt">ChatGPT</option>
+                <option value="perplexity">Perplexity</option>
+                <option value="custom">Custom</option>
+              </select>
+            </div>
+            <div id="ai-engine-custom-wrap">
+              <label for="ai-engine-custom-input" class="settings-field-label">Custom AI site URL</label>
+              <input type="text" id="ai-engine-custom-input" class="settings-text-input" placeholder="https://example.com" autocomplete="off" oninput="onAiCustomInput()">
+            </div>
+            <p class="settings-help-text">Where the Ask AI button takes you.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="about-overlay" class="about-overlay" onclick="closeAboutPanel()"></div>
+    <div id="about-panel" class="about-panel" role="dialog" aria-label="About" aria-hidden="true">
+      <div class="about-panel-header">
+        <div class="about-panel-icon">
+          <img src="app-assets/poke_app_icon_small.webp" alt="App icon" width="48" height="48">
+        </div>
+        <button type="button" class="about-panel-close" aria-label="Close" onclick="closeAboutPanel()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </button>
+      </div>
+      <div class="about-panel-body">
+        <h2 class="font-exposure">About Start Page</h2>
+        <p>A simple personal start page with a greeting, the local weather, and quick links to your favorite tools.</p>
+      </div>
+    </div>
+    <div id="search-bar-overlay" class="search-bar-overlay" onclick="closeSearchBar()"></div>
+    <div id="search-bar-container" class="search-bar-container" role="search">
+      <div class="search-bar-box" onclick="event.stopPropagation()">
+        <input type="text" id="search-bar-input" class="search-bar-input" placeholder="Search..." autocomplete="off" spellcheck="false" oninput="onSearchBarInput()" onkeydown="onSearchBarKeydown(event)">
+        <div id="search-bar-suggestions" class="search-bar-suggestions"></div>
+      </div>
+    </div>
+    <div id="root"><ion-app class="md ion-page"><ion-router-outlet><ion-router-outlet animated="false"><div class="h-full ion-page" style="z-index: 101;"><div class="relative flex h-full w-full items-center justify-center px-0 max-md:bg-transparent" style="background: linear-gradient(rgb(206, 214, 235) 0%, rgb(233, 226, 232) 50%, rgb(206, 214, 235) 100%);"><img id="weather-bg-image" src="app-assets/weather/morning-sky-background.jpg" alt="Weather background" class="pointer-events-none absolute left-0 top-0 z-0 h-full w-full object-fill" style="opacity: 0.9; min-width: 2000px; min-height: 1200px;"><div data-silk-sheet-wrapper="" class="relative h-full w-full max-w-md text-center md:h-[750px]"><div class="flex h-full flex-col justify-between"><div class="relative flex h-full flex-col bg-sky-100 py-4 shadow-alyn md:rounded-3xl" style="background-color: rgb(248, 250, 252);"><div class="absolute inset-0 z-0 md:rounded-3xl" style="background-image: url(&quot;app-assets/noise.png&quot;); background-repeat: repeat; background-size: 100px auto; background-position: 0px 0px; background-blend-mode: overlay; mask-image: linear-gradient(transparent 0%, black 30px); opacity: 0.6;"></div><div class="relative z-10 flex h-full w-full flex-col"><div class="safe-area-pt w-full px-4 pb-1"><div class="flex items-center justify-between"><a class="flex h-11 w-11 items-center justify-center rounded-xl p-1 transition-transform active:scale-[0.98]" aria-label="About" href="#about" onclick="openAboutPanel(event)"><div style="opacity: 1;"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5"></path><path d="M12 8h.01"></path></svg></div></a><div class="flex items-center gap-2" style="opacity: 1; transform: none;"><span class="text-sm font-medium text-gray-400" id="date-display">Sun, Jun 14</span></div><a class="rounded-full p-1 transition-transform active:scale-[0.98]" aria-label="Settings" href="#settings" onclick="openSettingsModal(event)"><div class="pointer-events-none" style="opacity: 1;"><div class="relative flex items-center justify-center overflow-hidden rounded-full" style="width: 36px; height: 36px;"><div class="absolute inset-0"><img id="header-avatar" src="app-assets/avatar.jpg" alt="Avatar" class="h-full w-full select-none object-cover opacity-100" style="visibility: visible;" draggable="false" width="36" height="36"></div></div></div></a></div></div><div class="relative flex h-full overflow-hidden"><div class="relative h-full max-h-96 w-full overflow-hidden"><img id="interaction-bg-image" src="app-assets/interaction_beach/interaction_beach_morning.jpeg" alt="Background" width="1000" height="1000" draggable="false" class="h-full w-full select-none object-cover" style="transform: scale(1.4); transform-origin: center center 0px;"><div class="z-5 absolute inset-0 h-full w-full" style="background: radial-gradient(90% 65%, rgba(248, 250, 252, 0) 0%, rgba(248, 250, 252, 0) 5%, rgba(248, 250, 252, 0.9) 55%, rgb(248, 250, 252) 80%);"></div><div class="absolute inset-0 z-10" style="background-image: url(&quot;app-assets/noise.png&quot;); background-repeat: repeat; background-size: 100px auto; background-position: 0px 0px; background-blend-mode: overlay; opacity: 0.6;"></div></div></div><div class="grow"></div><div class="flex w-full flex-col items-center justify-start gap-1 p-6" style="opacity: 1; transform: none;"><div class="font-exposure text-2xl text-gray-600" style="font-variation-settings: &quot;EXPO&quot; -5;"><span id="greeting-prefix">Good morning</span>, <span id="greeting-name">Aureal</span></div><div class="w-full truncate text-base font-medium text-gray-400" id="weather-text" style="opacity: 1;">75°F and overcast clouds</div></div><div class="grow"></div><div class="safe-area-pb flex w-full flex-col gap-2 px-4"><div class="flex w-full gap-2"><div class="min-w-0 flex-1"><button type="button" class="flex items-center justify-center gap-2 rounded-3xl border p-3 shadow-alyn backdrop-blur-xs flex-col transition-transform active:scale-[0.98] md:hover:backdrop-blur-lg w-full" style="background-color: rgba(248, 250, 252, 0.3); border-color: rgba(248, 250, 252, 0.3);" aria-label="Ask AI" onclick="goToAi(event)"><div class="text-gray-600"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"><path d="M12 3L10.0876 8.81221C9.84029 9.55814 9.71663 9.93111 9.50992 10.2429C9.32668 10.5163 9.09718 10.7551 8.83333 10.9474C8.53552 11.1645 8.17555 11.2972 7.45561 11.5627L2 13.5L7.45561 15.4373C8.17555 15.7028 8.53552 15.8355 8.83333 16.0526C9.09718 16.2449 9.32668 16.4837 9.50992 16.7571C9.71663 17.0689 9.84029 17.4419 10.0876 18.1878L12 24L13.9124 18.1878C14.1597 17.4419 14.2834 17.0689 14.4901 16.7571C14.6733 16.4837 14.9028 16.2449 15.1667 16.0526C15.4645 15.8355 15.8245 15.7028 16.5444 15.4373L22 13.5L16.5444 11.5627C15.8245 11.2972 15.4645 11.1645 15.1667 10.9474C14.9028 10.7551 14.6733 10.5163 14.4901 10.2429C14.2834 9.93111 14.1597 9.55814 13.9124 8.81221L12 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="truncate text-sm font-medium text-gray-400">Ask AI</div></button></div><div class="min-w-0 flex-1"><a class="flex items-center justify-center gap-2 rounded-3xl border p-3 shadow-alyn backdrop-blur-xs flex-col transition-transform active:scale-[0.98] md:hover:backdrop-blur-lg w-full" style="background-color: rgba(248, 250, 252, 0.3); border-color: rgba(248, 250, 252, 0.3);" aria-label="Mail" href="#mail" onclick="goToMail(event)"><div class="text-gray-600"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"><path d="M21.001 9C18.4937 10.8837 15.377 12 11.9995 12C8.62204 12 5.50528 10.8837 2.99805 9M4.99951 5H18.9995C20.1041 5 20.9995 5.89543 20.9995 7V17C20.9995 18.1046 20.1041 19 18.9995 19H4.99951C3.89494 19 2.99951 18.1046 2.99951 17V7C2.99951 5.89543 3.89494 5 4.99951 5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="truncate text-sm font-medium text-gray-400">Mail</div></a></div><div class="min-w-0 flex-1"><button type="button" class="flex items-center justify-center gap-2 rounded-3xl border p-3 shadow-alyn backdrop-blur-xs flex-col transition-transform active:scale-[0.98] md:hover:backdrop-blur-lg w-full" style="background-color: rgba(248, 250, 252, 0.3); border-color: rgba(248, 250, 252, 0.3);" aria-label="Search" onclick="toggleSearchBar(event)"><div class="text-gray-600"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" class="h-6 w-6"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"></circle><path d="M20 20L16.5 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></div><div class="truncate text-sm font-medium text-gray-400">Search</div></button></div></div></div></div></div></div></div></div><div data-silk="a0 "></div><div data-silk="a0 "></div></div></ion-router-outlet></ion-router-outlet><section aria-label="Notifications alt+T" tabindex="-1" aria-live="polite" aria-relevant="additions text" aria-atomic="false"></section></ion-app></div>
+  </body>
+</html>
