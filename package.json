@@ -1,8 +1,8 @@
 {
-  "name": "pokehome-offline",
+  "name": "startpage-offline",
   "version": "1.0.0",
   "private": true,
-  "description": "Offline static snapshot of the Poke home screen",
+  "description": "Offline static snapshot of the StartPage home screen",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"

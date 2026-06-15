@@ -7,7 +7,7 @@ const { URL } = require("url");
 const PORT = process.env.PORT || 6746;
 const ROOT = __dirname;
 
-const SUGGEST_USER_AGENT = "Mozilla/5.0 (compatible; PokeHome/1.0)";
+const SUGGEST_USER_AGENT = "Mozilla/5.0 (compatible; StartPage/1.0)";
 
 function buildSuggestUrl(engine, q, origin) {
   const query = encodeURIComponent(q || "");
@@ -113,5 +113,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`Poke offline site running at http://localhost:${PORT}`);
+  console.log(`StartPage offline site running at http://localhost:${PORT}`);
 });

@@ -15,7 +15,7 @@
 
   async function resolveCoords(ctx) {
     const customLocation = ctx.storage.get("location", "");
-    const location = customLocation || localStorage.getItem("poke-location") || "";
+    const location = customLocation || localStorage.getItem("startpage-location") || "";
     if (!location) return null;
     const res = await fetch("https://geocoding-api.open-meteo.com/v1/search?count=1&name=" + encodeURIComponent(location));
     const data = await res.json();
@@ -24,7 +24,7 @@
     return { lat: result.latitude, lon: result.longitude, name: result.name };
   }
 
-  PokeHome.registerPlugin({
+  StartPage.registerPlugin({
     id: "weather-forecast",
     name: "Forecast",
     icon: '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.5 19a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.4-1.5A4 4 0 0 0 6 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 19v2M8 19v2M16 19v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
@@ -44,7 +44,7 @@
             container.innerHTML = '<p class="settings-help-text">Set a location on the home screen (Settings) or in this plugin\'s settings.</p>';
             return;
           }
-          const unit = localStorage.getItem("poke-temp-unit") || "fahrenheit";
+          const unit = localStorage.getItem("startpage-temp-unit") || "fahrenheit";
           const unitSymbol = unit === "celsius" ? "°C" : "°F";
           const res = await fetch(
             "https://api.open-meteo.com/v1/forecast?latitude=" + coords.lat + "&longitude=" + coords.lon +

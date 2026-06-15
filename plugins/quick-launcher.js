@@ -5,12 +5,14 @@
     style.id = "launcher-styles";
     style.textContent =
       ".launcher-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }" +
-      ".launcher-item { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; padding: 0.85rem 0.5rem; border-radius: 16px; border: 1px solid rgba(0,0,0,0.08); background: rgba(0,0,0,0.02); cursor: pointer; text-align: center; }" +
+      ".launcher-item { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; padding: 0.85rem 0.5rem; border-radius: 16px; border: 1px solid rgba(0,0,0,0.08); background: rgba(0,0,0,0.02); cursor: pointer; text-align: center; color: rgb(55, 65, 81); }" +
+      "html.dark-mode .launcher-item { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.04); color: rgb(226, 232, 240); }" +
+      ".launcher-item img { width: 28px; height: 28px; object-fit: contain; }" +
       ".launcher-item span { font-size: 0.8rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; }";
     document.head.appendChild(style);
   }
 
-  PokeHome.registerPlugin({
+  StartPage.registerPlugin({
     id: "quick-launcher",
     name: "Launcher",
     icon: '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/></svg>',
@@ -35,8 +37,16 @@
           const item = document.createElement("button");
           item.type = "button";
           item.className = "launcher-item";
-          const initial = (link.name || link.url || "?").trim().charAt(0).toUpperCase();
-          item.innerHTML = '<span style="font-size:1.4rem;">' + initial + '</span><span>' + (link.name || link.url) + "</span>";
+          const name = link.name || link.url || "?";
+          let iconHtml;
+          if (link.icon) {
+            iconHtml = '<img src="' + link.icon.replace(/"/g, "&quot;") + '" alt="">';
+          } else {
+            const initial = name.trim().charAt(0).toUpperCase();
+            iconHtml = '<span style="font-size:1.4rem;">' + initial + '</span>';
+          }
+          item.innerHTML = iconHtml + "<span></span>";
+          item.querySelector("span:last-child").textContent = name;
           item.onclick = () => ctx.navigate(link.url);
           grid.appendChild(item);
         });
@@ -68,6 +78,16 @@
           links.forEach((link, index) => {
             const item = document.createElement("div");
             item.className = "settings-list-item";
+            if (link.icon) {
+              const icon = document.createElement("img");
+              icon.src = link.icon;
+              icon.alt = "";
+              icon.style.width = "20px";
+              icon.style.height = "20px";
+              icon.style.objectFit = "contain";
+              icon.style.flexShrink = "0";
+              item.appendChild(icon);
+            }
             const label = document.createElement("span");
             label.className = "settings-list-label";
             label.textContent = link.name + " — " + link.url;
@@ -103,6 +123,12 @@
         urlInput.placeholder = "https://github.com";
         form.appendChild(urlInput);
 
+        const iconInput = document.createElement("input");
+        iconInput.type = "url";
+        iconInput.className = "settings-text-input";
+        iconInput.placeholder = "Icon URL (.svg or .png, optional)";
+        form.appendChild(iconInput);
+
         const actions = document.createElement("div");
         actions.className = "settings-connection-actions";
         const addBtn = document.createElement("button");
@@ -112,12 +138,16 @@
         addBtn.onclick = () => {
           const name = nameInput.value.trim();
           const url = urlInput.value.trim();
+          const icon = iconInput.value.trim();
           if (!name || !url) return;
           const links = getLinks();
-          links.push({ name: name, url: url });
+          const entry = { name: name, url: url };
+          if (icon) entry.icon = icon;
+          links.push(entry);
           setLinks(links);
           nameInput.value = "";
           urlInput.value = "";
+          iconInput.value = "";
           render();
         };
         actions.appendChild(addBtn);

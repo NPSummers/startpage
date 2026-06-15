@@ -15,7 +15,7 @@
     return (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
   }
 
-  PokeHome.registerPlugin({
+  StartPage.registerPlugin({
     id: "pomodoro",
     name: "Pomodoro",
     icon: '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="13" r="8" stroke="currentColor" stroke-width="2"/><path d="M12 9v4l2.5 2.5M9 3h6M12 3v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
@@ -35,7 +35,7 @@
         }
 
         const display = document.createElement("p");
-        display.className = "font-exposure";
+        display.className = "font-exposure text-gray-600";
         display.style.fontSize = "2.5rem";
         display.style.textAlign = "center";
         display.style.margin = "0.5rem 0";

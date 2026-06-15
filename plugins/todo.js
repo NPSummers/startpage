@@ -6,6 +6,7 @@
     style.textContent =
       ".todo-item { gap: 0.6rem; }" +
       ".todo-check { width: 20px; height: 20px; border-radius: 6px; border: 1.5px solid rgba(0,0,0,0.2); flex-shrink: 0; display: flex; align-items: center; justify-content: center; }" +
+      "html.dark-mode .todo-check { border-color: rgba(255,255,255,0.25); }" +
       ".todo-check.is-done { background: rgb(99, 102, 241); border-color: rgb(99, 102, 241); }" +
       ".todo-check.is-done svg { display: block; }" +
       ".todo-check svg { display: none; width: 14px; height: 14px; color: white; }" +
@@ -14,7 +15,7 @@
     document.head.appendChild(style);
   }
 
-  PokeHome.registerPlugin({
+  StartPage.registerPlugin({
     id: "todo",
     name: "To-Do",
     icon: '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 11l3 3L22 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',

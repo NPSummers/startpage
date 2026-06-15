@@ -12,9 +12,9 @@
 
     <style>html.plt-mobile ion-app{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}html.plt-mobile ion-app [contenteditable]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}ion-app.force-statusbar-padding{--ion-safe-area-top:20px}</style><link rel="manifest" href="manifest.json">
 
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-    <link rel="apple-touch-icon" href="app-assets/interaction_apple_icon_180.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="app-assets/interaction_apple_icon_180.png">
+    <link rel="shortcut icon" type="image/png" href="app-assets/logo.png">
+    <link rel="apple-touch-icon" href="app-assets/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="app-assets/logo.png">
 
     <!-- add to homescreen for ios -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -154,7 +154,7 @@
         height: 100%;
         width: 85%;
         max-width: 360px;
-        background-color: rgb(var(--pk-bg-rgb));
+        background-color: rgb(var(--sp-bg-rgb));
         box-shadow: 0 0 24px rgba(0, 0, 0, 0.15);
         transform: translateX(-100%);
         transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
@@ -215,6 +215,16 @@
         font-size: 0.8rem;
         color: rgb(156, 163, 175);
       }
+      .about-panel-footer {
+        margin-top: auto;
+        padding-top: 1rem;
+      }
+      .about-panel-footer p {
+        font-size: 0.75rem;
+        line-height: 1.4;
+        color: rgb(156, 163, 175);
+        margin: 0;
+      }
       .modal-overlay {
         position: fixed;
         inset: 0;
@@ -235,7 +245,7 @@
         width: 85%;
         max-width: 480px;
         height: min(800px, 90vh);
-        background-color: rgb(var(--pk-bg-rgb));
+        background-color: rgb(var(--sp-bg-rgb));
         border-radius: 24px;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         padding: 0;
@@ -260,7 +270,7 @@
         flex-direction: column;
         padding: 1.25rem;
         box-sizing: border-box;
-        background-color: rgb(var(--pk-bg-rgb));
+        background-color: rgb(var(--sp-bg-rgb));
         transform: translateX(100%);
         transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
       }
@@ -310,6 +320,34 @@
         width: 36px;
         height: 36px;
         flex-shrink: 0;
+      }
+      .settings-refresh-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        flex-shrink: 0;
+        border-radius: 999px;
+        border: none;
+        background: rgba(0, 0, 0, 0.05);
+        color: rgb(75, 85, 99);
+        cursor: pointer;
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(0.8);
+        transition: background-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+      }
+      .settings-refresh-btn.is-visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: scale(1);
+      }
+      .settings-refresh-btn:hover {
+        background: rgba(0, 0, 0, 0.1);
+      }
+      .settings-refresh-btn:active {
+        transform: scale(0.96);
       }
       .settings-modal-body {
         margin-top: 1.25rem;
@@ -473,7 +511,7 @@
         align-items: center;
         justify-content: center;
         border-radius: 999px;
-        background: rgb(var(--pk-bg-rgb));
+        background: rgb(var(--sp-bg-rgb));
         border: 1px solid rgba(0, 0, 0, 0.1);
         color: rgb(75, 85, 99);
         cursor: pointer;
@@ -622,10 +660,10 @@
 
       /* Dark mode */
       :root {
-        --pk-bg-rgb: 248, 250, 252;
+        --sp-bg-rgb: 248, 250, 252;
       }
       html.dark-mode {
-        --pk-bg-rgb: 11, 21, 41;
+        --sp-bg-rgb: 11, 21, 41;
       }
       html.dark-mode [style*="background-color: rgba(248, 250, 252, 0.3)"] {
         background-color: rgba(255, 255, 255, 0.06) !important;
@@ -643,6 +681,7 @@
       html.dark-mode .settings-username,
       html.dark-mode .about-panel-body p,
       html.dark-mode .about-panel-meta,
+      html.dark-mode .about-panel-footer p,
       html.dark-mode .settings-list-icon,
       html.dark-mode .settings-list-chevron {
         color: rgb(148, 163, 184) !important;
@@ -660,12 +699,14 @@
       }
       html.dark-mode .about-panel-close,
       html.dark-mode .settings-back-btn,
+      html.dark-mode .settings-refresh-btn,
       html.dark-mode .settings-edit-btn:hover {
         background: rgba(255, 255, 255, 0.08) !important;
         color: rgb(226, 232, 240) !important;
       }
       html.dark-mode .about-panel-close:hover,
-      html.dark-mode .settings-back-btn:hover {
+      html.dark-mode .settings-back-btn:hover,
+      html.dark-mode .settings-refresh-btn:hover {
         background: rgba(255, 255, 255, 0.15) !important;
       }
       html.dark-mode .settings-name-input {
@@ -775,6 +816,37 @@
       html.dark-mode .plugin-list-empty {
         color: rgb(148, 163, 184) !important;
       }
+      .repo-plugin-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        margin-bottom: 0.75rem;
+        font-size: 0.8rem;
+        color: rgb(156, 163, 175);
+        min-height: 28px;
+      }
+      html.dark-mode .repo-plugin-meta {
+        color: rgb(148, 163, 184) !important;
+      }
+      .settings-list-item-open {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex: 1;
+        min-width: 0;
+        background: none;
+        border: none;
+        font: inherit;
+        font-size: 0.9rem;
+        color: rgb(55, 65, 81);
+        text-align: left;
+        cursor: pointer;
+        padding: 0;
+      }
+      html.dark-mode .settings-list-item-open {
+        color: rgb(226, 232, 240) !important;
+      }
       html.dark-mode .settings-remove-btn:hover {
         background: rgba(248, 113, 113, 0.15) !important;
         color: rgb(248, 113, 113) !important;
@@ -819,7 +891,7 @@
         visibility: visible;
       }
       .search-bar-box {
-        background: rgb(var(--pk-bg-rgb));
+        background: rgb(var(--sp-bg-rgb));
         border-radius: 16px;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         padding: 0.4rem;
@@ -901,13 +973,16 @@
         document.getElementById("settings-overlay").classList.remove("is-open");
         document.getElementById("settings-modal").setAttribute("aria-hidden", "true");
         document.body.style.overflow = "";
+        settingsPageStack = [];
         closeSettingsPage();
       }
+      let settingsPageStack = [];
       function openSettingsPage(name) {
         const target = document.getElementById("settings-page-" + name);
         if (!target) return;
         const current = document.querySelector(".settings-page.is-active");
         if (current && current !== target) {
+          settingsPageStack.push(current.id.replace("settings-page-", ""));
           current.classList.remove("is-active");
           current.classList.add("is-left");
         }
@@ -916,13 +991,15 @@
       }
       function closeSettingsPage() {
         const main = document.getElementById("settings-page-main");
+        const prevName = settingsPageStack.pop();
+        const target = (prevName && document.getElementById("settings-page-" + prevName)) || main;
         document.querySelectorAll("#settings-modal .settings-page.is-active").forEach(function (page) {
-          if (page !== main) {
+          if (page !== target) {
             page.classList.remove("is-active");
           }
         });
-        main.classList.remove("is-left");
-        main.classList.add("is-active");
+        target.classList.remove("is-left");
+        target.classList.add("is-active");
       }
 
       // Sound effects
@@ -934,15 +1011,15 @@
       }
       function toggleSoundEffects() {
         applySoundSetting(!soundEffectsEnabled);
-        localStorage.setItem("poke-sound-effects", soundEffectsEnabled ? "1" : "0");
+        localStorage.setItem("startpage-sound-effects", soundEffectsEnabled ? "1" : "0");
         playPopSound();
       }
 
       // Home screen default buttons (Ask AI / Mail / Search) visibility
       const HOME_BUTTON_KEYS = {
-        "ai-button-wrap": "poke-show-ai-button",
-        "mail-button-wrap": "poke-show-mail-button",
-        "search-button-wrap": "poke-show-search-button",
+        "ai-button-wrap": "startpage-show-ai-button",
+        "mail-button-wrap": "startpage-show-mail-button",
+        "search-button-wrap": "startpage-show-search-button",
       };
       function isHomeButtonVisible(elId) {
         const stored = localStorage.getItem(HOME_BUTTON_KEYS[elId]);
@@ -975,10 +1052,10 @@
       const THEME_DYNAMIC_LIGHT_RGB = "245, 247, 250"; // white, lightly tinted from the bg gradient
 
       function getThemeMode() {
-        const stored = localStorage.getItem("poke-theme-mode");
+        const stored = localStorage.getItem("startpage-theme-mode");
         if (stored === "dynamic" || stored === "light" || stored === "dark") return stored;
         // Migrate from the old boolean dark-mode setting
-        return localStorage.getItem("poke-dark-mode") === "1" ? "dark" : "light";
+        return localStorage.getItem("startpage-dark-mode") === "1" ? "dark" : "light";
       }
       function resolveEffectiveTheme(mode) {
         if (mode === "dynamic") {
@@ -989,7 +1066,7 @@
       function updateThemeColorMeta() {
         const meta = document.querySelector('meta[name="theme-color"]');
         if (!meta) return;
-        const rgb = getComputedStyle(document.documentElement).getPropertyValue("--pk-bg-rgb").trim();
+        const rgb = getComputedStyle(document.documentElement).getPropertyValue("--sp-bg-rgb").trim();
         meta.setAttribute("content", "rgb(" + rgb + ")");
       }
       function applyTheme(mode) {
@@ -997,9 +1074,9 @@
         const effective = resolveEffectiveTheme(mode);
         root.classList.toggle("dark-mode", effective === "dark");
         if (mode === "dynamic") {
-          root.style.setProperty("--pk-bg-rgb", effective === "dark" ? THEME_DYNAMIC_NIGHT_RGB : THEME_DYNAMIC_LIGHT_RGB);
+          root.style.setProperty("--sp-bg-rgb", effective === "dark" ? THEME_DYNAMIC_NIGHT_RGB : THEME_DYNAMIC_LIGHT_RGB);
         } else {
-          root.style.removeProperty("--pk-bg-rgb");
+          root.style.removeProperty("--sp-bg-rgb");
         }
         const select = document.getElementById("theme-mode-select");
         if (select) select.value = mode;
@@ -1008,7 +1085,7 @@
       function onThemeModeChange() {
         const select = document.getElementById("theme-mode-select");
         const mode = select.value;
-        localStorage.setItem("poke-theme-mode", mode);
+        localStorage.setItem("startpage-theme-mode", mode);
         applyTheme(mode);
         playPopSound();
       }
@@ -1042,8 +1119,8 @@
           span.textContent = newName;
           input.replaceWith(span);
           applyDisplayName(newName);
-          localStorage.setItem("poke-display-name", newName);
-          localStorage.setItem("poke-display-name-manual", "1");
+          localStorage.setItem("startpage-display-name", newName);
+          localStorage.setItem("startpage-display-name-manual", "1");
         }
         input.addEventListener("blur", commit);
         input.addEventListener("keydown", function (e) {
@@ -1066,11 +1143,11 @@
         });
         if (manual) {
           if (url) {
-            localStorage.setItem("poke-avatar-url", url);
-            localStorage.setItem("poke-avatar-manual", "1");
+            localStorage.setItem("startpage-avatar-url", url);
+            localStorage.setItem("startpage-avatar-manual", "1");
           } else {
-            localStorage.removeItem("poke-avatar-url");
-            localStorage.removeItem("poke-avatar-manual");
+            localStorage.removeItem("startpage-avatar-url");
+            localStorage.removeItem("startpage-avatar-manual");
           }
         }
       }
@@ -1087,7 +1164,7 @@
         input.id = "avatar-url-input";
         input.className = "settings-text-input";
         input.placeholder = "Image URL";
-        input.value = localStorage.getItem("poke-avatar-url") || "";
+        input.value = localStorage.getItem("startpage-avatar-url") || "";
         profile.insertBefore(input, nameRow);
         input.focus();
         input.select();
@@ -1102,7 +1179,7 @@
             e.preventDefault();
             input.blur();
           } else if (e.key === "Escape") {
-            input.value = localStorage.getItem("poke-avatar-url") || "";
+            input.value = localStorage.getItem("startpage-avatar-url") || "";
             input.blur();
           }
         });
@@ -1122,15 +1199,15 @@
         if (!user) return;
         const name = user.global_name || user.username;
         setLanyardStatus("Connected as " + name, true);
-        if (user.avatar && localStorage.getItem("poke-avatar-manual") !== "1") {
+        if (user.avatar && localStorage.getItem("startpage-avatar-manual") !== "1") {
           const ext = user.avatar.indexOf("a_") === 0 ? "gif" : "png";
           applyAvatarUrl("https://cdn.discordapp.com/avatars/" + user.id + "/" + user.avatar + "." + ext, false);
         }
-        if (localStorage.getItem("poke-display-name-manual") !== "1") {
+        if (localStorage.getItem("startpage-display-name-manual") !== "1") {
           applyDisplayName(name);
           const nameEl = document.getElementById("settings-display-name");
           if (nameEl && nameEl.tagName === "SPAN") nameEl.textContent = name;
-          localStorage.setItem("poke-display-name", name);
+          localStorage.setItem("startpage-display-name", name);
         }
       }
       function disconnectLanyard() {
@@ -1181,13 +1258,13 @@
         const input = document.getElementById("lanyard-user-id");
         const id = input.value.trim();
         if (!id) return;
-        localStorage.setItem("poke-lanyard-id", id);
-        localStorage.setItem("poke-lanyard-enabled", "1");
+        localStorage.setItem("startpage-lanyard-id", id);
+        localStorage.setItem("startpage-lanyard-enabled", "1");
         connectLanyard(id);
         playPopSound();
       }
       function stopLanyardConnection() {
-        localStorage.setItem("poke-lanyard-enabled", "0");
+        localStorage.setItem("startpage-lanyard-enabled", "0");
         disconnectLanyard();
         setLanyardStatus("Not connected", false);
         playPopSound();
@@ -1212,23 +1289,23 @@
         perplexity: "https://www.perplexity.ai/",
       };
       function getSearchUrlTemplate() {
-        const engine = localStorage.getItem("poke-search-engine") || "google";
+        const engine = localStorage.getItem("startpage-search-engine") || "google";
         if (engine === "custom") {
-          return localStorage.getItem("poke-search-custom-url") || SEARCH_ENGINES.google;
+          return localStorage.getItem("startpage-search-custom-url") || SEARCH_ENGINES.google;
         }
         return SEARCH_ENGINES[engine] || SEARCH_ENGINES.google;
       }
       function getMailUrl() {
-        const engine = localStorage.getItem("poke-mail-engine") || "gmail";
+        const engine = localStorage.getItem("startpage-mail-engine") || "gmail";
         if (engine === "custom") {
-          return localStorage.getItem("poke-mail-custom-url") || MAIL_SITES.gmail;
+          return localStorage.getItem("startpage-mail-custom-url") || MAIL_SITES.gmail;
         }
         return MAIL_SITES[engine] || MAIL_SITES.gmail;
       }
       function getAiUrl() {
-        const engine = localStorage.getItem("poke-ai-engine") || "claude";
+        const engine = localStorage.getItem("startpage-ai-engine") || "claude";
         if (engine === "custom") {
-          return localStorage.getItem("poke-ai-custom-url") || AI_SITES.claude;
+          return localStorage.getItem("startpage-ai-custom-url") || AI_SITES.claude;
         }
         return AI_SITES[engine] || AI_SITES.claude;
       }
@@ -1256,9 +1333,9 @@
         if (el) el.style.display = show ? "" : "none";
       }
       function initLinkSettings() {
-        const searchEngine = localStorage.getItem("poke-search-engine") || "google";
-        const mailEngine = localStorage.getItem("poke-mail-engine") || "gmail";
-        const aiEngine = localStorage.getItem("poke-ai-engine") || "claude";
+        const searchEngine = localStorage.getItem("startpage-search-engine") || "google";
+        const mailEngine = localStorage.getItem("startpage-mail-engine") || "gmail";
+        const aiEngine = localStorage.getItem("startpage-ai-engine") || "claude";
 
         const searchSelect = document.getElementById("search-engine-select");
         const mailSelect = document.getElementById("mail-engine-select");
@@ -1270,9 +1347,9 @@
         const searchCustomInput = document.getElementById("search-engine-custom-input");
         const mailCustomInput = document.getElementById("mail-engine-custom-input");
         const aiCustomInput = document.getElementById("ai-engine-custom-input");
-        if (searchCustomInput) searchCustomInput.value = localStorage.getItem("poke-search-custom-url") || "";
-        if (mailCustomInput) mailCustomInput.value = localStorage.getItem("poke-mail-custom-url") || "";
-        if (aiCustomInput) aiCustomInput.value = localStorage.getItem("poke-ai-custom-url") || "";
+        if (searchCustomInput) searchCustomInput.value = localStorage.getItem("startpage-search-custom-url") || "";
+        if (mailCustomInput) mailCustomInput.value = localStorage.getItem("startpage-mail-custom-url") || "";
+        if (aiCustomInput) aiCustomInput.value = localStorage.getItem("startpage-ai-custom-url") || "";
 
         toggleCustomWrap("search-engine-custom-wrap", searchEngine === "custom");
         toggleCustomWrap("mail-engine-custom-wrap", mailEngine === "custom");
@@ -1280,30 +1357,30 @@
       }
       function onSearchEngineChange() {
         const select = document.getElementById("search-engine-select");
-        localStorage.setItem("poke-search-engine", select.value);
+        localStorage.setItem("startpage-search-engine", select.value);
         toggleCustomWrap("search-engine-custom-wrap", select.value === "custom");
         playPopSound();
       }
       function onSearchCustomInput() {
-        localStorage.setItem("poke-search-custom-url", document.getElementById("search-engine-custom-input").value.trim());
+        localStorage.setItem("startpage-search-custom-url", document.getElementById("search-engine-custom-input").value.trim());
       }
       function onMailEngineChange() {
         const select = document.getElementById("mail-engine-select");
-        localStorage.setItem("poke-mail-engine", select.value);
+        localStorage.setItem("startpage-mail-engine", select.value);
         toggleCustomWrap("mail-engine-custom-wrap", select.value === "custom");
         playPopSound();
       }
       function onMailCustomInput() {
-        localStorage.setItem("poke-mail-custom-url", document.getElementById("mail-engine-custom-input").value.trim());
+        localStorage.setItem("startpage-mail-custom-url", document.getElementById("mail-engine-custom-input").value.trim());
       }
       function onAiEngineChange() {
         const select = document.getElementById("ai-engine-select");
-        localStorage.setItem("poke-ai-engine", select.value);
+        localStorage.setItem("startpage-ai-engine", select.value);
         toggleCustomWrap("ai-engine-custom-wrap", select.value === "custom");
         playPopSound();
       }
       function onAiCustomInput() {
-        localStorage.setItem("poke-ai-custom-url", document.getElementById("ai-engine-custom-input").value.trim());
+        localStorage.setItem("startpage-ai-custom-url", document.getElementById("ai-engine-custom-input").value.trim());
       }
 
       // Search bar overlay (opens when typing anywhere on the page)
@@ -1409,7 +1486,7 @@
         return (data && data[1]) || [];
       }
       async function fetchSearchSuggestions(query) {
-        const engine = localStorage.getItem("poke-search-engine") || "google";
+        const engine = localStorage.getItem("startpage-search-engine") || "google";
         try {
           const suggestions = await fetchEngineSuggestions(engine, query);
           if (suggestions && suggestions.length) {
@@ -1471,7 +1548,7 @@
       }
 
       // Plugin system
-      const PLUGIN_LIST_KEY = "poke-plugins";
+      const PLUGIN_LIST_KEY = "startpage-plugins";
       const pluginRegistry = {};
       const pluginUrlToId = {};
       const pluginIdToUrl = {};
@@ -1505,14 +1582,14 @@
       }
       function pluginStorageGet(id, key, defaultValue) {
         try {
-          const raw = localStorage.getItem("poke-plugin-data-" + id + "-" + key);
+          const raw = localStorage.getItem("startpage-plugin-data-" + id + "-" + key);
           return raw === null ? defaultValue : JSON.parse(raw);
         } catch (e) {
           return defaultValue;
         }
       }
       function pluginStorageSet(id, key, value) {
-        localStorage.setItem("poke-plugin-data-" + id + "-" + key, JSON.stringify(value));
+        localStorage.setItem("startpage-plugin-data-" + id + "-" + key, JSON.stringify(value));
       }
       function makePluginContext(id) {
         return {
@@ -1532,7 +1609,7 @@
           closePopout: closePluginPopout,
         };
       }
-      function registerPokePlugin(definition) {
+      function registerStartPagePlugin(definition) {
         if (!definition || !definition.id || !definition.name) return;
         pluginRegistry[definition.id] = definition;
         if (document.currentScript && document.currentScript.src) {
@@ -1542,9 +1619,9 @@
         renderPluginButtons();
         renderPluginSettingsList();
       }
-      window.registerPokePlugin = registerPokePlugin;
-      window.PokeHome = {
-        registerPlugin: registerPokePlugin,
+      window.registerStartPagePlugin = registerStartPagePlugin;
+      window.StartPage = {
+        registerPlugin: registerStartPagePlugin,
         storage: {
           get: pluginStorageGet,
           set: pluginStorageSet,
@@ -1752,6 +1829,14 @@
         });
       }
 
+      function markPluginChangesPending() {
+        document.querySelectorAll(".settings-refresh-btn").forEach(function (btn) {
+          btn.classList.add("is-visible");
+        });
+      }
+      function applyPluginChanges() {
+        location.reload();
+      }
       function addPlugin() {
         const input = document.getElementById("plugin-url-input");
         if (!input) return;
@@ -1763,7 +1848,8 @@
         saveInstalledPlugins(installed);
         input.value = "";
         playPopSound();
-        location.reload();
+        renderPluginSettingsList();
+        markPluginChangesPending();
       }
       function togglePlugin(index) {
         const installed = getInstalledPlugins();
@@ -1771,7 +1857,9 @@
         installed[index].enabled = installed[index].enabled === false ? true : false;
         saveInstalledPlugins(installed);
         playPopSound();
-        location.reload();
+        renderPluginButtons();
+        renderPluginSettingsList();
+        markPluginChangesPending();
       }
       function removePlugin(index) {
         const installed = getInstalledPlugins();
@@ -1779,7 +1867,281 @@
         installed.splice(index, 1);
         saveInstalledPlugins(installed);
         playPopSound();
-        location.reload();
+        renderPluginButtons();
+        renderPluginSettingsList();
+        markPluginChangesPending();
+      }
+
+      // Plugin repositories
+      const REPO_LIST_KEY = "startpage-plugin-repos";
+      const REPO_CACHE_TTL = 60 * 60 * 1000;
+      const LOCAL_PLUGIN_FILES = [
+        "calendar.js", "clipboard.js", "habit-tracker.js", "navidrome.js", "notes.js",
+        "pomodoro.js", "quick-launcher.js", "quote.js", "rss-reader.js", "todo.js", "weather-forecast.js",
+      ];
+      const ICON_FILE = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14 2v6h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
+      const ICON_REPO = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18c-4.51 2-5-2-7-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M16 22v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
+      const ICON_HOME = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9.5 12 2l9 7.5V20a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
+      let currentRepoIndex = null;
+
+      function seedLocalPluginRepo() {
+        const repos = getInstalledRepos();
+        if (!repos.some(function (r) { return r.local; })) {
+          repos.unshift({ local: true, owner: window.location.host, repo: "plugins" });
+          saveInstalledRepos(repos);
+        }
+      }
+      function getLocalRepoFiles() {
+        return LOCAL_PLUGIN_FILES.map(function (name) {
+          return { path: "plugins/" + name, url: window.location.origin + "/plugins/" + name };
+        });
+      }
+      function repoCacheKey(repo) {
+        return "startpage-repo-cache-" + repo.owner + "-" + repo.repo;
+      }
+      function getCachedRepoFiles(repo) {
+        try {
+          const raw = localStorage.getItem(repoCacheKey(repo));
+          if (!raw) return null;
+          const data = JSON.parse(raw);
+          if (!data || !Array.isArray(data.files) || typeof data.fetchedAt !== "number") return null;
+          return data;
+        } catch (e) {
+          return null;
+        }
+      }
+      function setCachedRepoFiles(repo, files) {
+        localStorage.setItem(repoCacheKey(repo), JSON.stringify({ files: files, fetchedAt: Date.now() }));
+      }
+      function formatRelativeTime(ts) {
+        const mins = Math.floor((Date.now() - ts) / 60000);
+        if (mins < 1) return "just now";
+        if (mins < 60) return mins + "m ago";
+        return Math.floor(mins / 60) + "h ago";
+      }
+
+      function getInstalledRepos() {
+        try {
+          const raw = localStorage.getItem(REPO_LIST_KEY);
+          const list = raw ? JSON.parse(raw) : [];
+          return Array.isArray(list) ? list : [];
+        } catch (e) {
+          return [];
+        }
+      }
+      function saveInstalledRepos(list) {
+        localStorage.setItem(REPO_LIST_KEY, JSON.stringify(list));
+      }
+      function parseGitRepoUrl(url) {
+        const match = (url || "").trim().match(/github\.com[/:]([^/]+)\/(.+?)(\.git)?\/?$/i);
+        if (!match) return null;
+        return { owner: match[1], repo: match[2] };
+      }
+      function addPluginRepo() {
+        const input = document.getElementById("plugin-repo-input");
+        if (!input) return;
+        const url = input.value.trim();
+        if (!url) return;
+        const parsed = parseGitRepoUrl(url);
+        if (!parsed) return;
+        const repos = getInstalledRepos();
+        if (repos.some(function (r) { return r.owner === parsed.owner && r.repo === parsed.repo; })) return;
+        repos.push({ url: url, owner: parsed.owner, repo: parsed.repo });
+        saveInstalledRepos(repos);
+        input.value = "";
+        playPopSound();
+        renderPluginRepoList();
+      }
+      function removePluginRepo(index) {
+        const repos = getInstalledRepos();
+        if (!repos[index]) return;
+        repos.splice(index, 1);
+        saveInstalledRepos(repos);
+        playPopSound();
+        renderPluginRepoList();
+      }
+      function renderPluginRepoList() {
+        const list = document.getElementById("plugin-repo-list");
+        if (!list) return;
+        const repos = getInstalledRepos();
+        if (!repos.length) {
+          list.innerHTML = '<div class="plugin-list-empty">No plugin repositories added yet.</div>';
+          return;
+        }
+        list.innerHTML = "";
+        repos.forEach(function (repo, index) {
+          const item = document.createElement("div");
+          item.className = "settings-list-item settings-list-item-toggle";
+
+          const label = repo.local ? repo.owner + " (this site)" : repo.owner + "/" + repo.repo;
+          const openBtn = document.createElement("button");
+          openBtn.type = "button";
+          openBtn.className = "settings-list-item-open";
+          openBtn.innerHTML =
+            '<span class="settings-list-icon">' + (repo.local ? ICON_HOME : ICON_REPO) + '</span>' +
+            '<span class="settings-list-label">' + escapeHtml(label) + '</span>' +
+            '<span class="settings-list-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span>';
+          openBtn.addEventListener("click", function () {
+            openRepoPlugins(index);
+          });
+          item.appendChild(openBtn);
+
+          if (!repo.local) {
+            const removeBtn = document.createElement("button");
+            removeBtn.type = "button";
+            removeBtn.className = "settings-remove-btn";
+            removeBtn.setAttribute("aria-label", "Remove repository");
+            removeBtn.innerHTML = ICON_TRASH;
+            removeBtn.addEventListener("click", function () {
+              removePluginRepo(index);
+            });
+            item.appendChild(removeBtn);
+          }
+
+          list.appendChild(item);
+        });
+      }
+      async function fetchRepoJsFiles(owner, repo) {
+        const repoRes = await fetch("https://api.github.com/repos/" + owner + "/" + repo);
+        if (!repoRes.ok) throw new Error("Repository not found");
+        const repoData = await repoRes.json();
+        const branch = repoData.default_branch || "main";
+        const treeRes = await fetch("https://api.github.com/repos/" + owner + "/" + repo + "/git/trees/" + branch + "?recursive=1");
+        if (!treeRes.ok) throw new Error("Could not read repository contents");
+        const treeData = await treeRes.json();
+        const tree = Array.isArray(treeData.tree) ? treeData.tree : [];
+        return tree
+          .filter(function (item) { return item.type === "blob" && /\.js$/i.test(item.path); })
+          .map(function (item) {
+            return {
+              path: item.path,
+              url: "https://raw.githubusercontent.com/" + owner + "/" + repo + "/" + branch + "/" + item.path,
+            };
+          });
+      }
+      function setRepoPluginEnabled(url, enabled) {
+        const installed = getInstalledPlugins();
+        let entry = installed.find(function (e) { return e.url === url; });
+        if (!entry) {
+          entry = { url: url, enabled: enabled };
+          installed.push(entry);
+        } else {
+          entry.enabled = enabled;
+        }
+        saveInstalledPlugins(installed);
+        playPopSound();
+        renderPluginButtons();
+        renderPluginSettingsList();
+        markPluginChangesPending();
+      }
+      function renderRepoPluginsList(files) {
+        const list = document.getElementById("repo-plugin-list");
+        if (!list) return;
+        if (!files.length) {
+          list.innerHTML = '<div class="plugin-list-empty">No .js files found in this repository.</div>';
+          return;
+        }
+        const installed = getInstalledPlugins();
+        list.innerHTML = "";
+        files.forEach(function (file) {
+          const installedEntry = installed.find(function (e) { return e.url === file.url; });
+          const enabled = !!installedEntry && installedEntry.enabled !== false;
+          const pluginId = pluginUrlToId[file.url];
+          const plugin = pluginId && pluginRegistry[pluginId];
+
+          const item = document.createElement("div");
+          item.className = "settings-list-item settings-list-item-toggle";
+
+          const icon = document.createElement("span");
+          icon.className = "settings-list-icon";
+          icon.innerHTML = (plugin && plugin.icon) || ICON_FILE;
+          item.appendChild(icon);
+
+          const label = document.createElement("span");
+          label.className = "settings-list-label";
+          label.textContent = (plugin && plugin.name) || file.path;
+          item.appendChild(label);
+
+          if (plugin && plugin.settings && typeof plugin.settings.render === "function") {
+            const settingsBtn = document.createElement("button");
+            settingsBtn.type = "button";
+            settingsBtn.className = "settings-remove-btn";
+            settingsBtn.setAttribute("aria-label", "Plugin settings");
+            settingsBtn.innerHTML = ICON_GEAR;
+            settingsBtn.addEventListener("click", function () {
+              openPluginSettings(plugin.id);
+            });
+            item.appendChild(settingsBtn);
+          }
+
+          const toggle = document.createElement("button");
+          toggle.type = "button";
+          toggle.setAttribute("role", "switch");
+          toggle.className = "settings-switch";
+          toggle.setAttribute("aria-checked", enabled ? "true" : "false");
+          toggle.setAttribute("aria-label", "Enable plugin");
+          toggle.innerHTML = '<span class="settings-switch-thumb"></span>';
+          toggle.addEventListener("click", function () {
+            setRepoPluginEnabled(file.url, !enabled);
+            renderRepoPluginsList(files);
+          });
+          item.appendChild(toggle);
+
+          list.appendChild(item);
+        });
+      }
+      function renderRepoMeta(repo, fetchedAt) {
+        const meta = document.getElementById("repo-plugin-meta");
+        if (!meta) return;
+        meta.innerHTML = "";
+        if (repo.local) return;
+        const text = document.createElement("span");
+        text.textContent = fetchedAt ? "Updated " + formatRelativeTime(fetchedAt) : "";
+        meta.appendChild(text);
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "settings-action-btn settings-action-btn-secondary";
+        btn.textContent = "Refresh";
+        btn.addEventListener("click", function () {
+          refreshRepoPlugins(repo);
+        });
+        meta.appendChild(btn);
+      }
+      async function refreshRepoPlugins(repo) {
+        const list = document.getElementById("repo-plugin-list");
+        if (list) list.innerHTML = '<div class="plugin-list-empty">Loading...</div>';
+        try {
+          const files = await fetchRepoJsFiles(repo.owner, repo.repo);
+          setCachedRepoFiles(repo, files);
+          renderRepoPluginsList(files);
+          renderRepoMeta(repo, Date.now());
+        } catch (e) {
+          if (list) list.innerHTML = '<div class="plugin-list-empty">Failed to load repository contents.</div>';
+        }
+      }
+      async function openRepoPlugins(index) {
+        const repos = getInstalledRepos();
+        const repo = repos[index];
+        if (!repo) return;
+        currentRepoIndex = index;
+        const title = document.getElementById("repo-plugins-title");
+        if (title) title.textContent = repo.local ? repo.owner + " (this site)" : repo.owner + "/" + repo.repo;
+        openSettingsModal();
+        openSettingsPage("repo-plugins");
+
+        if (repo.local) {
+          renderRepoMeta(repo, null);
+          renderRepoPluginsList(getLocalRepoFiles());
+          return;
+        }
+
+        const cached = getCachedRepoFiles(repo);
+        if (cached && Date.now() - cached.fetchedAt < REPO_CACHE_TTL) {
+          renderRepoMeta(repo, cached.fetchedAt);
+          renderRepoPluginsList(cached.files);
+          return;
+        }
+        await refreshRepoPlugins(repo);
       }
 
       function openPluginSettings(id) {
@@ -1845,7 +2207,7 @@
         return map[code] || "clear sky";
       }
       function getTempUnit() {
-        return localStorage.getItem("poke-temp-unit") || "fahrenheit";
+        return localStorage.getItem("startpage-temp-unit") || "fahrenheit";
       }
       function applyTempUnitSetting() {
         const select = document.getElementById("temp-unit-select");
@@ -1854,11 +2216,17 @@
       function onTempUnitChange() {
         const select = document.getElementById("temp-unit-select");
         if (!select) return;
-        localStorage.setItem("poke-temp-unit", select.value);
-        const location = localStorage.getItem("poke-location");
+        localStorage.setItem("startpage-temp-unit", select.value);
+        if (lastWeatherCoords) {
+          updateWeatherForCoords(lastWeatherCoords.latitude, lastWeatherCoords.longitude);
+          return;
+        }
+        const location = localStorage.getItem("startpage-location");
         if (location) updateWeatherForLocation(location);
       }
+      let lastWeatherCoords = null;
       async function updateWeatherForCoords(latitude, longitude) {
+        lastWeatherCoords = { latitude: latitude, longitude: longitude };
         try {
           const unit = getTempUnit();
           const weatherRes = await fetch("https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longitude + "&current=temperature_2m,weather_code&temperature_unit=" + unit);
@@ -1950,7 +2318,7 @@
         const input = document.getElementById("location-input");
         const label = formatLocationLabel(result);
         input.value = label;
-        localStorage.setItem("poke-location", label);
+        localStorage.setItem("startpage-location", label);
         updateWeatherForCoords(result.latitude, result.longitude);
         hideLocationSuggestions();
       }
@@ -2031,40 +2399,44 @@
       });
       document.addEventListener("DOMContentLoaded", function () {
         applyTheme(getThemeMode());
-        const soundSetting = localStorage.getItem("poke-sound-effects");
+        const soundSetting = localStorage.getItem("startpage-sound-effects");
         applySoundSetting(soundSetting === null ? true : soundSetting === "1");
         applyHomeButtonVisibility();
         applyTempUnitSetting();
-        const savedName = localStorage.getItem("poke-display-name");
+        const savedName = localStorage.getItem("startpage-display-name");
         applyDisplayName(savedName || "Aureal");
         if (savedName) {
           const nameEl = document.getElementById("settings-display-name");
           if (nameEl) nameEl.textContent = savedName;
         }
-        const savedAvatar = localStorage.getItem("poke-avatar-url");
+        const savedAvatar = localStorage.getItem("startpage-avatar-url");
         if (savedAvatar) applyAvatarUrl(savedAvatar, false);
-        const lanyardId = localStorage.getItem("poke-lanyard-id");
+        const lanyardId = localStorage.getItem("startpage-lanyard-id");
         if (lanyardId) {
           const idInput = document.getElementById("lanyard-user-id");
           if (idInput) idInput.value = lanyardId;
-          if (localStorage.getItem("poke-lanyard-enabled") === "1") {
+          if (localStorage.getItem("startpage-lanyard-enabled") === "1") {
             connectLanyard(lanyardId);
           }
         }
         initLinkSettings();
         seedDefaultPlugins();
+        seedLocalPluginRepo();
         renderPluginButtons();
         renderPluginSettingsList();
+        renderPluginRepoList();
         loadPlugins();
         applyGreeting();
         applyDate();
         applyTimeBackgrounds();
-        const savedLocation = localStorage.getItem("poke-location");
-        if (savedLocation) {
-          const locationInput = document.getElementById("location-input");
-          if (locationInput) locationInput.value = savedLocation;
-          updateWeatherForLocation(savedLocation);
+        let savedLocation = localStorage.getItem("startpage-location");
+        if (!savedLocation) {
+          savedLocation = "Washington D.C.";
+          localStorage.setItem("startpage-location", savedLocation);
         }
+        const locationInput = document.getElementById("location-input");
+        if (locationInput) locationInput.value = savedLocation;
+        updateWeatherForLocation(savedLocation);
 
         // Keep the greeting, date, backgrounds, weather, and dynamic theme fresh over time
         setInterval(function () {
@@ -2074,14 +2446,14 @@
           if (getThemeMode() === "dynamic") applyTheme("dynamic");
         }, 60 * 1000);
         setInterval(function () {
-          const location = localStorage.getItem("poke-location");
+          const location = localStorage.getItem("startpage-location");
           if (location) updateWeatherForLocation(location);
         }, 10 * 60 * 1000);
       });
     </script>
   </head>
 
-  <body style="background-color: rgb(var(--pk-bg-rgb));">
+  <body style="background-color: rgb(var(--sp-bg-rgb));">
     <audio id="pop-sound" src="pop.mp3" preload="auto"></audio>
     <div id="settings-overlay" class="modal-overlay" onclick="closeSettingsModal()"></div>
     <div id="settings-modal" class="settings-modal" role="dialog" aria-label="Settings" aria-hidden="true">
@@ -2276,7 +2648,7 @@
                 <span class="settings-switch-thumb"></span>
               </button>
             </div>
-            <p class="settings-help-text">Hide buttons you don't use. Plugin buttons with row 0 will fill the freed space.</p>
+            <p class="settings-help-text">Hide buttons you don't use.</p>
           </div>
           <div class="settings-connection-form">
             <div>
@@ -2336,7 +2708,9 @@
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
           </button>
           <h2 class="font-exposure">Plugins</h2>
-          <span class="settings-header-spacer"></span>
+          <button type="button" id="plugin-refresh-btn" class="settings-refresh-btn" aria-label="Apply plugin changes" onclick="applyPluginChanges()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15.5-6.36M21 12a9 9 0 0 1-15.5 6.36"></path><path d="M21 3v6h-6"></path><path d="M3 21v-6h6"></path></svg>
+          </button>
         </div>
         <div class="settings-modal-body">
           <div id="plugin-list" class="settings-list"></div>
@@ -2349,6 +2723,17 @@
               <button type="button" class="settings-action-btn" onclick="addPlugin()">Add</button>
             </div>
             <p class="settings-help-text">Plugins are JavaScript files loaded from a URL (e.g. a GitHub raw link). They run with full access to this page, so only add plugins from sources you trust. See README.md for the plugin API.</p>
+          </div>
+          <div id="plugin-repo-list" class="settings-list"></div>
+          <div class="settings-connection-form">
+            <div>
+              <label for="plugin-repo-input" class="settings-field-label">Add plugin repository</label>
+              <input type="url" id="plugin-repo-input" class="settings-text-input" placeholder="https://github.com/user/repo.git" autocomplete="off">
+            </div>
+            <div class="settings-connection-actions">
+              <button type="button" class="settings-action-btn" onclick="addPluginRepo()">Add repo</button>
+            </div>
+            <p class="settings-help-text">Add a public GitHub repository's .git URL. Every .js file in its root or folders shows up below so you can turn individual plugins on or off and open their settings.</p>
           </div>
         </div>
       </div>
@@ -2364,12 +2749,27 @@
           <div id="plugin-settings-container"></div>
         </div>
       </div>
+      <div id="settings-page-repo-plugins" class="settings-page settings-page-inner">
+        <div class="settings-modal-header">
+          <button type="button" class="settings-back-btn" aria-label="Back" onclick="closeSettingsPage()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+          </button>
+          <h2 id="repo-plugins-title" class="font-exposure">Repo Plugins</h2>
+          <button type="button" class="settings-refresh-btn" aria-label="Apply plugin changes" onclick="applyPluginChanges()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15.5-6.36M21 12a9 9 0 0 1-15.5 6.36"></path><path d="M21 3v6h-6"></path><path d="M3 21v-6h6"></path></svg>
+          </button>
+        </div>
+        <div class="settings-modal-body">
+          <div id="repo-plugin-meta" class="repo-plugin-meta"></div>
+          <div id="repo-plugin-list" class="settings-list"></div>
+        </div>
+      </div>
     </div>
     <div id="about-overlay" class="about-overlay" onclick="closeAboutPanel()"></div>
     <div id="about-panel" class="about-panel" role="dialog" aria-label="About" aria-hidden="true">
       <div class="about-panel-header">
         <div class="about-panel-icon">
-          <img src="app-assets/poke_app_icon_small.webp" alt="App icon" width="48" height="48">
+          <img src="app-assets/logo.png" alt="App icon" width="48" height="48">
         </div>
         <button type="button" class="about-panel-close" aria-label="Close" onclick="closeAboutPanel()">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
@@ -2378,6 +2778,9 @@
       <div class="about-panel-body">
         <h2 class="font-exposure">About Start Page</h2>
         <p>A simple personal start page with a greeting, the local weather, and quick links to your favorite tools.</p>
+      </div>
+      <div class="about-panel-footer">
+        <p>This site is not affiliated with, endorsed by, or connected to Poke.</p>
       </div>
     </div>
     <div id="plugin-popout-overlay" class="modal-overlay" onclick="closePluginPopout()"></div>
@@ -2401,6 +2804,6 @@
         <div id="search-bar-suggestions" class="search-bar-suggestions"></div>
       </div>
     </div>
-    <div id="root"><ion-app class="md ion-page"><ion-router-outlet><ion-router-outlet animated="false"><div class="h-full ion-page" style="z-index: 101;"><div class="relative flex h-full w-full items-center justify-center px-0 max-md:bg-transparent" style="background: linear-gradient(rgb(206, 214, 235) 0%, rgb(233, 226, 232) 50%, rgb(206, 214, 235) 100%);"><img id="weather-bg-image" src="app-assets/weather/morning-sky-background.jpg" alt="Weather background" class="pointer-events-none absolute left-0 top-0 z-0 h-full w-full object-fill" style="opacity: 0.9; min-width: 2000px; min-height: 1200px;"><div data-silk-sheet-wrapper="" class="relative h-full w-full max-w-md text-center md:h-[750px]"><div class="flex h-full flex-col justify-between"><div class="relative flex h-full flex-col bg-sky-100 py-4 shadow-alyn md:rounded-3xl" style="background-color: rgb(var(--pk-bg-rgb));"><div class="absolute inset-0 z-0 md:rounded-3xl" style="background-image: url(&quot;app-assets/noise.png&quot;); background-repeat: repeat; background-size: 100px auto; background-position: 0px 0px; background-blend-mode: overlay; mask-image: linear-gradient(transparent 0%, black 30px); opacity: 0.6;"></div><div class="relative z-10 flex h-full w-full flex-col"><div class="safe-area-pt w-full px-4 pb-1"><div class="flex items-center justify-between"><a class="flex h-11 w-11 items-center justify-center rounded-xl p-1 transition-transform active:scale-[0.98]" aria-label="About" href="#about" onclick="openAboutPanel(event)"><div style="opacity: 1;"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5"></path><path d="M12 8h.01"></path></svg></div></a><div class="flex items-center gap-2" style="opacity: 1; transform: none;"><span class="text-sm font-medium text-gray-400" id="date-display">Sun, Jun 14</span></div><a class="rounded-full p-1 transition-transform active:scale-[0.98]" aria-label="Settings" href="#settings" onclick="openSettingsModal(event)"><div class="pointer-events-none" style="opacity: 1;"><div class="relative flex items-center justify-center overflow-hidden rounded-full" style="width: 36px; height: 36px;"><div class="absolute inset-0"><img id="header-avatar" src="app-assets/avatar.jpg" alt="Avatar" class="h-full w-full select-none object-cover opacity-100" style="visibility: visible;" draggable="false" width="36" height="36"></div></div></div></a></div></div><div class="relative flex h-full overflow-hidden"><div class="relative h-full max-h-96 w-full overflow-hidden"><img id="interaction-bg-image" src="app-assets/interaction_beach/interaction_beach_morning.jpeg" alt="Background" width="1000" height="1000" draggable="false" class="h-full w-full select-none object-cover" style="transform: scale(1.4); transform-origin: center center 0px;"><div class="z-5 absolute inset-0 h-full w-full" style="background: radial-gradient(90% 65%, rgba(var(--pk-bg-rgb), 0) 0%, rgba(var(--pk-bg-rgb), 0) 5%, rgba(var(--pk-bg-rgb), 0.9) 55%, rgb(var(--pk-bg-rgb)) 80%);"></div><div class="absolute inset-0 z-10" style="background-image: url(&quot;app-assets/noise.png&quot;); background-repeat: repeat; background-size: 100px auto; background-position: 0px 0px; background-blend-mode: overlay; opacity: 0.6;"></div></div></div><div class="grow"></div><div class="flex w-full flex-col items-center justify-start gap-1 p-6" style="opacity: 1; transform: none;"><div class="font-exposure text-2xl text-gray-600" style="font-variation-settings: &quot;EXPO&quot; -5;"><span id="greeting-prefix">Good morning</span>, <span id="greeting-name">Aureal</span></div><div class="w-full truncate text-base font-medium text-gray-400" id="weather-text" style="opacity: 1;">75°F and overcast clouds</div></div><div class="grow"></div><div class="safe-area-pb flex w-full flex-col gap-2 px-4"><div id="default-buttons-row" class="flex w-full gap-2"><div id="ai-button-wrap" class="min-w-0 flex-1"><button type="button" class="flex items-center justify-center gap-2 rounded-3xl border p-3 shadow-alyn backdrop-blur-xs flex-col transition-transform active:scale-[0.98] md:hover:backdrop-blur-lg w-full" style="background-color: rgba(248, 250, 252, 0.3); border-color: rgba(248, 250, 252, 0.3);" aria-label="Ask AI" onclick="goToAi(event)"><div class="text-gray-600"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"><path d="M12 3L10.0876 8.81221C9.84029 9.55814 9.71663 9.93111 9.50992 10.2429C9.32668 10.5163 9.09718 10.7551 8.83333 10.9474C8.53552 11.1645 8.17555 11.2972 7.45561 11.5627L2 13.5L7.45561 15.4373C8.17555 15.7028 8.53552 15.8355 8.83333 16.0526C9.09718 16.2449 9.32668 16.4837 9.50992 16.7571C9.71663 17.0689 9.84029 17.4419 10.0876 18.1878L12 24L13.9124 18.1878C14.1597 17.4419 14.2834 17.0689 14.4901 16.7571C14.6733 16.4837 14.9028 16.2449 15.1667 16.0526C15.4645 15.8355 15.8245 15.7028 16.5444 15.4373L22 13.5L16.5444 11.5627C15.8245 11.2972 15.4645 11.1645 15.1667 10.9474C14.9028 10.7551 14.6733 10.5163 14.4901 10.2429C14.2834 9.93111 14.1597 9.55814 13.9124 8.81221L12 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="truncate text-sm font-medium text-gray-400">Ask AI</div></button></div><div id="mail-button-wrap" class="min-w-0 flex-1"><a class="flex items-center justify-center gap-2 rounded-3xl border p-3 shadow-alyn backdrop-blur-xs flex-col transition-transform active:scale-[0.98] md:hover:backdrop-blur-lg w-full" style="background-color: rgba(248, 250, 252, 0.3); border-color: rgba(248, 250, 252, 0.3);" aria-label="Mail" href="#mail" onclick="goToMail(event)"><div class="text-gray-600"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"><path d="M21.001 9C18.4937 10.8837 15.377 12 11.9995 12C8.62204 12 5.50528 10.8837 2.99805 9M4.99951 5H18.9995C20.1041 5 20.9995 5.89543 20.9995 7V17C20.9995 18.1046 20.1041 19 18.9995 19H4.99951C3.89494 19 2.99951 18.1046 2.99951 17V7C2.99951 5.89543 3.89494 5 4.99951 5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="truncate text-sm font-medium text-gray-400">Mail</div></a></div><div id="search-button-wrap" class="min-w-0 flex-1"><button type="button" class="flex items-center justify-center gap-2 rounded-3xl border p-3 shadow-alyn backdrop-blur-xs flex-col transition-transform active:scale-[0.98] md:hover:backdrop-blur-lg w-full" style="background-color: rgba(248, 250, 252, 0.3); border-color: rgba(248, 250, 252, 0.3);" aria-label="Search" onclick="toggleSearchBar(event)"><div class="text-gray-600"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" class="h-6 w-6"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"></circle><path d="M20 20L16.5 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></div><div class="truncate text-sm font-medium text-gray-400">Search</div></button></div></div><div id="plugin-buttons-container" class="plugin-buttons-container"></div></div></div></div></div></div></div><div data-silk="a0 "></div><div data-silk="a0 "></div></div></ion-router-outlet></ion-router-outlet><section aria-label="Notifications alt+T" tabindex="-1" aria-live="polite" aria-relevant="additions text" aria-atomic="false"></section></ion-app></div>
+    <div id="root"><ion-app class="md ion-page"><ion-router-outlet><ion-router-outlet animated="false"><div class="h-full ion-page" style="z-index: 101;"><div class="relative flex h-full w-full items-center justify-center px-0 max-md:bg-transparent" style="background: linear-gradient(rgb(206, 214, 235) 0%, rgb(233, 226, 232) 50%, rgb(206, 214, 235) 100%);"><img id="weather-bg-image" src="app-assets/weather/morning-sky-background.jpg" alt="Weather background" class="pointer-events-none absolute left-0 top-0 z-0 h-full w-full object-fill" style="opacity: 0.9; min-width: 2000px; min-height: 1200px;"><div data-silk-sheet-wrapper="" class="relative h-full w-full max-w-md text-center md:h-[750px]"><div class="flex h-full flex-col justify-between"><div class="relative flex h-full flex-col bg-sky-100 py-4 shadow-alyn md:rounded-3xl" style="background-color: rgb(var(--sp-bg-rgb));"><div class="absolute inset-0 z-0 md:rounded-3xl" style="background-image: url(&quot;app-assets/noise.png&quot;); background-repeat: repeat; background-size: 100px auto; background-position: 0px 0px; background-blend-mode: overlay; mask-image: linear-gradient(transparent 0%, black 30px); opacity: 0.6;"></div><div class="relative z-10 flex h-full w-full flex-col"><div class="safe-area-pt w-full px-4 pb-1"><div class="flex items-center justify-between"><a class="flex h-11 w-11 items-center justify-center rounded-xl p-1 transition-transform active:scale-[0.98]" aria-label="About" href="#about" onclick="openAboutPanel(event)"><div style="opacity: 1;"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5"></path><path d="M12 8h.01"></path></svg></div></a><div class="flex items-center gap-2" style="opacity: 1; transform: none;"><span class="text-sm font-medium text-gray-400" id="date-display">Sun, Jun 14</span></div><a class="rounded-full p-1 transition-transform active:scale-[0.98]" aria-label="Settings" href="#settings" onclick="openSettingsModal(event)"><div class="pointer-events-none" style="opacity: 1;"><div class="relative flex items-center justify-center overflow-hidden rounded-full" style="width: 36px; height: 36px;"><div class="absolute inset-0"><img id="header-avatar" src="app-assets/avatar.jpg" alt="Avatar" class="h-full w-full select-none object-cover opacity-100" style="visibility: visible;" draggable="false" width="36" height="36"></div></div></div></a></div></div><div class="relative flex h-full overflow-hidden"><div class="relative h-full max-h-96 w-full overflow-hidden"><img id="interaction-bg-image" src="app-assets/interaction_beach/interaction_beach_morning.jpeg" alt="Background" width="1000" height="1000" draggable="false" class="h-full w-full select-none object-cover" style="transform: scale(1.4); transform-origin: center center 0px;"><div class="z-5 absolute inset-0 h-full w-full" style="background: radial-gradient(90% 65%, rgba(var(--sp-bg-rgb), 0) 0%, rgba(var(--sp-bg-rgb), 0) 5%, rgba(var(--sp-bg-rgb), 0.9) 55%, rgb(var(--sp-bg-rgb)) 80%);"></div><div class="absolute inset-0 z-10" style="background-image: url(&quot;app-assets/noise.png&quot;); background-repeat: repeat; background-size: 100px auto; background-position: 0px 0px; background-blend-mode: overlay; opacity: 0.6;"></div></div></div><div class="grow"></div><div class="flex w-full flex-col items-center justify-start gap-1 p-6" style="opacity: 1; transform: none;"><div class="font-exposure text-2xl text-gray-600" style="font-variation-settings: &quot;EXPO&quot; -5;"><span id="greeting-prefix">Good morning</span>, <span id="greeting-name">Aureal</span></div><div class="w-full truncate text-base font-medium text-gray-400" id="weather-text" style="opacity: 1;">75°F and overcast clouds</div></div><div class="grow"></div><div class="safe-area-pb flex w-full flex-col gap-2 px-4"><div id="default-buttons-row" class="flex w-full gap-2"><div id="ai-button-wrap" class="min-w-0 flex-1"><button type="button" class="flex items-center justify-center gap-2 rounded-3xl border p-3 shadow-alyn backdrop-blur-xs flex-col transition-transform active:scale-[0.98] md:hover:backdrop-blur-lg w-full" style="background-color: rgba(248, 250, 252, 0.3); border-color: rgba(248, 250, 252, 0.3);" aria-label="Ask AI" onclick="goToAi(event)"><div class="text-gray-600"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"><path d="M12 3L10.0876 8.81221C9.84029 9.55814 9.71663 9.93111 9.50992 10.2429C9.32668 10.5163 9.09718 10.7551 8.83333 10.9474C8.53552 11.1645 8.17555 11.2972 7.45561 11.5627L2 13.5L7.45561 15.4373C8.17555 15.7028 8.53552 15.8355 8.83333 16.0526C9.09718 16.2449 9.32668 16.4837 9.50992 16.7571C9.71663 17.0689 9.84029 17.4419 10.0876 18.1878L12 24L13.9124 18.1878C14.1597 17.4419 14.2834 17.0689 14.4901 16.7571C14.6733 16.4837 14.9028 16.2449 15.1667 16.0526C15.4645 15.8355 15.8245 15.7028 16.5444 15.4373L22 13.5L16.5444 11.5627C15.8245 11.2972 15.4645 11.1645 15.1667 10.9474C14.9028 10.7551 14.6733 10.5163 14.4901 10.2429C14.2834 9.93111 14.1597 9.55814 13.9124 8.81221L12 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="truncate text-sm font-medium text-gray-400">Ask AI</div></button></div><div id="mail-button-wrap" class="min-w-0 flex-1"><a class="flex items-center justify-center gap-2 rounded-3xl border p-3 shadow-alyn backdrop-blur-xs flex-col transition-transform active:scale-[0.98] md:hover:backdrop-blur-lg w-full" style="background-color: rgba(248, 250, 252, 0.3); border-color: rgba(248, 250, 252, 0.3);" aria-label="Mail" href="#mail" onclick="goToMail(event)"><div class="text-gray-600"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"><path d="M21.001 9C18.4937 10.8837 15.377 12 11.9995 12C8.62204 12 5.50528 10.8837 2.99805 9M4.99951 5H18.9995C20.1041 5 20.9995 5.89543 20.9995 7V17C20.9995 18.1046 20.1041 19 18.9995 19H4.99951C3.89494 19 2.99951 18.1046 2.99951 17V7C2.99951 5.89543 3.89494 5 4.99951 5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><div class="truncate text-sm font-medium text-gray-400">Mail</div></a></div><div id="search-button-wrap" class="min-w-0 flex-1"><button type="button" class="flex items-center justify-center gap-2 rounded-3xl border p-3 shadow-alyn backdrop-blur-xs flex-col transition-transform active:scale-[0.98] md:hover:backdrop-blur-lg w-full" style="background-color: rgba(248, 250, 252, 0.3); border-color: rgba(248, 250, 252, 0.3);" aria-label="Search" onclick="toggleSearchBar(event)"><div class="text-gray-600"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" class="h-6 w-6"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"></circle><path d="M20 20L16.5 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></div><div class="truncate text-sm font-medium text-gray-400">Search</div></button></div></div><div id="plugin-buttons-container" class="plugin-buttons-container"></div></div></div></div></div></div></div><div data-silk="a0 "></div><div data-silk="a0 "></div></div></ion-router-outlet></ion-router-outlet><section aria-label="Notifications alt+T" tabindex="-1" aria-live="polite" aria-relevant="additions text" aria-atomic="false"></section></ion-app></div>
   </body>
 </html>

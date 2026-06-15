@@ -52,7 +52,7 @@
     const token = md5(ctx.storage.get("pass", "") + salt);
     return "u=" + encodeURIComponent(ctx.storage.get("user", "")) +
       "&t=" + token + "&s=" + salt +
-      "&v=1.16.1&c=PokeHome&f=json";
+      "&v=1.16.1&c=StartPage&f=json";
   }
   function apiUrl(ctx, endpoint, extra) {
     const base = (ctx.storage.get("url", "") || "").replace(/\/+$/, "");
@@ -74,6 +74,7 @@
     style.textContent =
       ".nd-song-item { gap: 0.6rem; }" +
       ".nd-cover { width: 36px; height: 36px; border-radius: 6px; object-fit: cover; flex-shrink: 0; background: rgba(0, 0, 0, 0.05); }" +
+      "html.dark-mode .nd-cover { background: rgba(255, 255, 255, 0.08); }" +
       ".nd-results { max-height: 45vh; overflow-y: auto; }";
     document.head.appendChild(style);
   }
@@ -121,12 +122,12 @@
   function getAudio() {
     if (!audio) {
       audio = new Audio();
-      audio.volume = parseFloat(localStorage.getItem("poke-plugin-data-navidrome-volume") || "1");
+      audio.volume = parseFloat(localStorage.getItem("startpage-plugin-data-navidrome-volume") || "1");
     }
     return audio;
   }
 
-  PokeHome.registerPlugin({
+  StartPage.registerPlugin({
     id: "navidrome",
     name: "Navidrome",
     icon: '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18V5l12-2v13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="16" r="3" stroke="currentColor" stroke-width="2"/></svg>',
