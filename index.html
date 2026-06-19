@@ -2323,6 +2323,7 @@
         const label = formatLocationLabel(result);
         input.value = label;
         localStorage.setItem("startpage-location", label);
+        localStorage.setItem("startpage-weather-coords", JSON.stringify({ latitude: result.latitude, longitude: result.longitude }));
         updateWeatherForCoords(result.latitude, result.longitude);
         hideLocationSuggestions();
       }
@@ -2440,7 +2441,17 @@
         }
         const locationInput = document.getElementById("location-input");
         if (locationInput) locationInput.value = savedLocation;
-        updateWeatherForLocation(savedLocation);
+        const savedCoords = localStorage.getItem("startpage-weather-coords");
+        if (savedCoords) {
+          try {
+            const coords = JSON.parse(savedCoords);
+            updateWeatherForCoords(coords.latitude, coords.longitude);
+          } catch (e) {
+            updateWeatherForLocation(savedLocation);
+          }
+        } else {
+          updateWeatherForLocation(savedLocation);
+        }
 
         // Keep the greeting, date, backgrounds, weather, and dynamic theme fresh over time
         setInterval(function () {
@@ -2450,8 +2461,12 @@
           if (getThemeMode() === "dynamic") applyTheme("dynamic");
         }, 60 * 1000);
         setInterval(function () {
-          const location = localStorage.getItem("startpage-location");
-          if (location) updateWeatherForLocation(location);
+          if (lastWeatherCoords) {
+            updateWeatherForCoords(lastWeatherCoords.latitude, lastWeatherCoords.longitude);
+          } else {
+            const location = localStorage.getItem("startpage-location");
+            if (location) updateWeatherForLocation(location);
+          }
         }, 10 * 60 * 1000);
       });
     </script>
