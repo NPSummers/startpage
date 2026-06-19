@@ -2409,6 +2409,7 @@
         if (e.target.closest("a, button")) playPopSound();
       });
       document.addEventListener("DOMContentLoaded", function () {
+        Object.keys(localStorage).filter(function (k) { return k.startsWith("poke-"); }).forEach(function (k) { localStorage.removeItem(k); });
         applyTheme(getThemeMode());
         const soundSetting = localStorage.getItem("startpage-sound-effects");
         applySoundSetting(soundSetting === null ? true : soundSetting === "1");
