@@ -31,6 +31,51 @@ function buildSuggestUrl(engine, q, origin) {
   return "https://duckduckgo.com/ac/?type=list&q=" + query;
 }
 
+function proxyGet(url, res) {
+  const upstreamReq = https.get(url, { headers: { "User-Agent": SUGGEST_USER_AGENT, Accept: "application/json" } }, (upstreamRes) => {
+    let body = "";
+    upstreamRes.on("data", (chunk) => { body += chunk; });
+    upstreamRes.on("end", () => {
+      res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
+      res.end(body || "{}");
+    });
+  });
+  upstreamReq.on("error", () => {
+    res.writeHead(502, { "Content-Type": "application/json; charset=utf-8" });
+    res.end("{}");
+  });
+  upstreamReq.setTimeout(8000, () => { upstreamReq.destroy(); });
+}
+
+function handleGeocode(req, res, searchParams) {
+  const name = searchParams.get("name") || "";
+  const count = Math.min(parseInt(searchParams.get("count") || "5", 10) || 5, 10);
+  if (!name.trim()) {
+    res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
+    res.end("{}");
+    return;
+  }
+  proxyGet(
+    "https://geocoding-api.open-meteo.com/v1/search?count=" + count + "&name=" + encodeURIComponent(name),
+    res
+  );
+}
+
+function handleWeather(req, res, searchParams) {
+  const lat = parseFloat(searchParams.get("lat"));
+  const lon = parseFloat(searchParams.get("lon"));
+  const unit = searchParams.get("unit") === "celsius" ? "celsius" : "fahrenheit";
+  if (!isFinite(lat) || !isFinite(lon)) {
+    res.writeHead(400, { "Content-Type": "application/json; charset=utf-8" });
+    res.end("{}");
+    return;
+  }
+  proxyGet(
+    "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lon + "&current=temperature_2m,weather_code&temperature_unit=" + unit,
+    res
+  );
+}
+
 function handleSuggest(req, res, searchParams) {
   const engine = searchParams.get("engine") || "duckduckgo";
   const q = searchParams.get("q") || "";
@@ -82,6 +127,16 @@ const server = http.createServer((req, res) => {
 
   if (requestUrl.pathname === "/api/suggest") {
     handleSuggest(req, res, requestUrl.searchParams);
+    return;
+  }
+
+  if (requestUrl.pathname === "/api/geocode") {
+    handleGeocode(req, res, requestUrl.searchParams);
+    return;
+  }
+
+  if (requestUrl.pathname === "/api/weather") {
+    handleWeather(req, res, requestUrl.searchParams);
     return;
   }
 

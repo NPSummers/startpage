@@ -25,6 +25,11 @@
 
     <style>
       html,
+      html,
+      body,
+      #root {
+        height: 100%;
+      }
       body,
       #root {
         background-color: #000;
@@ -2234,7 +2239,7 @@
         lastWeatherCoords = { latitude: latitude, longitude: longitude };
         try {
           const unit = getTempUnit();
-          const weatherRes = await fetch("https://api.open-meteo.com/v1/forecast?latitude=" + latitude + "&longitude=" + longitude + "&current=temperature_2m,weather_code&temperature_unit=" + unit);
+          const weatherRes = await fetch("/api/weather?lat=" + latitude + "&lon=" + longitude + "&unit=" + unit);
           const weatherData = await weatherRes.json();
           const current = weatherData.current;
           if (!current) return;
@@ -2248,7 +2253,7 @@
       async function updateWeatherForLocation(location) {
         if (!location) return;
         try {
-          const geoRes = await fetch("https://geocoding-api.open-meteo.com/v1/search?count=1&name=" + encodeURIComponent(location));
+          const geoRes = await fetch("/api/geocode?count=1&name=" + encodeURIComponent(location));
           const geoData = await geoRes.json();
           const result = geoData.results && geoData.results[0];
           if (!result) return;
@@ -2299,7 +2304,7 @@
       }
       async function fetchLocationSuggestions(query) {
         try {
-          const res = await fetch("https://geocoding-api.open-meteo.com/v1/search?count=5&name=" + encodeURIComponent(query));
+          const res = await fetch("/api/geocode?count=5&name=" + encodeURIComponent(query));
           const data = await res.json();
           locationSuggestions = data.results || [];
           renderLocationSuggestions();
@@ -2431,7 +2436,6 @@
         renderPluginButtons();
         renderPluginSettingsList();
         renderPluginRepoList();
-        loadPlugins();
         applyGreeting();
         applyDate();
         applyTimeBackgrounds();
@@ -2469,6 +2473,7 @@
             if (location) updateWeatherForLocation(location);
           }
         }, 10 * 60 * 1000);
+        loadPlugins();
       });
     </script>
   </head>
