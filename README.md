@@ -9,9 +9,50 @@ plugin system for adding your own buttons.
 npm start
 ```
 
-This starts a small static file server (`server.js`) on `http://localhost:3000`
+This starts a small static file server (`server.js`) on `http://localhost:6746`
 (set `PORT` to use a different port). The server also proxies search-suggestion
 requests to `/api/suggest` so the search bar's autocomplete isn't blocked by CORS.
+
+The health check is available at `/health`. Set `HOST` to change the listen
+address; it defaults to `0.0.0.0`.
+
+## Kubernetes deployment
+
+The included manifest deploys the app to the `pokehome` namespace and publishes
+it through Traefik at `pokehome.aureal.dev`. The app is stateless and does not
+need a Secret, database, or persistent volume.
+
+On the Aureal server, after cloning the repository to `/srv/pokehome`:
+
+```sh
+cd /srv/pokehome
+
+sudo podman build \
+  --no-cache \
+  -f Containerfile \
+  -t localhost/pokehome:manual \
+  .
+
+sudo podman save \
+  localhost/pokehome:manual \
+  -o /tmp/pokehome.tar
+
+sudo k3s ctr images import /tmp/pokehome.tar
+sudo rm -f /tmp/pokehome.tar
+
+sudo k3s kubectl apply -f kubernetes/app.yaml
+sudo k3s kubectl rollout status deployment/pokehome -n pokehome
+```
+
+Verify the pod and local Traefik route:
+
+```sh
+sudo k3s kubectl get deployment,pod,service,endpoints,ingress -n pokehome
+curl -fsS -H 'Host: pokehome.aureal.dev' http://127.0.0.1/health
+```
+
+Configure the Cloudflare Tunnel public hostname `pokehome.aureal.dev` to use
+the service URL `http://127.0.0.1:80`.
 
 ## Features
 

@@ -5,6 +5,7 @@
   "description": "Offline static snapshot of the StartPage home screen",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "node test/smoke.js"
   }
 }

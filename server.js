@@ -5,6 +5,7 @@ const path = require("path");
 const { URL } = require("url");
 
 const PORT = process.env.PORT || 6746;
+const HOST = process.env.HOST || "0.0.0.0";
 const ROOT = __dirname;
 
 const SUGGEST_USER_AGENT = "Mozilla/5.0 (compatible; StartPage/1.0)";
@@ -125,6 +126,15 @@ const MIME_TYPES = {
 const server = http.createServer((req, res) => {
   const requestUrl = new URL(req.url, "http://localhost");
 
+  if (requestUrl.pathname === "/health") {
+    res.writeHead(200, {
+      "Content-Type": "application/json; charset=utf-8",
+      "Cache-Control": "no-store",
+    });
+    res.end('{"status":"ok"}');
+    return;
+  }
+
   if (requestUrl.pathname === "/api/suggest") {
     handleSuggest(req, res, requestUrl.searchParams);
     return;
@@ -167,6 +177,6 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(PORT, () => {
-  console.log(`StartPage offline site running at http://localhost:${PORT}`);
+server.listen(PORT, HOST, () => {
+  console.log(`StartPage offline site running at http://${HOST}:${PORT}`);
 });
