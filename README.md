@@ -19,7 +19,7 @@ address; it defaults to `0.0.0.0`.
 ## Kubernetes deployment
 
 The included manifest deploys the app to the `pokehome` namespace and publishes
-it through Traefik at `pokehome.aureal.dev`. The app is stateless and does not
+it through Traefik at `start.aureal.dev`. The app is stateless and does not
 need a Secret, database, or persistent volume.
 
 On the Aureal server, after cloning the repository to `/srv/pokehome`:
@@ -48,10 +48,10 @@ Verify the pod and local Traefik route:
 
 ```sh
 sudo k3s kubectl get deployment,pod,service,endpoints,ingress -n pokehome
-curl -fsS -H 'Host: pokehome.aureal.dev' http://127.0.0.1/health
+curl -fsS -H 'Host: start.aureal.dev' http://127.0.0.1/health
 ```
 
-Configure the Cloudflare Tunnel public hostname `pokehome.aureal.dev` to use
+Configure the Cloudflare Tunnel public hostname `start.aureal.dev` to use
 the service URL `http://127.0.0.1:80`.
 
 ## Features

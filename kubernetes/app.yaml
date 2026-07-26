@@ -98,7 +98,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: pokehome.aureal.dev
+    - host: start.aureal.dev
       http:
         paths:
           - path: /
