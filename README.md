@@ -67,6 +67,8 @@ the service URL `http://127.0.0.1:80`.
   site the "Ask AI" button opens.
 - **Settings → Plugins**: add extra buttons via small JavaScript files hosted
   anywhere (e.g. a GitHub raw URL).
+- **Settings → Data & Backup**: export every saved preference and plugin value
+  to a JSON file, or restore a backup on another browser or device.
 
 ## Writing a plugin
 
