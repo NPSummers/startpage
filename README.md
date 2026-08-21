@@ -1,4 +1,4 @@
-# Start Page
+i64# Start Page
 
 A simple personal start page with a greeting, local weather, quick links, and a
 plugin system for adding your own buttons.
